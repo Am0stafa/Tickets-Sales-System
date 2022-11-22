@@ -1,10 +1,3 @@
-German International University Dr. Amr Desouky
-
-Eng. Mustafa Gouda
-
-Software Project I Milestone 1
-
-**Due Date: November 25, 2022 11:59 PM**
 
 1. ***Introduction***
 
@@ -63,8 +56,9 @@ You are expected to use a single database across all your services with differen
 
 Your project will consist of four milestones, each worth 25%.
 
-Milestone #1 (Due 11/25): UML component or architecture diagrams showing how your systems will interface and sequence diagrams for each microservice except Security and Analytics. In addition, all database tables/collections should be created with their respective schema/entity relationship. Milestone #2 (Due 12/09): Create Shop, Shop Consumer, and Reservations Backend Services. Milestone #3 (Due 12/23): Create Backend Payments, Security, and Analytics Services.
-
-Milestone #4 (Due 01/03): Create Frontend Shop and Reservation Screens.
+Milestone #1 (Due 11/25): UML component or architecture diagrams showing how your systems will interface and sequence diagrams for each microservice except Security and Analytics. In addition, all database tables/collections should be created with their respective schema/entity relationship. \
+Milestone #2 (Due 12/09): Create Shop, Shop Consumer, and Reservations Backend Services.\
+Milestone #3 (Due 12/23): Create Backend Payments, Security, and Analytics Services. \
+Milestone #4 (Due 01/03): Create Frontend Shop and Reservation Screens.\
 
 Project Evaluations 01/04 - 01/05.
