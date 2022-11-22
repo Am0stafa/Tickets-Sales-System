@@ -23,8 +23,6 @@ The system shall support the following services:
 |Analytics|✓|
 |Security|✓|
 Below, you will find a general description of each microservice and its respective purpose. More details will be provided in the upcoming milestone.
-\ 
-\ 
 
 **Shop Microservice:**
 
