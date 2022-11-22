@@ -23,28 +23,30 @@ The system shall support the following services:
 |Analytics|✓|
 |Security|✓|
 Below, you will find a general description of each microservice and its respective purpose. More details will be provided in the upcoming milestone.
+\ 
+\ 
 
-Shop Microservice:
+**Shop Microservice:**
 
 The shop microservice is responsible for providing ticket availability, recommendations, and prices.
 
-Shop Consumer:
+**Shop Consumer**:
 
 The shop consumer is responsible for listening to messages that are sent over a kafka broker and processing them accordingly. There will be two topics created. The first topic will be used once for sending the initial master list. The second topic will be used by all shop consumers across all teams to share ticket sales.
 
-Reservations Microservice:
+**Reservations Microservice**:
 
 The reservations microservice is responsible for booking and allocating tickets. When a ticket is booked, the reservations microservice should produce a message that can be consumed by the shop consumer across all teams so they can update their master list accordingly.
 
-Payments Microservice:
+**Payments Microservice**:
 
 The payments microservice is responsible for processing payments.
 
-Analytics Microservice:
+**Analytics Microservice**:
 
 The analytics microservice is responsible for aggregating all bookings and storing them in a data lake to train a machine learning model that can provide interesting recommendations to the shop microservice. For example, if a user is logging in from Latin America, they may be interested in booking tickets for Argentina, Brazil, Costa Rica, Ecuador, Mexico, or Uruguay games. This service can be extended to handle other use-cases which can be defined by each team.
 
-Security Microservice:
+**Security Microservice**:
 
 The security microservice is responsible for protecting against fraud and/or malicious attacks. It will be up to the team to figure out how to protect their services accordingly. Although, more detail will be provided in upcoming milestones. When evaluating your system, we will try to exploit it for gain or attempt to bring the service down.
 
