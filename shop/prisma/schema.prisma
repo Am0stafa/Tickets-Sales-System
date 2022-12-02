@@ -6,6 +6,71 @@ generator client {
 }
 
 datasource db {
-  provider = "postgresql"
+  provider = "cockroachdb"
   url      = env("DATABASE_URL")
+}
+
+model Match{
+  id BigInt @id @default(autoincrement())
+  name String @default("TBD")
+  roundNumber Int
+  Date DateTime
+  location String
+  homeTeam String
+  homeTeamContinents String
+  awayTeam String
+  awayTeamContinents String
+  group String
+  homeTeamScore Int?
+  awayTeamScore Int?
+  rank Int
+  tickets Ticket[]
+
+}
+
+model Customer{
+  id String @id @default(uuid())
+  firstName String
+  lastName String
+  phone Int
+  country String
+  email String
+  password String?
+  orders Order[]
+}
+
+model Ticket{
+  id String @id @default(uuid())
+  pdfDescription String
+  price Int
+  barcode String?
+  gateOpens String
+  category String
+  external Boolean
+  column Int
+  match Match @relation(fields: [matchId], references: [id])
+  matchId    BigInt
+  reservations Reservation[]
+  
+}
+
+model Order{
+  id String @id @default(uuid())
+  orderDate DateTime @default(now())
+  requiredDate DateTime?
+  shipedDate DateTime?
+  status String @default("shipping")
+  comments String?
+  price Int?
+  customer Customer @relation(fields: [customerId], references: [id])
+  customerId    String
+  reservation Reservation[]
+}
+
+model Reservation{
+  id String @id @default(uuid())
+  order Order @relation(fields: [orderId], references: [id])
+  orderId   String
+  tickets Ticket @relation(fields: [ticketsId], references: [id])
+  ticketsId    String
 }
