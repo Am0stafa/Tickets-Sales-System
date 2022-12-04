@@ -1,22 +1,19 @@
-const express = require('express');
-const createError = require('http-errors');
-const morgan = require('morgan');
-const cors = require('cors');
-const cookieParser =require('cookie-parser') 
-require('dotenv').config();
-
+import express from "express";
+import httpErrors from "http-errors";
+import morgan from "morgan";
+import cors from "cors";
+import cookieParser from "cookie-parser";
+import shopRouter from "./routes/shopRouter.js"
 
 const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-app.use(cookieParser())
-app.use(morgan('dev'));
+app.use(cookieParser());
+app.use(morgan("dev"));
 app.use(cors());
-app.options('*', cors());
+app.options("*", cors());
 
-
-app.use('/api', require('./routes/shopRouter'));
-
+app.use("/api", shopRouter);
 
 app.use((req, res, next) => {
   next(createError.NotFound());
@@ -26,9 +23,9 @@ app.use((err, req, res, next) => {
   res.status(err.status || 500);
   res.send({
     status: err.status || 500,
-    message: err.message,
+    message: err.message
   });
 });
 
-const PORT = process.env.PORT || 3000;
+const PORT = 3001;
 app.listen(PORT, () => console.log(`🚀 @ http://localhost:${PORT}`));
