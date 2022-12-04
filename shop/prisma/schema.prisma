@@ -1,76 +1,68 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
 generator client {
   provider = "prisma-client-js"
 }
 
 datasource db {
-  provider = "cockroachdb"
+  provider = "postgresql"
   url      = env("DATABASE_URL")
 }
 
-model Match{
-  id BigInt @id @default(autoincrement())
-  name String @default("TBD")
-  roundNumber Int
-  Date DateTime
-  location String
-  homeTeam String
-  homeTeamContinents String
-  awayTeam String
-  awayTeamContinents String
-  group String
-  homeTeamScore Int?
-  awayTeamScore Int?
-  rank Int
-  tickets Ticket[]
-
+model Match {
+  id                 Int      @id @default(autoincrement())
+  roundNumber        Int?
+  Date               DateTime?
+  location           String?
+  homeTeam           String? @default("TBD")
+  homeTeamContinents String?
+  awayTeam           String? @default("TBD")
+  awayTeamContinents String?
+  group              String?
+  homeTeamScore      Int?
+  awayTeamScore      Int?
+  rank               Int?
+  tickets            Ticket[]
 }
 
-model Customer{
-  id String @id @default(uuid())
+model Customer {
+  id        String  @id @default(uuid())
   firstName String
-  lastName String
-  phone Int
-  country String
-  email String
-  password String?
-  orders Order[]
+  lastName  String?
+  phone     Int?
+  country   String?
+  email     String?
+  password  String?
+  orders    Order[]
 }
 
-model Ticket{
-  id String @id @default(uuid())
-  pdfDescription String
-  price Int
-  barcode String?
-  gateOpens String
-  category String
-  external Boolean
-  column Int
-  match Match @relation(fields: [matchId], references: [id])
-  matchId    BigInt
-  reservations Reservation[]
-  
+model Ticket {
+  id             String        @id @default(uuid())
+  price          Int
+  barcode        String?  @unique
+  gateOpens      String
+  category       String
+  external       Boolean
+  matchId        Int
+  reservations   Reservation[]
+  match          Match         @relation(fields: [matchId], references: [id])
 }
 
-model Order{
-  id String @id @default(uuid())
-  orderDate DateTime @default(now())
+model Order {
+  id           String        @id @default(uuid())
+  orderDate    DateTime      @default(now())
   requiredDate DateTime?
-  shipedDate DateTime?
-  status String @default("shipping")
-  comments String?
-  price Int?
-  customer Customer @relation(fields: [customerId], references: [id])
-  customerId    String
-  reservation Reservation[]
+  shipedDate   DateTime?
+  status       String        @default("shipping")
+  comments     String?
+  price        Int?
+  customerId   String
+  customer     Customer      @relation(fields: [customerId], references: [id])
+  reservation  Reservation[]
 }
 
-model Reservation{
-  id String @id @default(uuid())
-  order Order @relation(fields: [orderId], references: [id])
+model Reservation {
+  id        String @id @default(uuid())
   orderId   String
-  tickets Ticket @relation(fields: [ticketsId], references: [id])
-  ticketsId    String
+  ticketsId String
+  order     Order  @relation(fields: [orderId], references: [id])
+  tickets   Ticket @relation(fields: [ticketsId], references: [id])
 }
