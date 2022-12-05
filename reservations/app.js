@@ -1,9 +1,8 @@
-const express = require('express');
-const createError = require('http-errors');
-const morgan = require('morgan');
-const cors = require('cors');
-const cookieParser =require('cookie-parser') 
-require('dotenv').config();
+import express from "express";
+import morgan from "morgan";
+import cors from "cors";
+import cookieParser from "cookie-parser";
+import reservationRouter from "./routes/reservationRouter.js"
 
 
 const app = express();
@@ -14,11 +13,7 @@ app.use(morgan('dev'));
 app.use(cors());
 app.options('*', cors());
 
-app.get('/', async (req, res, next) => {
-  res.send({ message: 'Awesome it works 🐻' });
-});
-
-app.use('/api', require('./routes/api.route'));
+app.use('/api/reservation', reservationRouter);
 
 
 
@@ -34,5 +29,5 @@ app.use((err, req, res, next) => {
   });
 });
 
-const PORT = process.env.PORT || 3000;
+const PORT = 3002;
 app.listen(PORT, () => console.log(`🚀 @ http://localhost:${PORT}`));
