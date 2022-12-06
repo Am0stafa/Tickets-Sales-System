@@ -27,7 +27,7 @@ model Customer {
   id        String  @id @default(uuid())
   firstName String
   lastName  String?
-  phone     Int?
+  phone     String?
   country   String?
   email     String?
   password  String?
@@ -37,12 +37,16 @@ model Customer {
 model Ticket {
   id           String        @id @default(uuid())
   price        Int
-  barcode      String?       @unique
+  barcode      String?
   gateOpens    String
   category     String
   external     Boolean
   matchId      Int
+  isHold       Boolean       @default(false)
+  holdId       String?
+  isPurchased  Boolean       @default(false)
   reservations Reservation[]
+  Hold         Hold?         @relation(fields: [holdId], references: [id])
   match        Match         @relation(fields: [matchId], references: [id])
 }
 
@@ -65,4 +69,10 @@ model Reservation {
   ticketsId String
   order     Order  @relation(fields: [orderId], references: [id])
   tickets   Ticket @relation(fields: [ticketsId], references: [id])
+}
+
+model Hold {
+  id        String   @id
+  expiresIn DateTime @default(now())
+  Ticket    Ticket[]
 }

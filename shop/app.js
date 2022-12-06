@@ -13,7 +13,7 @@ app.use(morgan("dev"));
 app.use(cors());
 app.options("*", cors());
 
-app.use("/api", shopRouter);
+app.use("/api/shop", shopRouter);
 
 app.use((req, res, next) => {
   next(createError.NotFound());
