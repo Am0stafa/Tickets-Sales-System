@@ -97,6 +97,9 @@ const purchased = async (req, res, next) => {
             }
         })
         
+        const time = hold.expiresIn >= Date.now()
+        if (!time) res.status(400).send({message: 'time has passed'})
+        
         //CREATE AND ORDER
         
         
@@ -110,8 +113,7 @@ const purchased = async (req, res, next) => {
             }
         })
         
-        const time = hold.expiresIn >= Date.now()
-        if (!time) res.status(400).send({message: 'time has passed'})
+
         
         
         
