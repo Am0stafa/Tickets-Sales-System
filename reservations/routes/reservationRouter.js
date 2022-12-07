@@ -5,6 +5,12 @@ const router = express.Router();
 
 router.route("/cart")
     .post(reservationController.addTicketToCart);
+
+router.route("/purchase")
+    .post(reservationController.purchased);
+
+
+
    
 
 

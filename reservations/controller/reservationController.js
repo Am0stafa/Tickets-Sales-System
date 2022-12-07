@@ -1,5 +1,5 @@
-import { PrismaClient } from "@prisma/client";
-const prisma = new PrismaClient();
+import { PrismaClient } from '@prisma/client'
+const prisma = new PrismaClient()
 
 const addTicketToCart = async (req, res, next) => {
 /*
@@ -20,42 +20,54 @@ expect to receive matchId, ticket quantity and category then:
         const tickets = await prisma.ticket.findMany({
             where:{
                 matchId: parseInt(matchId),
-                category: ticketCategory
+                category: ticketCategory,
+                isHold:false,
+                isPurchased:false
+                
             }
 
         })
+        
         
         if(tickets.length < ticketQuantity){
             return res.status(400).send({message:"not enough tickets available"})
         }
         
+        //! create a timer for 30 mins 
+        let currentDateObj = new Date();
+        let numberOfMlSeconds = currentDateObj.getTime();
+        let addMlSeconds = 38 * 60 * 1000;
+        let holdUntil = new Date(numberOfMlSeconds + addMlSeconds)
+
+
+         
+        // create hold table
+        const hold = await prisma.hold.create({
+            data:{
+                "expiresIn":holdUntil
+            }
+        })
+        
+        
         //! select from the tickets according to the quantity and category
         const selectedTickets = tickets.slice(0, ticketQuantity);
         const selectedTicketsIds = selectedTickets.map(ticket => ticket.id);
     
-        //! delete the selected tickets from the tickets table
-        const deletedTickets = await prisma.ticket.deleteMany({
-            where: {
-                id: {
-                    in: selectedTicketsIds
+        // change the isHold to true for selectedTicketsIds
+        await prisma.ticket.updateMany({
+            where:{
+                id:{
+                    in:selectedTicketsIds
                 }
+            },
+            data:{
+                isHold:true,
+                holdId:hold.id
             }
-        });
-    
-    
-        //! create a timer for 30 mins 
-        const holdUntil = new Date() + 30 * 60 * 1000;
+        })
         
-        //! insert the selected tickets into the hold table along with the timer
-        // const holdTickets = await prisma.holdTicket.createMany({
-        //     data:selectedTickets
-        // });
         
-        // TODO: array of tickets and timer
-        
-        //! return the new record id and the timer
-        
-        res.status(200).send({tickets: selectedTickets, holdUntil: holdUntil})
+        res.status(200).send({tickets: hold.id, holdUntil: holdUntil})
         
     } catch (error) {
         console.log(error)
@@ -63,5 +75,55 @@ expect to receive matchId, ticket quantity and category then:
 
 }
 
+const purchased = async (req, res, next) => {
+/*
+    get the user and the hold table
+    1) check that the time is still valid DONE
+    2) create an order table with the user id 
+    3) get the tickets from the hold table DONE
+    4) update the tickets to be purchased true DONE
+    5) along with adding the order table id to the tickets
+*/
+    try {
+        const user = req.body.user;
+        const holdId = req.body.id;
 
-export default { addTicketToCart  };
+        const hold = await prisma.hold.findUnique({
+            where:{
+                id: holdId,
+            },
+            include:{
+                tickets: true
+            }
+        })
+        
+        //CREATE AND ORDER
+        
+        
+        const tickets = await prisma.ticket.updateMany({
+            where: {
+                holdId:hold.id
+            },
+            data: {
+                isPurchased:true,
+                // ORDER ID
+            }
+        })
+        
+        const time = hold.expiresIn >= Date.now()
+        if (!time) res.status(400).send({message: 'time has passed'})
+        
+        
+        
+        return res.status(200).send({tickets})
+        
+        
+        
+    } catch (error) {
+        console.log(error)
+    }
+        
+}
+
+
+export default { addTicketToCart,purchased  };

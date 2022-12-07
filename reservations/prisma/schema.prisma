@@ -44,15 +44,8 @@ model Order {
   price        Int?
   customerId   String
   Customer     Customer      @relation(fields: [customerId], references: [id])
-  Reservation  Reservation[]
-}
+  tickets Ticket[]
 
-model Reservation {
-  id        String @id
-  orderId   String
-  ticketsId String
-  Order     Order  @relation(fields: [orderId], references: [id])
-  Ticket    Ticket @relation(fields: [ticketsId], references: [id])
 }
 
 model Ticket {
@@ -62,7 +55,21 @@ model Ticket {
   gateOpens   String
   category    String
   external    Boolean
-  matchId     Int
-  Reservation Reservation[]
+  isHold    Boolean @default(false)
+  isPurchased Boolean @default(false)
   Match       Match         @relation(fields: [matchId], references: [id])
+  matchId     Int
+  Hold        Hold?          @relation(fields: [holdId], references: [id])
+  holdId      String?
+  order        Order?          @relation(fields: [orderId], references: [id])
+  orderId      String?
+  
+}
+
+// one hold can have many tickets
+
+model Hold{
+  id String @id @default(uuid())
+  expiresIn DateTime
+  tickets Ticket[]
 }
