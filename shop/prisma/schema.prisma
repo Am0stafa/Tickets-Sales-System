@@ -27,7 +27,7 @@ model Customer {
   id        String  @id @default(uuid())
   firstName String
   lastName  String?
-  phone     Int?
+  phone     String?
   country   String?
   email     String?
   password  String?
@@ -37,7 +37,7 @@ model Customer {
 model Ticket {
   id             String        @id @default(uuid())
   price          Int
-  barcode        String?  @unique
+  barcode        String?  
   gateOpens      String
   category       String
   external       Boolean

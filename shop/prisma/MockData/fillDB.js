@@ -8,8 +8,8 @@ import tickets from './tickets.js'
 async function main(){
     
     
-    const d = await prisma.match.createMany({
-        data:[...match],
+    const d = await prisma.ticket.createMany({
+        data:[...tickets],
     })
 
 
