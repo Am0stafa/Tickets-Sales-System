@@ -9,6 +9,9 @@ router.route("/cart")
 router.route("/purchase")
     .post(reservationController.purchased);
 
+router.route("/cancel")
+    .post(reservationController.cancel);
+    
 
 
    

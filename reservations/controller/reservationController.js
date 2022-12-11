@@ -129,5 +129,33 @@ const purchased = async (req, res, next) => {
         
 }
 
+const cancel = async (req, res, next) => {
+    try {
+        const holdId = req.body.id;
+        const hold = await prisma.hold.findUnique({
+            where:{
+                id: holdId,
+            },
+            include:{
+                tickets: true
+            }
+        })
+
+        const tickets = await prisma.ticket.updateMany({
+            where: {
+                holdId:hold.id
+            },
+            data: {
+                isHold:false,
+                holdId:null
+            }
+        })
+        
+    } catch (error) {
+        console.log(error)
+    }
+
+}
+
 
 export default { addTicketToCart,purchased  };
