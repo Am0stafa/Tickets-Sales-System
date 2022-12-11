@@ -101,23 +101,25 @@ const purchased = async (req, res, next) => {
         if (!time) res.status(400).send({message: 'time has passed'})
         
         //CREATE AND ORDER
-        
-        
+        const order = await prisma.order.create({
+            data:{
+                customerId: user.id
+            }
+        })
+
         const tickets = await prisma.ticket.updateMany({
             where: {
                 holdId:hold.id
             },
             data: {
                 isPurchased:true,
-                // ORDER ID
+                orderId:order.id
             }
         })
         
-
         
         
-        
-        return res.status(200).send({tickets})
+        return res.status(200).send({order})
         
         
         
