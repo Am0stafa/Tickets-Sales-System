@@ -6,10 +6,10 @@ const addTicketToCart = async (req, res, next) => {
 expect to receive matchId, ticket quantity and category then:
     1) check for tickets availability
     2) get a ticket and hold it by placing it into hold table for 30 mins
-    3) make a serverless function that will run after 30 mins to check if the ticket is still in the hold table if true replace it in the tickets table , if false just remove it
-    4) return the id of the ticket in the hold table and time in utc
+    3) TODO: make a serverless function that will run after 30 mins to check if the ticket is still in the hold table if true replace it in the tickets table , if false just remove it
+    4) TODO: produce a kafka broker that a ticket is pending
+    5) return the id of the ticket in the hold table and time in utc
 */
-
     try {
         //! check for ticket availability
         const matchId = req.body.matchId;
@@ -78,11 +78,12 @@ expect to receive matchId, ticket quantity and category then:
 const purchased = async (req, res, next) => {
 /*
     get the user and the hold table
-    1) check that the time is still valid DONE
+    1) check that the time is still valid 
     2) create an order table with the user id 
-    3) get the tickets from the hold table DONE
-    4) update the tickets to be purchased true DONE
-    5) along with adding the order table id to the tickets
+    3) get the tickets from the hold table 
+    4) update the tickets to be purchased true 
+    5) TODO: produce a kafka message that the ticket is purchased
+    6) along with adding the order table id to the tickets
 */
     try {
         const user = req.body.user;
@@ -117,6 +118,7 @@ const purchased = async (req, res, next) => {
             }
         })
         
+
         
         
         return res.status(200).send({order})
@@ -130,6 +132,12 @@ const purchased = async (req, res, next) => {
 }
 
 const cancel = async (req, res, next) => {
+/*
+    get hold table id
+    1) find the hold table
+    2) get the tickets from the hold table and update them to be isHold false and holdId null
+*/
+
     try {
         const holdId = req.body.id;
         const hold = await prisma.hold.findUnique({
@@ -158,4 +166,4 @@ const cancel = async (req, res, next) => {
 }
 
 
-export default { addTicketToCart,purchased  };
+export default { addTicketToCart,purchased,cancel  };
