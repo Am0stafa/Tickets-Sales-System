@@ -1,14 +1,12 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 
-import banner from "../assets/banner.jpg";
-
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 
 const BannerStyles = styled.div`
   width: 100%;
-  height: 400px;
+  height: 100px;
   display: flex;
   justify-content: flex-start;
 `;
@@ -28,7 +26,7 @@ const Banner = () => {
 
   return (
     <BannerStyles>
-      <img src={banner} alt="banner" />
+      <img src="/fdrassets/banner.jpg" alt="banner" />
     </BannerStyles>
   );
 };

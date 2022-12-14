@@ -1,15 +1,20 @@
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import Home from "./components/Home";
+import "./App.css";
+import { Book } from "./components/Book";
 import React from "react";
 
-import Header from "./components/Header";
-import Plp from "./pages/Plp"
-
 function App() {
-	return (
-		<div className='skeleton-app'>
-			<Header />
-			<Plp />
-		</div>
-	);
+  return (
+    <div className="App">
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/book/:matchId" element={<Book />} />
+        </Routes>
+      </BrowserRouter>
+    </div>
+  );
 }
 
 export default App;

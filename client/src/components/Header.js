@@ -5,7 +5,7 @@ import { BiStore, BiShoppingBag, BiUserCircle } from "react-icons/bi";
 
 const HeaderStyles = styled.div`
   width: 100%;
-  background-color: var(--blue-1);
+  background-color: green;
   box-shadow: 0px 3px 8px #888888;
   .header {
     width: 90%;
@@ -49,18 +49,13 @@ const Header = () => {
       <div className="header">
         <div className="logo">
           <image>
-            <img
-              src={require("../assets/logo.png")}
-              style={{ height: "30px" }}
-              alt="logo"
-            />
+            <img src="/assets/logo.png" style={{ height: "30px" }} alt="logo" />
           </image>
         </div>
         <nav className="menu">
           <ul>
-            <li>Shop</li>
-            <li>Collection</li>
-            <li>Blog</li>
+            <li>Matches</li>
+            <li>About</li>
           </ul>
         </nav>
         <div className="menu-icons">
