@@ -1,15 +1,16 @@
 import React from "react";
 import styled from "styled-components";
+import { Navigate, useNavigate } from "react-router-dom";
 
 import { BiStore, BiShoppingBag, BiUserCircle } from "react-icons/bi";
 
 const HeaderStyles = styled.div`
   width: 100%;
-  background-color: green;
-  box-shadow: 0px 3px 8px #888888;
+  background-color: #219f45;
+
   .header {
     width: 90%;
-    height: 60px;
+    height: 100px;
     margin: auto;
     display: flex;
     justify-content: space-between;
@@ -44,18 +45,28 @@ const HeaderStyles = styled.div`
 `;
 
 const Header = () => {
+  const navigate = useNavigate();
   return (
     <HeaderStyles>
       <div className="header">
         <div className="logo">
           <image>
-            <img src="/assets/logo.png" style={{ height: "30px" }} alt="logo" />
+            <img src="/assets/logo.png" style={{ height: "80px" }} alt="logo" />
           </image>
         </div>
         <nav className="menu">
           <ul>
-            <li>Matches</li>
-            <li>About</li>
+            <button className="butt" onClick={() => navigate("/")}>
+              Home
+            </button>
+            <button
+              className="butt"
+              // onClick={() =>
+              //   // navigate(`/my-tickets/${user.id}`, { state: { ...user } })
+              // }
+            >
+              My Tickets
+            </button>
           </ul>
         </nav>
         <div className="menu-icons">

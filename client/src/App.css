@@ -1,26 +1,52 @@
 .App {
   text-align: center;
   align-content: center;
+  margin: auto;
+
 }
+body {
+  margin: 0;
+  background-color: #161616;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+}
+body {
+  background-color: #161616;
+
+}
+
+.ais-Hits-item{
+  background-color: #161616;
+
+}
+
 .user-card-a {
   background-color: #444444;
-
   padding: 1rem;
-  text-align: left;
-  margin-left: 1rem;
-  margin-bottom: 0.5rem;
-  margin: 0 auto; 
   float: none; 
   margin-bottom: 10px; 
-  width: 1400px;
   height: 100px;
   margin: 2em;
+  margin-left: 6em;
+  margin-right: 6em;
   border: 1px solid grey;
   border-radius: 5px;
   cursor: pointer;
   display: grid; 
   grid-template-columns: 2fr 3fr 1fr 1fr 2fr 1fr 2fr;
   transition: all 0.25s ease;
+  width: auto;
+  height: 200 auto;
+  display: flex;
+  justify-content: space-around;
 }
 .user-container {
   display: grid;
@@ -31,25 +57,64 @@
 .card-container {
   display: flex;
   align-items: center;
+  width: 100%;
+  height: 100px;
+  display: flex;
+  justify-content: flex-start;
 }
 .ais-Hits-list{
   align-items: center;
   display: grid;
   justify-content: center;
+
 }
 .ais-Pagination{
   display: flex;
   justify-content: center;
 }
 .ais-Pagination-list{
-  width: 500px;
-  justify-content: space-between;
-  align-content: center;
+  background-color: #444444;
   display: flex;
+  justify-content: center;
+}
+.ais-SearchBox-form{
+  background-color: #444444;
+  margin-left: 30em;
+  margin-right: 30em;
+  float: none; 
+  margin-bottom: 10px; 
+  border: 1px solid grey;
+  border-radius: 5px;
+  cursor: pointer;
+  display: flex;
+  transition: all 0.25s ease;
+  width: auto;
+  height: 70px;
+  justify-content: space-around;
+  margin-bottom: 50px;
+
+}
+.ais-SearchBox-input {
+  background-color: #444444;
+  font-size: 30px;
+  float: none; 
+  margin-bottom: 10px; 
+ 
+
+  border-radius: 5px;
+  cursor: text;
+  display: flex;
+  transition: all 0.25s ease;
+  width: auto;
+  align-items: center;
+  justify-content: left;
+  color: #5dd4ac;
+  height: 70px;
+  justify-content: space-around;
 }
 
 .button.width-auto {
-  width: 130px;
+  width: 200px;
   padding: 0 15px;
   max-width: none;
 }
@@ -59,6 +124,11 @@
 
 .ais-Hits-item{
   list-style:none ;
+  width:auto;
+  height: 140px;
+}
+.ais-Hits-list{
+  margin-bottom: 2rem;
 }
 
 /* [role="button"],
@@ -68,6 +138,7 @@
 button:not(:disabled) {
   cursor: pointer;
 } */
+
 .button {
   display: block;
   text-align: center;
@@ -80,7 +151,8 @@ button:not(:disabled) {
   padding: 0;
   border: none;
   cursor: pointer;
-  font-size: 14px;
+  font-weight: bold;
+  font-size: 18px;
   transition: all 0.1s linear;
   font-family: EncodeSansExpanded-Bold, arial, tahoma;
 }
@@ -89,24 +161,23 @@ button:not(:disabled) {
 }
 .user-card {
   background-color: #444444;
-
   padding: 1rem;
-  text-align: left;
-  margin-left: 1rem;
-  margin-bottom: 0.5rem;
-  margin: 0 auto; 
   float: none; 
   margin-bottom: 10px; 
-  width: 1200px;
   height: 100px;
   margin: 2em;
+  margin-left: 6em;
+  margin-right: 6em;
   border: 1px solid grey;
   border-radius: 5px;
   cursor: pointer;
   display: grid; 
-  grid-template-columns: 2fr 3fr 1fr 1fr 2fr 1fr 2fr;
+  grid-template-columns: 1fr 5fr 2fr 1fr 0.8fr 3fr 1fr 2fr;
   transition: all 0.25s ease;
-
+  width: auto;
+  height: 200 auto;
+ 
+  justify-content: space-around;
 }
 
 .avatar {
@@ -122,6 +193,7 @@ button:not(:disabled) {
   text-align: left;
   margin-left: 1rem;
 }
+
 
 
 div {

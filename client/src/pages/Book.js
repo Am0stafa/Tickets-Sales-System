@@ -1,10 +1,9 @@
 import React from "react";
 import { useLocation } from "react-router-dom";
-import BookCard from "./BookCard";
-import Banner from "./Banner";
-import Header from "./Header";
+import BookCard from "../components/BookCard";
+import Header from "../components/Header";
 import styled from "styled-components";
-import data from "./matches.js";
+import data from "../components/matches.js";
 const MainPlpStyles = styled.div`
   width: 100%;
   margin-bottom: 8rem;
@@ -25,16 +24,14 @@ export const Book = () => {
   const match = loc.state;
 
   return (
-    <MainPlpStyles>
+    <>
       <div className="plp-header">
         <Header />
       </div>
-      <div className="plp-banner">
-        <Banner />
-      </div>
-      <div>
+
+      <div style={{ "margin-top": 100 }}>
         <BookCard user={match} />
       </div>
-    </MainPlpStyles>
+    </>
   );
 };

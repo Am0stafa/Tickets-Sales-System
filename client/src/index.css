@@ -22,16 +22,36 @@ code {
 h1 {
   color: white;
 }
-
+html {
+  scroll-behavior: smooth;
+}
 p,
 a {
   color: #9c9c9c;
   line-height: 50px;
 }
-
+.butt{
+  font-weight: bold;
+  color: #fff !important;
+  font-size: 21px;
+  transition: all 0.1s linear;
+  margin-right: 4em;
+  font-family: EncodeSansExpanded-Bold, arial, tahoma;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
 h3 {
   align-items: center;
   justify-content: left;
   color: #5dd4ac;
+  font-size: 18px;
 }
 
+h2 {
+  align-items: center;
+  justify-content: left;
+  color: #5dd4ac;
+  font-size: 24px;
+  font-weight: bold;
+}

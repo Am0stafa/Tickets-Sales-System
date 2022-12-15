@@ -1,32 +1,37 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 
-import Skeleton from "react-loading-skeleton";
-import "react-loading-skeleton/dist/skeleton.css";
-
 const BannerStyles = styled.div`
   width: 100%;
-  height: 100px;
-  display: flex;
-  justify-content: flex-start;
+  height: 2px;
+  margin-top: 50px;
+  position: relative;
+
+  .first-txt {
+    position: absolute;
+    top: 17px;
+    left: 50px;
+  }
+
+  .second-txt {
+    position: absolute;
+    bottom: -40px;
+    left: 40px;
+  }
 `;
 
 const Banner = () => {
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    setTimeout(() => {
-      setLoading(false);
-    }, 500);
-  }, []);
-
-  if (loading) {
-    return <Skeleton height={140} duration={0.5} />;
-  }
-
   return (
     <BannerStyles>
-      <img src="/fdrassets/banner.jpg" alt="banner" />
+      <img
+        height={440}
+        display="flex"
+        justify-content="center"
+        margin-top="900px"
+        width="auto"
+        src="/assets/banner.jpg"
+        alt="banner"
+      />
     </BannerStyles>
   );
 };

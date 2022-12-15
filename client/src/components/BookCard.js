@@ -7,7 +7,7 @@ const BookCard = ({ user }) => {
 
   return (
     <div className="user-card-a">
-      <div style={{ display: "flex" }}>
+      <div style={{ display: "flex", justifyContent: "space-around" }}>
         <img
           className="avatar"
           src={`/assets/${user.homeTeam}.png`}

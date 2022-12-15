@@ -21,9 +21,9 @@ const UserCard = ({ user }) => {
       </div>
 
       <div>
-        <h3>
+        <h2>
           {user.homeTeam} vs {user.awayTeam}
-        </h3>
+        </h2>
       </div>
 
       <div style={{ display: "flex" }}>
@@ -44,7 +44,9 @@ const UserCard = ({ user }) => {
           src="/assets/stadium.svg"
           style={{ height: "40px", width: "40px" }}
         />
-        <span style={{ margin: "0.5em" }}></span>
+      </div>
+
+      <div style={{ display: "flex" }}>
         <h3>{user.location} </h3>
       </div>
       <span style={{ margin: "1em" }}></span>
