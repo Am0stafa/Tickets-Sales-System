@@ -8,8 +8,10 @@
   },
   "keywords": [],
   "author": "",
+  "type": "module",
   "license": "MIT",
   "dependencies": {
+    "@prisma/client": "^4.7.1",
     "cookie-parser": "^1.4.6",
     "cors": "^2.8.5",
     "dotenv": "^16.0.3",

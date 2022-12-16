@@ -3,8 +3,8 @@ import httpErrors from "http-errors";
 import morgan from "morgan";
 import cors from "cors";
 import cookieParser from "cookie-parser";
-import userRouter from "./routes/userRoutes";
-require("dotenv").config();
+import userRouter from "./routes/userRoutes.js";
+import * as dotenv from 'dotenv' 
 
 const app = express();
 app.use(express.json());
