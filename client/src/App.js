@@ -1,19 +1,21 @@
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import Home from "./pages/Home.js";
+import "./App.css";
+import { Book } from "./pages/Book.js";
 import React from "react";
-import BasicCard from "./components/Card";
-import Navbar from "./components/Navbar";
-import "./styles.css";
-import '@coreui/coreui/dist/css/coreui.min.css'
-import 'bootstrap/dist/css/bootstrap.min.css'
-import Search from "./components/Search";
 
-
-export default function App() {
+function App() {
   return (
     <div className="App">
-      <Navbar />
-      <Search/>
-      <BasicCard/>
-
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/book/:matchId" element={<Book />} />
+          {/* <Route path="/my-tickets/:encryptedId" element={<Tickets />} /> */}
+        </Routes>
+      </BrowserRouter>
     </div>
   );
 }
+
+export default App;
