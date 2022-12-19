@@ -1,10 +1,9 @@
 import React from "react";
 
 const BookCard = ({ user }) => {
-
   return (
     <div className="user-card-a">
-      <div style={{ display: "flex", justifyContent: "space-around" }}>
+      <div style={{ display: "flex", marginLeft: "4em" }}>
         <img
           className="avatar"
           src={`/assets/${user.homeTeam}.png`}

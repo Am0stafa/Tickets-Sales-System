@@ -24,6 +24,7 @@ const Banner = () => {
   return (
     <BannerStyles>
       <img
+        className=""
         height={440}
         display="flex"
         justify-content="center"
