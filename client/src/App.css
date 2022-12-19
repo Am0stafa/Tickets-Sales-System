@@ -35,6 +35,15 @@
   background: #1b8ef3;
   cursor: pointer;
 }
+.dot-purple {
+  
+  display: inline-block;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: #963f81;
+  cursor: pointer;
+}
 
 .my-border{
     border: 5px solid;

@@ -1,15 +1,25 @@
 import * as React from "react";
-import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
-import FormHelperText from "@mui/material/FormHelperText";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
+import AppContext from '../context/Total'
 
-export default function SelectLabels() {
-  const [age, setAge] = React.useState("");
+export default function SelectLabels({num,setProgress,progress}) {
+  // eslint-disable-next-line no-unused-vars
+  const [selected, setSelected] = React.useState({amount:"", category: num});
+  const {calculateTotal} = React.useContext(AppContext)
 
   const handleChange = (event) => {
-    setAge(event.target.value);
+    //set the selected to the amount of tickets and num
+    setSelected({
+        amount: event.target.value,
+        category: num
+    });
+    calculateTotal({amount: event.target.value, category: num})
+    if (progress < 50) {
+        setProgress((prev) => prev + 25);
+    }
+
   };
 
   return (
@@ -17,7 +27,7 @@ export default function SelectLabels() {
       <FormControl sx={{ m: 1, minWidth: 120, justifyContent: "right" }}>
         <Select
           sx={{ backgroundColor: "gray", alignItems: "right" }}
-          value={age}
+          value={selected.amount}
           onChange={handleChange}
           displayEmpty
           inputProps={{ "aria-label": "Without label" }}

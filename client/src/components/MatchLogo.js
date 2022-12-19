@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { Avatar } from "@material-tailwind/react";
 import left from "../images/stadium-left.png";
 import right from "../images/stadium-right.png";
 import empty from "../images/stadium-empty.png";

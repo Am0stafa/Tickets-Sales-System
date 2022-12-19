@@ -8,6 +8,7 @@ import { Progress } from "@material-tailwind/react";
 import { Typography } from "@material-tailwind/react";
 import Form from "../components/Form";
 import { useNavigate } from "react-router-dom";
+import AppContext from '../context/Total'
 
 const MainPlpStyles = styled.div`
   width: 100%;
@@ -28,11 +29,16 @@ const MainPlpStyles = styled.div`
   }
 `;
 export const Book = () => {
+  // eslint-disable-next-line no-unused-vars
   const navigate = useNavigate();
   const loc = useLocation();
   const match = loc.state;
   const [progress, setProgress] = React.useState(0);
   const [choices, setChoices] = React.useState({});
+  const {total} = React.useContext(AppContext)
+  
+
+
   return (
     <MainPlpStyles>
       <div className="plp-header">
@@ -66,13 +72,14 @@ export const Book = () => {
 
             <span style={{ margin: "2em" }}></span>
             <div className="type1" style={{ display: "none" }}>
-              <Form num="1" price="EGP 125" />
-              <Form num="2" price="EGP 125" />
-              <Form num="3" price="EGP 125" />
+              <Form num="1" price="USD 200" setProgress={setProgress} progress={progress} />
+              <Form num="2" price="USD 400"  setProgress={setProgress} progress={progress} />
+              <Form num="3" price="USD 800" setProgress={setProgress} progress={progress} />
+              <Form num="4" price="USD 1200" setProgress={setProgress} progress={progress} />
               <span style={{ margin: "2em" }}></span>
 
               <div display="flex">
-                <h2>Total</h2>
+                <h2>Total {total}</h2>
               </div>
               <div
                 style={{

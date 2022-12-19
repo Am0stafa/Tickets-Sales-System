@@ -1,9 +1,10 @@
+// rather than == parseInt(num) and use === instead
 import React from "react";
 import SelectAutoWidth from "./select";
 import "./form.css";
 
-const Form = ({ num, price }) => {
-  if (num == 1) {
+const Form = ({ num, price,setProgress,progress }) => {
+  if (parseInt(num) === 1) {
     return (
       <div className="formzz">
         <div style={{ marginLeft: "4em", display: "flex" }}>
@@ -14,11 +15,11 @@ const Form = ({ num, price }) => {
         </div>
         <p>{price}</p>
         <div>
-          <SelectAutoWidth>{/* disabled */}</SelectAutoWidth>
+          <SelectAutoWidth num={num} setProgress={setProgress} progress={progress} >{/* disabled */}</SelectAutoWidth>
         </div>
       </div>
     );
-  } else if (num == 2) {
+  } else if (parseInt(num) === 2) {
     return (
       <div className="formzz">
         <div style={{ marginLeft: "4em", display: "flex" }}>
@@ -29,11 +30,11 @@ const Form = ({ num, price }) => {
         </div>
         <p>{price}</p>
         <div>
-          <SelectAutoWidth>{/* disabled */}</SelectAutoWidth>
+          <SelectAutoWidth num={num} setProgress={setProgress} progress={progress} >{/* disabled */}</SelectAutoWidth>
         </div>
       </div>
     );
-  } else {
+  } else if (parseInt(num) === 3) {
     return (
       <div className="formzz">
         <div style={{ marginLeft: "4em", display: "flex" }}>
@@ -44,10 +45,26 @@ const Form = ({ num, price }) => {
         </div>
         <p>{price}</p>
         <div>
-          <SelectAutoWidth>{/* disabled */}</SelectAutoWidth>
+          <SelectAutoWidth num={num} setProgress={setProgress} progress={progress}>{/* disabled */}</SelectAutoWidth>
         </div>
       </div>
     );
+    } else {
+        return (
+        <div className="formzz">
+            <div style={{ marginLeft: "4em", display: "flex" }}>
+            <span className="dot-purple"></span>
+            <span style={{ margin: "0.5em" }}></span>
+
+            <p>Cat {num}</p>
+            </div>
+            <p>{price}</p>
+            <div>
+            <SelectAutoWidth num={num} setProgress={setProgress} progress={progress} >{/* disabled */}</SelectAutoWidth>
+            </div>
+        </div>
+        );
+    
   }
 };
 
