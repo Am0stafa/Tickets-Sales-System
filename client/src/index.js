@@ -1,16 +1,10 @@
 import React from "react";
-import ReactDOM from "react-dom/client";
-import App from "./App.js";
-import "./index.css";
+import { createRoot } from "react-dom/client";
+import App from "./App";
+import Modal from "react-modal";
 
-import { ThemeProvider } from "@material-tailwind/react";
- 
-const root = ReactDOM.createRoot(document.getElementById("root"));
- 
-root.render(
-  <React.StrictMode>
-    <ThemeProvider>
-      <App />
-    </ThemeProvider>
-  </React.StrictMode>
-);
+Modal.setAppElement("#root");
+
+const container = document.getElementById("root");
+const root = createRoot(container);
+root.render(<App />);
