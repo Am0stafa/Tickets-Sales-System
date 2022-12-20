@@ -15,9 +15,7 @@ app.options("*", cors());
 
 app.use("/api/shop", shopRouter);
 
-app.use((req, res, next) => {
-  next(createError.NotFound());
-});
+
 
 app.use((err, req, res, next) => {
   res.status(err.status || 500);

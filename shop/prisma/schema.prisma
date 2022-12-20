@@ -42,8 +42,8 @@ model Ticket {
   category     String
   external     Boolean
   matchId      Int
-  isHold       Boolean       @default(false)
   holdId       String?
+  isHold       Boolean       @default(false)
   isPurchased  Boolean       @default(false)
   reservations Reservation[]
   Hold         Hold?         @relation(fields: [holdId], references: [id])
@@ -73,6 +73,6 @@ model Reservation {
 
 model Hold {
   id        String   @id
-  expiresIn DateTime @default(now())
+  expiresIn DateTime
   Ticket    Ticket[]
 }
