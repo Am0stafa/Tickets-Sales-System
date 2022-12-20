@@ -1,0 +1,680 @@
+
+
+.login-container {
+    box-sizing: border-box;
+    background: #feedf6;
+    background: -webkit-gradient(linear,left top,right bottom,from(#feedf6),to(#fcf0e2));
+    background: -webkit-linear-gradient(top left,#feedf6,#fcf0e2);
+    background: linear-gradient(to bottom right,#feedf6,#fcf0e2);
+    text-align: center;
+    padding-top: 30px;
+    position: relative;
+    padding-bottom: 40px
+}
+
+.login-box {
+    background-color: transparent;
+    box-shadow: 0 2px 15px rgba(0,0,0,.1);
+    padding: 20px 10px;
+}
+
+.header-sprite {
+    background: url(https://cdn.myntassets.com/myx/images/header@2x-new16.a409d46af2e211afcaa82c1359787a90408024be.png) no-repeat 0 0;
+    background-size: 336px 48px
+}
+
+.login-logo {
+    background-position: 0 0;
+    margin-top: 30px;
+    width: 50px;
+    height: 38px
+}
+
+.login-title {
+    font-size: 32px;
+    margin-top: 15px;
+    color: #535766
+}
+
+.login-third-party-login {
+    margin-top: 30px
+}
+
+.login-info-text {
+    color: #ffffff;
+    font-size: 12px
+}
+
+.login-button-info-text {
+    margin-top: 0;
+    margin-bottom: 20px
+}
+
+.login-button-container {
+    margin-top: 10px;
+    margin-bottom: 40px
+}
+
+.login-button {
+    display: block;
+    width: 100%;
+/*     max-width: 162px; */
+    padding-left: 40%;
+    position: relative;
+    font-size: 13px;
+    font-weight: 500;
+    color: #696b79;
+    height: 50px;
+    border: 1px solid #bfc0c6;
+    background-color: #fff;
+    border-radius: 5px;
+    text-align: left
+}
+
+.login-button:focus {
+    outline: 0
+}
+
+.login-button:hover {
+    box-shadow: 0 2px 5px #eaeaec
+}
+
+.login-facebook {
+    margin-bottom: 20px
+}
+
+.login-gplus-logo {
+    background-position: -298px 0!important;
+    width: 23px;
+    top: 13px
+}
+
+.login-fb-logo,.login-gplus-logo {
+    height: 29px;
+    position: absolute;
+    left: 15px
+}
+
+.login-fb-logo {
+    background-position: -269px 0!important;
+    width: 28px;
+    top: 10px
+}
+
+.login-login-form {
+    margin: 0
+}
+
+.login-input-container {
+    margin: 20px;
+    border: 1px solid #bfc0c6;
+    border-radius: 5px;
+    padding: 0
+}
+
+.login-input-container:hover {
+    box-shadow: 0 2px 5px #eaeaec
+}
+
+.login-input-container-pink {
+    border: 1px solid #6a2c91;
+    box-shadow: 0 2px 5px #ffd9e2
+}
+
+.login-input-item {
+    position: relative
+}
+
+.login-user-input {
+    display: block;
+    color: #282c3f;
+    padding-right: 40px;
+    font-size: 15px;
+    width: 100%;
+    border: 0;
+    padding: 15px
+}
+
+.login-user-input-email {
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px
+}
+
+.login-user-input-password {
+    border-top: 1px solid #d5d6d9;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px
+}
+
+.login-error-icon {
+    border: 2px solid #ee5f73;
+    padding: 0 7px;
+    color: #ee5f73;
+    display: inline-block;
+    position: absolute;
+    top: 12px;
+    right: 10px;
+    font-weight: 500;
+    border-radius: 21px
+}
+
+.login-error-message {
+    font-size: 11px;
+    margin-left: 15px;
+    color: #ee5f73;
+    text-align: left;
+    margin-top: -9px;
+    max-height: 500px;
+    -webkit-transition-property: all;
+    transition-property: all;
+    -webkit-transition-duration: .5s;
+    transition-duration: .5s;
+    -webkit-transition-timing-function: cubic-bezier(0,1,.5,1);
+    transition-timing-function: cubic-bezier(0,1,.5,1)
+}
+
+.login-captcha {
+    width: 200px;
+    padding: 5px;
+    border: 1px solid #d5d6d9;
+    border-radius: 5px
+}
+
+.login-user-input-captcha {
+    border-radius: 5px
+}
+
+.login-user-input:focus {
+    outline: 0
+}
+
+.login-login-button-container {
+    padding: 10px 20px;
+    margin: 0;
+    border: 0
+}
+
+.login-login-button {
+    background-color: #6a2c91;
+    color: #fff;
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 2px;
+    padding: 15px;
+    display: block;
+    width: 100%;
+    border: 0;
+    text-transform: uppercase;
+    border-radius: 3px;
+    font-family: Whitney
+}
+
+.login-login-button:hover {
+   background: #A543E2;
+}
+
+.login-login-button:focus {
+    outline: 0;
+    box-shadow: inset 1px 2px 8px rgba(0,0,0,.2);
+    background-color: #ff3f6c
+}
+
+.login-link-container {
+    text-align: left;
+    padding: 20px
+}
+
+.login-right-links {
+    float: right
+}
+
+.login-link {
+    cursor: pointer;
+    text-decoration: none;
+    color: #6a2c91;
+    font-size: 13px;
+    padding: 10px 0
+}
+
+.login-create-account-link {
+    margin-left: 5px
+}
+
+@media (min-width: 360px) {
+    .login-button {
+        width:100%;
+        display: inline-block
+    }
+
+    .login-facebook {
+        margin-right: 15px;
+        margin-bottom: 0
+    }
+}
+
+
+
+.register-container {
+    box-sizing: border-box;
+    background: #feedf6;
+    background: -webkit-gradient(linear,left top,right bottom,from(#feedf6),to(#fcf0e2));
+    background: -webkit-linear-gradient(top left,#feedf6,#fcf0e2);
+    background: linear-gradient(to bottom right,#feedf6,#fcf0e2);
+    text-align: center;
+    padding-top: 30px;
+    position: relative;
+    padding-bottom: 40px
+}
+
+.register-box {
+    background-color: #fff;
+    box-shadow: 0 2px 15px rgba(0,0,0,.1);
+    padding: 20px 10px;
+}
+
+.register-sprite {
+    background: url(https://cdn.myntassets.com/myx/images/header@2x-new16.a409d46af2e211afcaa82c1359787a90408024be.png) no-repeat 0 0;
+    background-size: 327px 48px;
+    display: inline-block
+}
+
+.register-logo {
+    background-position: 0 0;
+    margin-top: 30px;
+    width: 50px;
+    height: 38px
+}
+
+.register-title {
+    font-size: 32px;
+    margin-top: 15px;
+    color: #535766
+}
+
+.register-third-party-register {
+    margin-top: 30px
+}
+
+.register-info-text {
+    color: #94969f;
+    font-size: 12px
+}
+
+.register-button-info-text {
+    margin-top: 0;
+    margin-bottom: 20px
+}
+
+.register-button-container {
+    margin-top: 10px;
+    margin-bottom: 40px
+}
+
+.register-button {
+    display: block;
+    margin: 0 auto;
+    width: 100%;
+    max-width: 162px;
+    padding-left: 18%;
+    position: relative;
+    font-size: 13px;
+    font-weight: 500;
+    color: #696b79;
+    height: 50px;
+    border: 1px solid #bfc0c6;
+    background-color: #fff;
+    border-radius: 5px;
+    text-align: left
+}
+
+.register-button:focus {
+    outline: 0
+}
+
+.register-button:hover {
+    box-shadow: 0 2px 5px #eaeaec
+}
+
+.register-facebook {
+    margin-bottom: 20px
+}
+
+.register-gplus-logo {
+    background-position: -290px 0;
+    width: 23px;
+    top: 13px
+}
+
+.register-fb-logo,.register-gplus-logo {
+    height: 29px;
+    position: absolute;
+    left: 15px
+}
+
+.register-fb-logo {
+    background-position: -262px 0;
+    width: 28px;
+    top: 10px
+}
+
+.register-input-item {
+    position: relative
+}
+
+.register-input-container {
+    margin: 20px;
+    border: 1px solid #bfc0c6;
+    border-radius: 5px;
+    padding: 0
+}
+
+.register-input-container:hover {
+    box-shadow: 0 2px 5px #eaeaec
+}
+
+.register-input-container-pink {
+    border: 1px solid #ff527b;
+    box-shadow: 0 2px 5px #ffd9e2
+}
+
+.register-user-input {
+    display: block;
+    color: #282c3f;
+    font-size: 15px;
+    padding-right: 40px;
+    width: 100%;
+    border: 0;
+    padding: 15px
+}
+
+.register-user-input-email {
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px
+}
+
+.register-user-input-password {
+    border-top: 1px solid #d5d6d9
+}
+
+.register-captcha {
+    width: 200px;
+    padding: 5px;
+    border: 1px solid #d5d6d9;
+    border-radius: 5px
+}
+
+.register-user-input-captcha {
+    border-radius: 5px
+}
+
+.register-user-input-mobile {
+    border-top: 1px solid #d5d6d9;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px
+}
+
+.register-user-input-mobile::-webkit-inner-spin-button,.register-user-input-mobile::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0
+}
+
+.register-user-input:focus {
+    outline: 0
+}
+
+.register-error-icon {
+    border: 2px solid #ee5f73;
+    padding: 0 7px;
+    color: #ee5f73;
+    display: inline-block;
+    position: absolute;
+    top: 12px;
+    right: 10px;
+    font-weight: 500;
+    border-radius: 21px
+}
+
+.register-error-message {
+    font-size: 11px;
+    margin-left: 15px;
+    color: #ee5f73;
+    text-align: left;
+    margin-top: -9px;
+    max-height: 500px;
+    -webkit-transition-property: all;
+    transition-property: all;
+    -webkit-transition-duration: .5s;
+    transition-duration: .5s;
+    -webkit-transition-timing-function: cubic-bezier(0,1,.5,1);
+    transition-timing-function: cubic-bezier(0,1,.5,1)
+}
+
+.register-gender-error-icon {
+    font-size: 16px
+}
+
+.register-gender-error-message {
+    margin-left: 0;
+    margin-top: 10px;
+    margin-bottom: 0
+}
+
+.register-gender {
+    position: relative;
+    border: 0;
+    font-size: 13px;
+    color: #696e79;
+    text-align: left;
+    padding: 15px;
+    margin: 0;
+    border-top: 1px solid #d5d6d9;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px
+}
+
+.register-gender-title {
+    display: inline;
+    font-weight: 500
+}
+
+.register-gender-radio {
+    margin-left: 15px;
+    margin-right: 5px
+}
+
+.register-gender-label {
+    cursor: pointer;
+    font-weight: 500
+}
+
+.register-register-button-container {
+    padding: 10px 20px;
+    margin: 0;
+    border: 0
+}
+
+.register-register-button {
+    background-color: #ff527b;
+    color: #fff;
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 2px;
+    padding: 15px;
+    display: block;
+    width: 100%;
+    border: 0;
+    text-transform: uppercase;
+    border-radius: 3px;
+    font-family: Whitney-SemiBold
+}
+
+.register-register-button:hover {
+    background: -webkit-gradient(linear,left top,right bottom,from(#ff527b),to(#ff3f6c));
+    background: -webkit-linear-gradient(top left,#ff527b,#ff3f6c);
+    background: linear-gradient(to bottom right,#ff527b,#ff3f6c)
+}
+
+.register-register-button:focus {
+    outline: 0;
+    box-shadow: inset 1px 2px 8px rgba(0,0,0,.2);
+    background-color: #ff3f6c
+}
+
+.register-link-container {
+    text-align: left;
+    padding: 20px
+}
+
+.register-login-link {
+    text-align: center
+}
+
+.register-register-form {
+    margin: 0
+}
+
+.register-link {
+    cursor: pointer;
+    text-decoration: none;
+    color: #ff527b;
+    padding: 10px 0;
+    font-size: 13px
+}
+
+.register-create-account-link {
+    margin-left: 5px
+}
+
+@media (min-width: 360px) {
+    .register-button {
+        width:49%;
+        display: inline-block
+    }
+
+    .register-facebook {
+        margin-right: 15px;
+        margin-bottom: 0
+    }
+}
+
+@media (min-width: 400px) {
+    .register-box {
+        display:inline-block;
+        width: 400px
+    }
+}
+
+.forgot-password-container {
+    box-sizing: border-box;
+    background: #feedf6;
+    background: -webkit-gradient(linear,left top,right bottom,from(#feedf6),to(#fcf0e2));
+    background: -webkit-linear-gradient(top left,#feedf6,#fcf0e2);
+    background: linear-gradient(to bottom right,#feedf6,#fcf0e2);
+    text-align: center;
+    padding-top: 30px;
+    position: relative;
+    padding-bottom: 40px
+}
+
+.forgot-password-sprite {
+    background: url(https://cdn.myntassets.com/myx/images/header@2x-new16.a409d46af2e211afcaa82c1359787a90408024be.png) no-repeat 0 0;
+    background-size: 327px 48px;
+    display: inline-block
+}
+
+.forgot-password-logo {
+    background-position: 0 0;
+    margin-top: 30px;
+    width: 50px;
+    height: 38px
+}
+
+.forgot-password-box {
+    background-color: #fff;
+    box-shadow: 0 2px 15px rgba(0,0,0,.1);
+    padding: 20px 10px;
+    max-width: 430px
+}
+
+.forgot-password-title {
+    font-size: 32px;
+    margin-top: 15px;
+    color: #535766
+}
+
+.forgot-password-subtitle {
+    color: #535766
+}
+
+.forgot-password-form {
+    padding: 10px 20px
+}
+
+.forgot-password-user-input {
+    display: block;
+    margin-top: 50px;
+    color: #282c3f;
+    font-size: 15px;
+    border: 1px solid #bfc0c6;
+    width: 100%;
+    padding: 15px;
+    border-radius: 5px;
+    margin-bottom: 30px
+}
+
+.forgot-password-user-input:hover {
+    box-shadow: 0 2px 5px #eaeaec
+}
+
+.forgot-password-user-input:focus {
+    outline: 0;
+    border: 1px solid #ff527b;
+    box-shadow: 0 2px 5px #ffd9e2
+}
+
+.forgot-password-button {
+    background-color: #ff527b;
+    color: #fff;
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 2px;
+    padding: 15px;
+    display: block;
+    width: 100%;
+    border: 0;
+    text-transform: uppercase;
+    border-radius: 3px
+}
+
+.forgot-password-button:focus {
+    outline: 0;
+    box-shadow: inset 1px 2px 8px rgba(0,0,0,.2);
+    background-color: #ff3f6c
+}
+
+.forgot-password-button:hover {
+    background: -webkit-gradient(linear,left top,right bottom,from(#ff527b),to(#ff3f6c));
+    background: -webkit-linear-gradient(top left,#ff527b,#ff3f6c);
+    background: linear-gradient(to bottom right,#ff527b,#ff3f6c)
+}
+
+.forgot-password-login-link {
+    cursor: pointer;
+    text-decoration: none;
+    color: #ea5e8b;
+    padding: 20px;
+    display: inline-block;
+    font-size: 13px
+}
+
+.forgot-password-message {
+    font-weight: 500;
+    margin: 20px 0
+}
+
+@media (min-width: 400px) {
+    .forgot-password-box {
+        display:inline-block;
+        width: 400px
+    }
+}
