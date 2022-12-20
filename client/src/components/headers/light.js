@@ -1,3 +1,4 @@
+/* eslint-disable import/no-anonymous-default-export */
 import React from "react";
 import { motion } from "framer-motion";
 import tw from "twin.macro";

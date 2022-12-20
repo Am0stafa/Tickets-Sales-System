@@ -10,18 +10,22 @@ const GlobalStyles = createGlobalStyle(
      transition-delay: 100ms;
      transform: scale(0);
    }
+   
    .ReactModal__Overlay--after-open{
      transform: scale(1);
    }
+
    .ReactModal__Overlay--before-close{
      transform: scale(0);
    }
+
    .ais-Hits-list{
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
 
    }
+
    .TwoColumnWithVideo__Container-sc-sn3u7g-0 yisDD{
     margin-top: -500px;
    }
@@ -31,7 +35,7 @@ const GlobalStyles = createGlobalStyle(
     flex: 0 0 15%;
     box-shadow: none;
     justify-content: center;
-
+    box-shadow:none;
   }
 
   .avatar {
@@ -46,9 +50,11 @@ const GlobalStyles = createGlobalStyle(
   .kBbqaL{
     min-width: 250px;
   }
+
   .ais-Pagination-list{
     justify-content: center;
   }
+
   .ais-SearchBox{
     justify-content: center;
     align-items: center;
