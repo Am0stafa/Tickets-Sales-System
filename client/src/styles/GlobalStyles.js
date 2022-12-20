@@ -55,6 +55,91 @@ const GlobalStyles = createGlobalStyle(
     justify-content: center;
   }
 
+  .dot-yellow {
+  
+    display: inline-block;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    background: #cca92c;
+    cursor: pointer;
+  }
+  .dot-red {
+    
+    display: inline-block;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    background: #c12222;
+    cursor: pointer;
+  }
+  .dot-blue {
+    
+    display: inline-block;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    background: #1b8ef3;
+    cursor: pointer;
+  }
+  .dot-purple {
+    
+    display: inline-block;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    background: #963f81;
+    cursor: pointer;
+  }
+  
+  .my-border{
+      border: 5px solid;
+      border-color: #219f45;
+      vertical-align:bottom;
+     
+      border-radius: 50%;
+     
+      animation: pulse 1s infinite;
+      display: inline-block;
+  
+    
+  }
+  @-webkit-keyframes pulse {
+    0% {
+      -webkit-box-shadow: 0 0 0 0 rgba(204,169,44, 0.4);
+    }
+    70% {
+        -webkit-box-shadow: 0 0 0 10px rgba(204,169,44, 0);
+    }
+    100% {
+        -webkit-box-shadow: 0 0 0 0 rgba(204,169,44, 0);
+    }
+  }
+  @keyframes pulse {
+    0% {
+      -moz-box-shadow: 0 0 0 0 rgba(204,169,44, 0.4);
+      box-shadow: 0 0 0 0 rgba(204,169,44, 0.4);
+    }
+    70% {
+        -moz-box-shadow: 0 0 0 10px rgba(204,169,44, 0);
+        box-shadow: 0 0 0 10px rgba(204,169,44, 0);
+    }
+    100% {
+        -moz-box-shadow: 0 0 0 0 rgba(204,169,44, 0);
+        box-shadow: 0 0 0 0 rgba(204,169,44, 0);
+    }
+  }
+  
+.booked {
+  background-color: #444444;
+  width : 1000px;
+  max-width: 1400px;
+  margin: 4rem;
+  border-color: #42b462;
+  border: 6px solid;
+}
+
+
   .ais-SearchBox{
     justify-content: center;
     align-items: center;
