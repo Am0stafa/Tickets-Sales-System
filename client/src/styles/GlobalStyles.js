@@ -129,7 +129,25 @@ const GlobalStyles = createGlobalStyle(
         box-shadow: 0 0 0 0 rgba(204,169,44, 0);
     }
   }
-  
+  .user-card {
+    background-color: #eee;
+    padding: 1rem;
+    float: none; 
+    
+    height: 100px;
+    justify-content: center;
+    margin-left: 6em;
+    margin-right: 6em;
+    border: 1px solid grey;
+    border-radius: 5px;
+    cursor: pointer;
+    display: grid; 
+    grid-template-columns: 2fr  1.5fr 1fr  ;
+    transition: all 0.25s ease;
+    width: auto;
+    height: 200 auto;
+   
+  }
 .booked {
   background-color: #444444;
   width : 1000px;
