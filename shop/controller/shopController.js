@@ -92,7 +92,6 @@ const availability = async (id,all=false) => {
             
 }
 
-
 const getAvailability = async (req, res) => {
     const data = await availability(parseInt(req.params.matchId));
     if(data.message) {
