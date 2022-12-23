@@ -34,46 +34,26 @@ const getAll = async (req, res) => {
   }
 };
 
-const getMatchById = async (req, res) => {
-  try {
-    const match = await matches.findUnique({
-      where: {
-        id: parseInt(req.params.id)
-      }
-    });
-    res.status(200).json({
-      status: "success",
-      data: match
-    });
-  } catch (error) {
-    res.status(400).json({
-      message: error.message
-    });
-  }
-};
-
-const getAvailability = async (req, res) => {
+const availability = async (id,all=false) => {
     try {
         
         const tickets = await prisma.ticket.findMany({
             where: {
-                matchId: parseInt(req.params.matchId),
+                matchId: id
             }
         });
-
         const hold = await prisma.ticket.findMany({
             where: {
-                matchId: parseInt(req.params.matchId),
+                matchId: id,
                 isHold: true
             }
         });
         const sold = await prisma.ticket.findMany({
             where: {
-                matchId: parseInt(req.params.matchId),
+                matchId: id,
                 isPurchased: true
             }
         });
-
         const available = tickets.length - hold.length - sold.length;
         let status = "";
         if(available < 0) {
@@ -84,24 +64,49 @@ const getAvailability = async (req, res) => {
         else if (tickets.length === 0 && hold.length > 0) {
             status = "Temporarily Unavailable"
         }
-         else {
+        else {
             status = "Available";
         }
-
-        res.status(200).json({
-            matchId: parseInt(req.params.matchId),
+        if(all){
+            return {
+                matchId: id,
+                status: status,
+                numOfAvailable: available
+            }
+        }
+        return {
+            matchId: id,
             status: status,
             numOfTickets: tickets.length,
             numOfHold: hold.length,
             numOfSold: sold.length,
             numOfAvailable: available
-        });
-
+        }
     } catch (error) {
+        return {
+            message: error.message
+        }
+    }
+
+
+            
+}
+
+
+const getAvailability = async (req, res) => {
+    const data = await availability(parseInt(req.params.matchId));
+    if(data.message) {
         res.status(400).json({
-        message: error.message
+            message: data.message
         });
     }
+    res.status(200).json({
+        status: "success",
+        data: data
+    });
+        
+    
+
 };
 
 const availableCat = async (req, res) => {
@@ -149,6 +154,24 @@ const availableCat = async (req, res) => {
     }
 }
 
-        
+const getAllAvailability = async (req, res) => {
+    const allMatches = await matches.findMany();
+    // this is how that data will be returned
+    // {
+    //     "matchId": id,
+    //     "status": "Available",
+    //     "numOfAvailable": 720
+    // }
+    const ids = allMatches.map(match => match.id);
+    const promises = ids.map(id => availability(id,true));
+    const data = await Promise.all(promises);
+    res.status(200).json({
+        status: "success",
+        data: data
+    });
 
-export default { getAll, getMatchById, getAvailability,availableCat,availableCat };
+
+
+}
+
+export default { getAll,  getAvailability,availableCat,availableCat,getAllAvailability };
