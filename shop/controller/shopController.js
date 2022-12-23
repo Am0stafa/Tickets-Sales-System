@@ -113,27 +113,35 @@ const availableCat = async (req, res) => {
         const cat1 = await prisma.ticket.findMany({
             where: {
                 matchId: parseInt(req.params.matchId),
-                category:"Category 1"
+                category:"Category 1",
+                isPurchased: false,
+                isHold: false
             }
         });
 
         const cat2 = await prisma.ticket.findMany({
             where: {
                 matchId: parseInt(req.params.matchId),
-                category:"Category 2"
+                category:"Category 2",                
+                isPurchased: false,
+                isHold: false
             }
         });
 
         const cat3 = await prisma.ticket.findMany({
             where: {
                 matchId: parseInt(req.params.matchId),
-                category:"Category 3"
+                category:"Category 3",
+                isPurchased: false,
+                isHold: false
             }
         });
         const cat4 = await prisma.ticket.findMany({
             where: {
                 matchId: parseInt(req.params.matchId),
-                category:"Category 4"
+                category:"Category 4",
+                isPurchased: false,
+                isHold: false
             }
         });
 
@@ -173,4 +181,26 @@ const getAllAvailability = async (req, res) => {
 
 }
 
-export default { getAll,  getAvailability,availableCat,availableCat,getAllAvailability };
+const getHold = async (req, res) => {
+    try {
+        const hold = await prisma.hold.findMany({
+            where: {
+                id:"5a3a3dab-eb66-4fde-8f92-c6eb906aa88a"
+            },
+            include: {
+                Ticket: true
+            }
+        });
+        res.status(200).json({
+            status: "success",
+            data: hold
+        });
+    } catch (error) {
+        res.status(400).json({
+            message: error.message
+        });
+    }
+}
+
+
+export default { getAll,  getAvailability,availableCat,availableCat,getAllAvailability,getHold };

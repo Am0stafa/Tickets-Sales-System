@@ -77,10 +77,13 @@ const getTicketById = async (req, res) => {
                 message: "User has no orders"
             });
         }
+        // return only which have reservation array not empty
+        const data = user.Order.filter(order => order.Reservation.length > 0);
 
         res.status(200).json({
             status: "success",
-            data: user
+            data: data
+            
         });
 
     } catch (error) {
