@@ -4,6 +4,7 @@ const router = express.Router();
 
 router.route("/").get(userController.getAllUsers);   
 router.route("/:id").get(userController.getUserById);
-router.route("/create").post(userController.createUser);   
+router.route("/create").post(userController.createUser);
+router.route("/ticket/:id").get(userController.getTicketById);
 
 export default router;
