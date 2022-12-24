@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef } from "react";
 import tw from "twin.macro";
 import { css } from "styled-components/macro"; //eslint-disable-line
 import AnimationRevealPage from "../helpers/AnimationRevealPage.js";
@@ -42,6 +42,8 @@ function Hit({ hit }) {
 }
 
 const Home = () => {
+  const myRef = useRef();
+
   const searchClient = algoliasearch(
     "F1K7P1CJSO",
     "edd15deed9e61a4b64095726b783e9df"
@@ -79,7 +81,7 @@ const Home = () => {
             searchClient={searchClient}
             indexName="fifa-wc-tickets"
           >
-            <HeaderRow>
+            <HeaderRow ref={myRef}>
               <Header>
                 All <HighlightedText>Matches</HighlightedText>
               </Header>
@@ -88,13 +90,9 @@ const Home = () => {
             <SearchBox
               style={{ margin: "30px" }}
               placeholder="Start searching..."
-              onClick={() =>
-                window.scrollBy({
-                  top: 500,
-                  left: 0,
-                  behavior: "smooth",
-                })
-              }
+              onClick={() => {
+                myRef.current.scrollIntoView({ behavior: "smooth" });
+              }}
             />
 
             <Hits hitComponent={Hit} />
@@ -122,21 +120,21 @@ const Home = () => {
         }
         cards={[
           {
-            imageSrc: shopIconImageSrc,
-            title: "230+ Locations",
-            description: "Lorem ipsum donor amet siti ceali placeholder text",
+            imageSrc: "/assets/flash.png",
+            title: "Quick Delivery",
+            description: "Receive your ticket in less than 24 hours",
             url: "https://google.com",
           },
           {
-            imageSrc: chefIconImageSrc,
-            title: "Professional Chefs",
-            description: "Lorem ipsum donor amet siti ceali placeholder text",
+            imageSrc: "/assets/customer-service.png",
+            title: "24/7 Support",
+            description: "Chat with or call our customer support at any time ",
             url: "https://timerse.com",
           },
           {
-            imageSrc: celebrationIconImageSrc,
-            title: "Birthday Catering",
-            description: "Lorem ipsum donor amet siti ceali placeholder text",
+            imageSrc: "/assets/refund.png",
+            title: "Easy Refund",
+            description: "Guaranteed to get your money back",
             url: "https://reddit.com",
           },
         ]}
@@ -144,7 +142,7 @@ const Home = () => {
         imageCss={tw`w-20! h-20!`}
       />
       <MainFeature2
-        subheading={<Subheading>A Reputed Brand</Subheading>}
+        subheading={<Subheading>A Trusted Seller</Subheading>}
         heading={
           <>
             Why <HighlightedText>Choose Us ?</HighlightedText>
@@ -152,7 +150,7 @@ const Home = () => {
         }
         statistics={[
           {
-            key: "Orders",
+            key: "Tickets Sold",
             value: "94000+",
           },
           {
@@ -160,7 +158,7 @@ const Home = () => {
             value: "11000+",
           },
           {
-            key: "Chefs",
+            key: "Customer Support Agents",
             value: "1500+",
           },
         ]}

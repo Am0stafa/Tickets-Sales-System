@@ -23,7 +23,7 @@ const GlobalStyles = createGlobalStyle(
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;
-
+    box-shadow:none;
    }
 
    .TwoColumnWithVideo__Container-sc-sn3u7g-0 yisDD{

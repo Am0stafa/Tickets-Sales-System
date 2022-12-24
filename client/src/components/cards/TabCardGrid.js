@@ -44,6 +44,7 @@ export default ({ user }) => {
       style={{
         borderTopLeftRadius: "0.25rem",
         borderTopRightRadius: "0.25rem",
+        boxShadow: "none",
       }}
       className="group"
       initial="rest"

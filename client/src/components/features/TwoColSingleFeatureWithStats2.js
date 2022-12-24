@@ -1,3 +1,4 @@
+/* eslint-disable import/no-anonymous-default-export */
 import React from "react";
 import tw from "twin.macro";
 import styled from "styled-components";
@@ -54,7 +55,7 @@ export default ({
       <span tw="text-primary-500">1999.</span>
     </>
   ),
-  description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+  description = "We are one of the top ticket sellers in the world. Our company is the #1 ticket provider for the FIFA World Cup 2022. It is guaranteed that you will get your ticket, or get your money back in case something goes wrong.",
   primaryButtonText = "Learn More",
   primaryButtonUrl = "https://timerse.com",
   imageSrc = StatsIllustrationSrc,
