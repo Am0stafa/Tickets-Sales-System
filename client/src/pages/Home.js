@@ -68,18 +68,16 @@ const Home = () => {
       <Hero
         heading={
           <>
-            Buy your <HighlightedText>World Cup</HighlightedText>
-            Tickets Now!
+            Buy your <HighlightedText>World Cup </HighlightedText> Tickets Now!
           </>
         }
-        description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+        description="Hurry up! Buy your FIFA World Cup Qatar 2022 tickets right now, with the lowest prices on the market!"
         imageSrc="https://images.unsplash.com/photo-1504674900247-0877df9cc836?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=768&q=80"
         imageCss={imageCss}
         imageDecoratorBlob={true}
         primaryButtonText="Order Now"
         watchVideoButtonText="Meet The Chefs"
       />
-
       {/* <SliderCard /> */}
 
       <Container>
@@ -88,11 +86,13 @@ const Home = () => {
             searchClient={searchClient}
             indexName="fifa-wc-tickets"
           >
-            <HeaderRow ref={myRef}>
-              <Header>
-                All <HighlightedText>Matches</HighlightedText>
-              </Header>
-            </HeaderRow>
+            <section id="things">
+              <HeaderRow ref={myRef}>
+                <Header>
+                  All <HighlightedText>Matches</HighlightedText>
+                </Header>
+              </HeaderRow>
+            </section>
             <div style={{ marginTop: "30px" }}></div>
             <SearchBox
               style={{ margin: "30px" }}
@@ -118,7 +118,6 @@ const Home = () => {
         <DecoratorBlob1 />
         <DecoratorBlob2 />
       </Container>
-
       <Features
         heading={
           <>
@@ -165,7 +164,7 @@ const Home = () => {
             value: "11000+",
           },
           {
-            key: "Customer Support Agents",
+            key: "Employees",
             value: "1500+",
           },
         ]}

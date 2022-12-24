@@ -1,9 +1,10 @@
 /* eslint-disable import/no-anonymous-default-export */
-import React, { useState } from "react";
+import React from "react";
 import styled from "styled-components";
 import tw from "twin.macro";
 //eslint-disable-next-line
 import { css } from "styled-components/macro";
+import AnchorLink from "react-anchor-link-smooth-scroll";
 
 import HeaderBase, {
   NavLinks,
@@ -11,7 +12,6 @@ import HeaderBase, {
   PrimaryLink,
 } from "../headers/light.js";
 
-import { ReactComponent as CloseIcon } from "feather-icons/dist/icons/x.svg";
 import { ReactComponent as SvgDecoratorBlob1 } from "../../images/svg-decorator-blob-1.svg";
 import { ReactComponent as SvgDecoratorBlob2 } from "../../images/dot-pattern.svg";
 
@@ -46,9 +46,6 @@ export default ({
   imageCss = null,
   imageDecoratorBlob = false,
 }) => {
-  const [modalIsOpen, setModalIsOpen] = useState(false);
-
-  const toggleModal = () => setModalIsOpen(!modalIsOpen);
   const buttonRoundedCss = buttonRounded && tw`rounded-full`;
 
   const navLinks = [
@@ -76,9 +73,9 @@ export default ({
           <LeftColumn>
             <Heading>{heading}</Heading>
             <Paragraph>{description}</Paragraph>
-            <Actions>
-              <PrimaryButton as="a" href={primaryButtonUrl}>
-                {primaryButtonText}
+            <Actions style={{ display: "flex", justifyContent: "center" }}>
+              <PrimaryButton>
+                <AnchorLink href="#things">Order Now</AnchorLink>
               </PrimaryButton>
             </Actions>
           </LeftColumn>

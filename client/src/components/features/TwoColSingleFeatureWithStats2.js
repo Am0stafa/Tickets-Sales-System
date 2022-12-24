@@ -10,6 +10,7 @@ import {
 import { PrimaryButton as PrimaryButtonBase } from "../misc/Buttons.js";
 import StatsIllustrationSrc from "../../images/stats-illustration.svg";
 import { ReactComponent as SvgDotPattern } from "../../images/dot-pattern.svg";
+import AnchorLink from "react-anchor-link-smooth-scroll";
 
 const Container = tw.div`relative`;
 const TwoColumn = tw.div`flex flex-col md:flex-row justify-between max-w-screen-xl mx-auto py-20 md:py-24`;
@@ -110,8 +111,8 @@ export default ({
                 </Statistic>
               ))}
             </Statistics>
-            <PrimaryButton as="a" href={primaryButtonUrl}>
-              {primaryButtonText}
+            <PrimaryButton>
+              <AnchorLink href="#things">Order Now</AnchorLink>
             </PrimaryButton>
           </TextContent>
         </TextColumn>
