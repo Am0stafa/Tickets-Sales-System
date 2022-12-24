@@ -1,24 +1,24 @@
-const express = require('express');
-const createError = require('http-errors');
-const morgan = require('morgan');
-const cors = require('cors');
-const cookieParser =require('cookie-parser') 
-require('dotenv').config();
+import Koa from "koa";
+import createError from 'http-errors';
+import morgan from 'morgan';
+import cors from 'cors';
+import cookieParser from'cookie-parser' 
 
 
-const app = express();
-app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
+const app = Koa();
+
+// app.use(express.json());
+// app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser())
 app.use(morgan('dev'));
 app.use(cors());
 app.options('*', cors());
 
 app.get('/', async (req, res, next) => {
-  res.send({ message: 'Awesome it works 🐻' });
+  res.send("server up");
 });
 
-app.use('/api', require('./routes/api.route'));
+
 
 
 
@@ -35,4 +35,4 @@ app.use((err, req, res, next) => {
 });
 
 const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => console.log(`🚀 @ http://localhost:${PORT}`));
+app.listen(PORT, () => console.log(`app running on http://localhost:${PORT}`));

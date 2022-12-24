@@ -1,0 +1,27 @@
+{
+  "name": "express-blacklist",
+  "description": "Express middleware that rejects requests listed on blacklist",
+  "author": {
+    "name": "Akos Sereg",
+    "email": "akos.sereg@gmail.com"
+  },
+  "version": "1.0.3",
+  "homepage": "https://github.com/akos-sereg/express-blacklist",
+  "repository": "akos-sereg/express-blacklist",
+  "license" : "MIT",
+  "main": "./index.js",
+  "scripts": {
+  },
+  "engines": {
+    "node": "*"
+  },
+  "dependencies": {
+    "chalk": "~1.1.3"
+  },
+  "keywords": [
+    "express", "blocking request", "reject request", "blacklist"
+  ],
+  "bugs": {
+    "url": "https://github.com/akos-sereg/express-blacklist/issues"
+  }
+}
