@@ -53,25 +53,34 @@ export default ({ user }) => {
       <CardImageContainer
         imageSrc="/assets/bg-grey.jpg"
         style={{
-          maxHeight: "150px",
+          maxHeight: "200px",
+          minWidth: "300px",
           borderTopLeftRadius: "0.25rem",
-
+          display: "flex",
+          position: "relative",
+          justifyContent: "center",
           borderTopRightRadius: "0.25rem",
           backgroundSize: "cover",
           backgroundPosition: "center center",
         }}
       >
-        <div style={{ display: "flex", justifyContent: "space-around" }}>
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            marginTop: "37px",
+          }}
+        >
           <img
             className="avatar"
             src={`/assets/${user.homeTeam}.png`}
-            alt={user.homeTeam}
+            alt="/assets/tba.png"
           />
 
           <img
             className="avatar"
             src={`/assets/${user.awayTeam}.png`}
-            alt={user.awayTeam}
+            alt="/assets/tba.png"
           />
         </div>
         <CardHoverOverlay
@@ -94,7 +103,7 @@ export default ({ user }) => {
           </CardButton>
         </CardHoverOverlay>
       </CardImageContainer>
-      <CardText>
+      <CardText style={{ minWidth: "350px" }}>
         <CardTitle>
           {user.homeTeam} vs {user.awayTeam}
         </CardTitle>

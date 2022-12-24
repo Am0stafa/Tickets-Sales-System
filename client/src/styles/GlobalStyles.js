@@ -22,7 +22,7 @@ const GlobalStyles = createGlobalStyle(
    .ais-Hits-list{
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
+    justify-content: space-around;
 
    }
 
@@ -40,9 +40,10 @@ const GlobalStyles = createGlobalStyle(
 
   .avatar {
     display: flex;
-    margin: 1em;
-    width: 100px;
-    height: 100px;
+    margin: 0.8em;
+    width: 90px;
+    height: 90px;
+    border: 2px solid white;
     border-radius: 50%;
     background-color: white;
   }

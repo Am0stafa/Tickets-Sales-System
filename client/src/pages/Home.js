@@ -11,8 +11,7 @@ import DownloadApp from "../components/cta/DownloadApp.js";
 import Footer from "../components/footers/FiveColumnWithInputForm.js";
 import { SectionHeading } from "../components/misc/Headings.js";
 import { Container, ContentWithPaddingXl } from "../components/misc/Layouts.js";
-import SliderCard from "../components/cards/ThreeColSlider.js";
-
+// import SliderCard from "../components/cards/ThreeColSlider.js";
 import {
   InstantSearch,
   SearchBox,
@@ -52,7 +51,7 @@ const Home = () => {
   const Subheading = tw.span`tracking-wider text-sm font-medium`;
   const HighlightedText = tw.span`bg-primary-500 text-gray-100 px-4 transform -skew-x-12 inline-block`;
   const HighlightedTextInverse = tw.span`bg-gray-100 text-primary-500 px-4 transform -skew-x-12 inline-block`;
-  const Description = tw.span`inline-block mt-8`;
+  // const Description = tw.span`inline-block mt-8`;
   const imageCss = tw`rounded-4xl`;
 
   return (
@@ -72,7 +71,7 @@ const Home = () => {
         watchVideoButtonText="Meet The Chefs"
       />
 
-      <SliderCard />
+      {/* <SliderCard /> */}
 
       <Container>
         <ContentWithPaddingXl>
