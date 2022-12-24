@@ -1,17 +1,9 @@
 import React, { useRef } from "react";
 import tw from "twin.macro";
 import { css } from "styled-components/macro"; //eslint-disable-line
-import AnimationRevealPage from "../helpers/AnimationRevealPage.js";
-import Hero from "../components/hero/TwoColumnWithVideo.js";
-import Features from "../components/features/ThreeColSimple.js";
-import MainFeature2 from "../components/features/TwoColSingleFeatureWithStats2.js";
-import TabGrid from "../components/cards/TabCardGrid.js";
-import Testimonial from "../components/testimonials/ThreeColumnWithProfileImage.js";
-import DownloadApp from "../components/cta/DownloadApp.js";
-import Footer from "../components/footers/FiveColumnWithInputForm.js";
 import { SectionHeading } from "../components/misc/Headings.js";
 import { Container, ContentWithPaddingXl } from "../components/misc/Layouts.js";
-// import SliderCard from "../components/cards/ThreeColSlider.js";
+import handshake from "../images/handshake.jpg";
 import {
   InstantSearch,
   SearchBox,
@@ -19,14 +11,31 @@ import {
   Menu,
   Pagination,
 } from "react-instantsearch-hooks-web";
-import chefIconImageSrc from "../images/chef-icon.svg";
-import celebrationIconImageSrc from "../images/celebration-icon.svg";
-import shopIconImageSrc from "../images/shop-icon.svg";
 import algoliasearch from "algoliasearch/lite";
 import styled from "styled-components";
 import { ReactComponent as SvgDecoratorBlob1 } from "../images/svg-decorator-blob-5.svg";
 import { ReactComponent as SvgDecoratorBlob2 } from "../images/svg-decorator-blob-7.svg";
 import "instantsearch.css/themes/satellite.css";
+
+const AnimationRevealPage = React.lazy(() =>
+  import("../helpers/AnimationRevealPage.js")
+);
+const Hero = React.lazy(() =>
+  import("../components/hero/TwoColumnWithVideo.js")
+);
+const Features = React.lazy(() =>
+  import("../components/features/ThreeColSimple.js")
+);
+const MainFeature2 = React.lazy(() =>
+  import("../components/features/TwoColSingleFeatureWithStats2.js")
+);
+const TabGrid = React.lazy(() => import("../components/cards/TabCardGrid.js"));
+const Testimonial = React.lazy(() =>
+  import("../components/testimonials/ThreeColumnWithProfileImage.js")
+);
+const Footer = React.lazy(() =>
+  import("../components/footers/MiniCenteredFooter.js")
+);
 
 //decorations
 const DecoratorBlob1 = styled(SvgDecoratorBlob1)`
@@ -52,8 +61,6 @@ const Home = () => {
   const Header = tw(SectionHeading)``;
   const Subheading = tw.span`tracking-wider text-sm font-medium`;
   const HighlightedText = tw.span`bg-primary-500 text-gray-100 px-4 transform -skew-x-12 inline-block`;
-  const HighlightedTextInverse = tw.span`bg-gray-100 text-primary-500 px-4 transform -skew-x-12 inline-block`;
-  // const Description = tw.span`inline-block mt-8`;
   const imageCss = tw`rounded-4xl`;
 
   return (
@@ -165,7 +172,7 @@ const Home = () => {
         primaryButtonText="Order Now"
         primaryButtonUrl="https://order.now.com"
         imageInsideDiv={false}
-        imageSrc="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEzNzI2fQ&auto=format&fit=crop&w=768&q=80"
+        imageSrc={handshake}
         imageCss={Object.assign(tw`bg-cover`, imageCss)}
         imageContainerCss={tw`md:w-1/2 h-auto`}
         imageDecoratorBlob={true}
@@ -177,14 +184,6 @@ const Home = () => {
         heading={
           <>
             Customers <HighlightedText>Love Us.</HighlightedText>
-          </>
-        }
-      />
-      <DownloadApp
-        text={
-          <>
-            People around you are ordering delicious meals using the{" "}
-            <HighlightedTextInverse>Treact App.</HighlightedTextInverse>
           </>
         }
       />
