@@ -4,11 +4,19 @@ import right from "../images/stadium-right.png";
 import empty from "../images/stadium-empty.png";
 
 const pos = { left, right, empty };
-const MatchLogo = ({ user, setProgress, progress, choices, setChoices }) => {
+const MatchLogo = ({
+  myRef,
+  user,
+  setProgress,
+  progress,
+  choices,
+  setChoices,
+}) => {
   const [selected, setSelected] = useState(pos.empty);
 
   const handleClick = (e) => {
     document.getElementsByClassName("type1")[0].style.display = "block";
+    myRef.current.scrollIntoView({ behavior: "smooth" });
     const img1 = document.getElementsByClassName("pic1");
     const img2 = document.getElementsByClassName("pic2");
     if (progress < 25) {
@@ -32,17 +40,21 @@ const MatchLogo = ({ user, setProgress, progress, choices, setChoices }) => {
     <div
       style={{
         display: "flex",
-        flexWrap: "wrap",
-        justifyContent: "space-between",
+        marginLeft: "8em",
+        marginRight: "8em",
+        justifyContent: "space-around",
       }}
     >
       <div
         style={{
-          display: "grid",
+          display: "flex",
+          justifyContent: "space-around",
+          textAlign: "center",
+          flexDirection: "column",
         }}
       >
         <img
-          style={{ minWidth: "120px", width: "120px", height: "120px" }}
+          style={{ minWidth: "100px", width: "100px" }}
           className="pic1"
           src={`/assets/${user.homeTeam}.png`}
           alt="avatar"
@@ -51,17 +63,29 @@ const MatchLogo = ({ user, setProgress, progress, choices, setChoices }) => {
         ></img>
         <h2>{user.homeTeam}</h2>
       </div>
-      <span style={{ margin: "0.5em" }}></span>
-      <img src={selected} alt="st" />
-      <span style={{ margin: "0.5em" }}></span>
+      <div style={{ margin: "0.5em" }}></div>
+      <img
+        style={{
+          width: "auto",
+          height: "auto",
+          minWidth: "148px",
+          minHeight: "114px",
+        }}
+        src={selected}
+        alt="st"
+      />
+
+      <div style={{ margin: "0.5em" }}></div>
       <div
         style={{
-          display: "grid",
-          marginRight: "100px",
+          display: "flex",
+          justifyContent: "space-around",
+          textAlign: "center",
+          flexDirection: "column",
         }}
       >
         <img
-          style={{ minWidth: "120px", width: "120px", height: "120px" }}
+          style={{ minWidth: "100px", width: "100px" }}
           className="pic2"
           src={`/assets/${user.awayTeam}.png`}
           alt="avatar"

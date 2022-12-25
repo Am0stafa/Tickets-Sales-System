@@ -58,7 +58,7 @@ export const DesktopNavLinks = tw.nav`
 `;
 
 export default ({
-  roundedHeaderButton = false,
+  roundedHeaderButton = true,
   logoLink,
   links,
   className,

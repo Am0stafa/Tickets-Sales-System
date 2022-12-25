@@ -10,35 +10,83 @@ const Form = ({ num, price, setProgress, progress }) => {
   const Key = tw.div`font-medium text-gray-700`;
   if (parseInt(num) === 1) {
     return (
-      <div className="user-card" style={{ marginLeft: "4em" }}>
-        <div style={{ display: "flex" }}>
-          <span className="dot-yellow"></span>
-          <div style={{ marginLeft: "10px" }}></div>
-          <Key>CAT {num}</Key>
-        </div>
-        <Value>{price}</Value>
-        <div>
-          <SelectAutoWidth
-            num={num}
-            setProgress={setProgress}
-            progress={progress}
+      <>
+        <div className="user-card">
+          <div
+            style={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "left",
+              marginLeft: "1em",
+            }}
           >
-            {/* disabled */}
-          </SelectAutoWidth>
+            <div className="dot-yellow"></div>
+            <div style={{ marginLeft: "1em" }}></div>
+            <Key style={{ textAlign: "center" }}>CAT {num}</Key>
+          </div>
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "space-around",
+              textAlign: "center",
+              flexDirection: "column",
+            }}
+          >
+            <Value>{price}</Value>
+          </div>
+          <div
+            style={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "right",
+            }}
+          >
+            <SelectAutoWidth
+              style={{ justifyContent: "right" }}
+              num={num}
+              setProgress={setProgress}
+              progress={progress}
+            >
+              {/* disabled */}
+            </SelectAutoWidth>
+          </div>
         </div>
-      </div>
+      </>
     );
   } else if (parseInt(num) === 2) {
     return (
-      <div className="user-card" style={{ marginLeft: "4em" }}>
-        <div style={{ display: "flex" }}>
-          <span className="dot-red"></span>
-          <div style={{ marginLeft: "10px" }}></div>
-          <Key>CAT {num}</Key>
+      <div className="user-card">
+        <div
+          style={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "left",
+            marginLeft: "1em",
+          }}
+        >
+          <div className="dot-red"></div>
+          <div style={{ marginLeft: "1em" }}></div>
+          <Key style={{ textAlign: "center" }}>CAT {num}</Key>
         </div>
-        <Value>{price}</Value>
-        <div>
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "space-around",
+            textAlign: "center",
+            flexDirection: "column",
+          }}
+        >
+          <Value>{price}</Value>
+        </div>
+        <div
+          style={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "right",
+          }}
+        >
           <SelectAutoWidth
+            style={{ justifyContent: "right" }}
             num={num}
             setProgress={setProgress}
             progress={progress}
@@ -50,15 +98,38 @@ const Form = ({ num, price, setProgress, progress }) => {
     );
   } else if (parseInt(num) === 3) {
     return (
-      <div className="user-card" style={{ marginLeft: "4em" }}>
-        <div style={{ display: "flex" }}>
-          <span className="dot-blue"></span>
-          <div style={{ marginLeft: "10px" }}></div>
-          <Key>CAT {num}</Key>
+      <div className="user-card">
+        <div
+          style={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "left",
+            marginLeft: "1em",
+          }}
+        >
+          <div className="dot-blue"></div>
+          <div style={{ marginLeft: "1em" }}></div>
+          <Key style={{ textAlign: "center" }}>CAT {num}</Key>
         </div>
-        <Value>{price}</Value>
-        <div>
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "space-around",
+            textAlign: "center",
+            flexDirection: "column",
+          }}
+        >
+          <Value>{price}</Value>
+        </div>
+        <div
+          style={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "right",
+          }}
+        >
           <SelectAutoWidth
+            style={{ justifyContent: "right" }}
             num={num}
             setProgress={setProgress}
             progress={progress}
@@ -70,15 +141,38 @@ const Form = ({ num, price, setProgress, progress }) => {
     );
   } else {
     return (
-      <div className="user-card" style={{ marginLeft: "4em" }}>
-        <div style={{ display: "flex" }}>
-          <span className="dot-purple"></span>
-          <div style={{ marginLeft: "10px" }}></div>
-          <Key>CAT {num}</Key>
+      <div className="user-card">
+        <div
+          style={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "left",
+            marginLeft: "1em",
+          }}
+        >
+          <div className="dot-purple"></div>
+          <div style={{ marginLeft: "1em" }}></div>
+          <Key style={{ textAlign: "center" }}>CAT {num}</Key>
         </div>
-        <Value>{price}</Value>
-        <div>
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "space-around",
+            textAlign: "center",
+            flexDirection: "column",
+          }}
+        >
+          <Value>{price}</Value>
+        </div>
+        <div
+          style={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "right",
+          }}
+        >
           <SelectAutoWidth
+            style={{ justifyContent: "right" }}
             num={num}
             setProgress={setProgress}
             progress={progress}

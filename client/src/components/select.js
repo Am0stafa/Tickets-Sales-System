@@ -2,31 +2,30 @@ import * as React from "react";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
-import AppContext from '../context/Total'
+import AppContext from "../context/Total";
 
-export default function SelectLabels({num,setProgress,progress}) {
+export default function SelectLabels({ num, setProgress, progress }) {
   // eslint-disable-next-line no-unused-vars
-  const [selected, setSelected] = React.useState({amount:"", category: num});
-  const {calculateTotal} = React.useContext(AppContext)
+  const [selected, setSelected] = React.useState({ amount: "", category: num });
+  const { calculateTotal } = React.useContext(AppContext);
 
   const handleChange = (event) => {
     //set the selected to the amount of tickets and num
     setSelected({
-        amount: event.target.value,
-        category: num
+      amount: event.target.value,
+      category: num,
     });
-    calculateTotal({amount: event.target.value, category: num})
+    calculateTotal({ amount: event.target.value, category: num });
     if (progress < 50) {
-        setProgress((prev) => prev + 25);
+      setProgress((prev) => prev + 25);
     }
-
   };
 
   return (
-    <div sx={{ justifyContent: "right" }}>
-      <FormControl sx={{ m: 1, minWidth: 120, justifyContent: "right" }}>
+    <div style={{ justifyContent: "right" }}>
+      <FormControl style={{ m: 1, minWidth: 80, justifyContent: "right" }}>
         <Select
-          sx={{ backgroundColor: "gray", alignItems: "right" }}
+          style={{ backgroundColor: "#fff", alignItems: "right" }}
           value={selected.amount}
           onChange={handleChange}
           displayEmpty

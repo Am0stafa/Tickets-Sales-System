@@ -135,22 +135,23 @@ const GlobalStyles = createGlobalStyle(
     }
   }
   .user-card {
-    background-color: #eee;
+    background-color:#edf2f7;
     padding: 1rem;
     float: none; 
-    
+
     height: 100px;
-    justify-content: center;
-    margin-left: 6em;
-    margin-right: 6em;
-    border: 1px solid grey;
+    justify-content: space-around;
+    margin-left:2em;
+    margin-right:2em;
     border-radius: 5px;
     cursor: pointer;
-    display: grid; 
-    grid-template-columns: 2fr  1.5fr 1fr  ;
+    display: flex; 
     transition: all 0.25s ease;
     width: auto;
+    flex-wrap: wrap;
+    minWidth: 200px;
     height: 200 auto;
+    border: none;
    
   }
 .booked {
