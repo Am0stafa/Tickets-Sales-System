@@ -39,14 +39,10 @@ const DecoratorBlob2 = styled(SvgDecoratorBlob2)`
 export default ({
   heading = "Modern React Templates, Just For You",
   description = "Our templates are easy to setup, understand and customize. Fully modular components with a variety of pages and components.",
-  primaryButtonText = "Get Started",
-  primaryButtonUrl = "#",
-  buttonRounded = true,
-
   imageCss = null,
   imageDecoratorBlob = false,
 }) => {
-  const buttonRoundedCss = buttonRounded && tw`rounded-full`;
+  const buttonRoundedCss = tw`rounded-full`;
 
   const navLinks = [
     <NavLinks key={1}>
@@ -60,7 +56,7 @@ export default ({
       <NavLink href="/#" tw="lg:ml-12!">
         Login
       </NavLink>
-      <PrimaryLink css={buttonRoundedCss} href="/#">
+      <PrimaryLink css={true && buttonRoundedCss} href="/#">
         Sign Up
       </PrimaryLink>
     </NavLinks>,

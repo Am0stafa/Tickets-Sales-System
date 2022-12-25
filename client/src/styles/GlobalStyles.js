@@ -26,6 +26,10 @@ const GlobalStyles = createGlobalStyle(
     box-shadow:none;
    }
 
+   .Fgopz{
+    border-radius:9999px;
+   }
+
    .TwoColumnWithVideo__Container-sc-sn3u7g-0 yisDD{
     margin-top: -500px;
    }

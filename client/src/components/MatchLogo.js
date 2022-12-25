@@ -32,17 +32,17 @@ const MatchLogo = ({ user, setProgress, progress, choices, setChoices }) => {
     <div
       style={{
         display: "flex",
+        flexWrap: "wrap",
         justifyContent: "space-between",
       }}
     >
       <div
         style={{
           display: "grid",
-          marginLeft: "100px",
         }}
       >
         <img
-          style={{ width: "120px", height: "120px" }}
+          style={{ minWidth: "120px", width: "120px", height: "120px" }}
           className="pic1"
           src={`/assets/${user.homeTeam}.png`}
           alt="avatar"
@@ -61,7 +61,7 @@ const MatchLogo = ({ user, setProgress, progress, choices, setChoices }) => {
         }}
       >
         <img
-          style={{ width: "120px", height: "120px" }}
+          style={{ minWidth: "120px", width: "120px", height: "120px" }}
           className="pic2"
           src={`/assets/${user.awayTeam}.png`}
           alt="avatar"
