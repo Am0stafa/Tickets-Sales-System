@@ -7,38 +7,24 @@ import { SectionHeading } from "../misc/Headings.js";
 import { useLocation } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import MatchLogo from "../MatchLogo";
-import { Progress } from "@material-tailwind/react";
-import { Typography } from "@material-tailwind/react";
 import Form from "../Form.js";
 import AppContext from "../../context/Total";
 import { ReactComponent as SvgDecoratorBlob1 } from "../../images/svg-decorator-blob-5.svg";
 import { ReactComponent as SvgDecoratorBlob2 } from "../../images/svg-decorator-blob-7.svg";
-import HeaderBase, {
+import  {
   NavLinks,
   NavLink,
   PrimaryLink,
 } from "../headers/light.js";
 import ProgressBar from "@ramonak/react-progress-bar";
 const Container = tw.div`relative`;
-const Column = tw.div`w-full max-w-md mx-auto md:max-w-none md:mx-0`;
 const Value = tw.div`font-bold text-primary-500`;
 const Key = tw.div`font-medium text-gray-700`;
-const TextColumn = styled(Column)((props) => [
-  tw`md:w-6/12 mt-8 md:mt-0`,
-  props.textOnLeft
-    ? tw`md:mr-8 lg:mr-16 md:order-first`
-    : tw`md:ml-8 lg:ml-16 md:order-last`,
-]);
-
 const TextContent = tw.div`lg:py-8`;
-
 const Heading = tw(
   SectionHeading
 )`text-left text-3xl sm:text-4xl lg:text-5xl text-center md:text-left leading-tight`;
 const Description = tw.p`text-center md:text-left text-sm md:text-base lg:text-lg font-medium leading-relaxed text-secondary-100 mt-4`;
-
-const Statistics = tw.div`mt-6 lg:mt-8 xl:mt-16 flex flex-wrap`;
-const Statistic = tw.div`text-lg sm:text-2xl lg:text-3xl w-1/2 mt-4 lg:mt-10 text-center md:text-left`;
 
 export default ({ textOnLeft = false }) => {
   // The textOnLeft boolean prop can be used to display either the text on left or right side of the image.
@@ -56,6 +42,15 @@ export default ({ textOnLeft = false }) => {
   const DecoratorBlob2 = styled(SvgDecoratorBlob2)`
     ${tw`pointer-events-none -z-20 absolute left-0 bottom-0 h-80 w-80 opacity-15 transform -translate-x-2/3 text-primary-500`}
   `;
+
+    const handelClick = () => {
+        //TODO: api
+        navigate("/checkout/123", { state: {choices,total,match} });
+    };
+
+
+
+
   return (
     <Container>
       <div style={{ marginLeft: "4em", marginRight: "4em" }}>
@@ -154,7 +149,7 @@ export default ({ textOnLeft = false }) => {
                       </NavLink>
                     </NavLinks>
                     <NavLinks>
-                      <PrimaryLink href="/#">Proceed</PrimaryLink>
+                      <PrimaryLink onClick={handelClick}>Proceed</PrimaryLink>
                     </NavLinks>
                   </div>
                 </div>

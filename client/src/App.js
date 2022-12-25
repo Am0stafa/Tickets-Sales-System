@@ -5,6 +5,7 @@ import Home from "./pages/Home.js";
 import { Book } from "./pages/Book.js";
 import React from "react";
 import { AppContextProvider } from "./context/Total.js";
+import Checkout from './pages/Checkout';
 
 function App() {
   return (
@@ -23,6 +24,8 @@ function App() {
               </AppContextProvider>
             }
           />
+
+          <Route path="/checkout/:id" element={<Checkout/>} />
 
           {/* <Route path="/my-tickets/:encryptedId" element={<Tickets />} /> */}
         </Routes>
