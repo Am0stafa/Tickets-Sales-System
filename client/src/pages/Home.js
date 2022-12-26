@@ -3,7 +3,6 @@ import tw from "twin.macro";
 import { css } from "styled-components/macro"; //eslint-disable-line
 import { SectionHeading } from "../components/misc/Headings.js";
 import { Container, ContentWithPaddingXl } from "../components/misc/Layouts.js";
-import handshake from "../images/handshake.jpg";
 import {
   InstantSearch,
   SearchBox,
@@ -16,6 +15,7 @@ import styled from "styled-components";
 import { ReactComponent as SvgDecoratorBlob1 } from "../images/svg-decorator-blob-5.svg";
 import { ReactComponent as SvgDecoratorBlob2 } from "../images/svg-decorator-blob-7.svg";
 import "instantsearch.css/themes/satellite.css";
+const handshake = React.lazy(() => import("../images/handshake.jpg"));
 
 const AnimationRevealPage = React.lazy(() =>
   import("../helpers/AnimationRevealPage.js")
@@ -78,7 +78,6 @@ const Home = () => {
         primaryButtonText="Order Now"
         watchVideoButtonText="Meet The Chefs"
       />
-      {/* <SliderCard /> */}
 
       <Container>
         <ContentWithPaddingXl>
