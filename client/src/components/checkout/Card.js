@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import Cards from 'react-credit-cards';
+import Cards from "react-credit-cards-2";
 
 const Container = styled.div`
   .rccs {

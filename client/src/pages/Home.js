@@ -78,7 +78,6 @@ const Home = () => {
         primaryButtonText="Order Now"
         watchVideoButtonText="Meet The Chefs"
       />
-      {/* <SliderCard /> */}
 
       <Container>
         <ContentWithPaddingXl>
