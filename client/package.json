@@ -5,6 +5,7 @@
   "dependencies": {
     "@emotion/react": "^11.10.5",
     "@emotion/styled": "^11.10.5",
+    "@hcaptcha/react-hcaptcha": "^1.4.4",
     "@material-tailwind/react": "^1.2.4",
     "@mui/material": "^5.11.0",
     "@ramonak/react-progress-bar": "^5.0.3",
@@ -36,6 +37,7 @@
     "react-router-dom": "^6.4.5",
     "react-scripts": "5.0.1",
     "react-slick": "^0.29.0",
+    "react-toast-notifications": "^2.5.1",
     "reactstrap": "^9.1.5",
     "slick-carousel": "^1.8.1",
     "stripe": "^11.5.0",

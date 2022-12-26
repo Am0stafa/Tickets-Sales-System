@@ -2,7 +2,7 @@
 import React, { useRef } from "react";
 import tw from "twin.macro";
 import styled from "styled-components";
-import { css } from "styled-components/macro"; //eslint-disable-line
+import { ToastProvider, useToasts } from 'react-toast-notifications';
 import { SectionHeading } from "../misc/Headings.js";
 import { useLocation } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
@@ -42,9 +42,17 @@ export default ({ textOnLeft = false }) => {
   const DecoratorBlob2 = styled(SvgDecoratorBlob2)`
     ${tw`pointer-events-none -z-20 absolute left-0 bottom-0 h-80 w-80 opacity-15 transform -translate-x-2/3 text-primary-500`}
   `;
-
+  const { addToast } = useToasts();
     const handelClick = () => {
         //TODO: api
+        //TODO: check captcha and that total is not zero
+        if (total === 0) {
+            addToast("Please choose at least one match.", {
+                appearance: "error",
+                autoDismiss: true,
+            });
+            return;
+        }
         navigate("/checkout/123", { state: {choices,total,match} });
     };
 
