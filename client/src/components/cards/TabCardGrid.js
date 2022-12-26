@@ -29,7 +29,7 @@ const CardRatingContainer = tw.div`leading-none absolute inline-flex bg-gray-100
 const CardRating = styled.div`
   ${tw`mr-1 text-sm font-bold flex items-end`}
   svg {
-    ${tw`w-4 h-4 fill-current text-orange-400 mr-1`}
+    ${tw`w-4 h-4 mr-1`}
   }
 `;
 const CardReview = tw.div`font-medium text-xs text-gray-600`;
@@ -836,7 +836,7 @@ export default ({ user }) => {
           maxHeight: "200px",
           minWidth: "300px",
           borderTopLeftRadius: "0.25rem",
-          display: "flex",
+          // display: "flex",
           position: "relative",
           justifyContent: "center",
           borderTopRightRadius: "0.25rem",
@@ -844,53 +844,113 @@ export default ({ user }) => {
           backgroundPosition: "center center",
         }}
       >
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "center",
-            marginTop: "37px",
-          }}
-        >
-          <img
-            className="avatar"
-            src={`/assets/${user.homeTeam}.png`}
-            alt="/assets/tba.png"
-          />
-
-          <img
-            className="avatar"
-            src={`/assets/${user.awayTeam}.png`}
-            alt="/assets/tba.png"
-          />
-        </div>
-        {(continent(countryCode) === user.homeTeamContinents ||
-          continent(countryCode) === user.awayTeamContinents) && (
-          <CardRatingContainer>
-            <CardRating>
-              <LocationIcon />
-              Near Me
-            </CardRating>
-          </CardRatingContainer>
-        )}
-        <CardHoverOverlay
-          variants={{
-            hover: {
-              opacity: 1,
-              height: "auto",
-            },
-            rest: {
-              opacity: 0,
-              height: 0,
-            },
-          }}
-          transition={{ duration: 0.3 }}
-        >
-          <CardButton
-            onClick={() => navigate(`/book/${user.id}`, { state: { ...user } })}
+        {user.homeRank !== null && (
+          <a
+            href="https://flyclipart.com/mrnyxxs-profile-fire-png-gif-760316"
+            title="Mrnyxxs Profile - Fire PNG Gif"
           >
-            Buy Now
-          </CardButton>
-        </CardHoverOverlay>
+            <img
+              src="https://flyclipart.com/thumb2/mrnyxxs-profile-760316.png"
+              width="50"
+              style={{ objectPosition: "left top" }}
+              alt="fire"
+            />
+          </a>
+        )}
+        <div>
+          {user.homeRank === null && (
+            <>
+              <div style={{ height: "34px" }} />
+
+              {user.location === "TBA" && (
+                <div
+                  style={{
+                    display: "flex",
+                    justifyContent: "center",
+                  }}
+                >
+                  <img className="avatar" src={`/assets/tba.png`} alt="TBA" />
+
+                  <img className="avatar" src={`/assets/tba.png`} alt="TBA" />
+                </div>
+              )}
+
+              {user.location !== "TBA" && (
+                <div
+                  style={{
+                    display: "flex",
+                    justifyContent: "center",
+                  }}
+                >
+                  <img
+                    className="avatar"
+                    src={`/assets/${user.homeTeam}.png`}
+                    alt="Home"
+                  />
+
+                  <img
+                    className="avatar"
+                    src={`/assets/${user.awayTeam}.png`}
+                    alt="Away"
+                  />
+                </div>
+              )}
+            </>
+          )}
+
+          {user.homeRank !== null && (
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "center",
+                marginTop: "-12px",
+              }}
+            >
+              <img
+                className="avatar"
+                src={`/assets/${user.homeTeam}.png`}
+                alt="/assets/tba.png"
+              />
+
+              <img
+                className="avatar"
+                src={`/assets/${user.awayTeam}.png`}
+                alt="/assets/tba.png"
+              />
+            </div>
+          )}
+
+          {(continent(countryCode) === user.homeTeamContinents ||
+            continent(countryCode) === user.awayTeamContinents) && (
+            <CardRatingContainer>
+              <CardRating>
+                <LocationIcon />
+                Near Me
+              </CardRating>
+            </CardRatingContainer>
+          )}
+          <CardHoverOverlay
+            variants={{
+              hover: {
+                opacity: 1,
+                height: "auto",
+              },
+              rest: {
+                opacity: 0,
+                height: 0,
+              },
+            }}
+            transition={{ duration: 0.3 }}
+          >
+            <CardButton
+              onClick={() =>
+                navigate(`/book/${user.id}`, { state: { ...user } })
+              }
+            >
+              Buy Now
+            </CardButton>
+          </CardHoverOverlay>
+        </div>
       </CardImageContainer>
       <CardText style={{ minWidth: "350px" }}>
         <CardTitle>
