@@ -60,20 +60,8 @@ function CheckoutComponent({total,setProgress}) {
     } catch (error) {}
   };
 
-// the same effect but in a use effect
-//   const handleChange = (e) => {
 
-//     if(e.target.name === "number" && e.target.value.length === 16)
-//         setProgress((prev) => prev + 10);
-
-//     // if(e.target.name === "expiry" && e.target.value.length === 5)
-//     //     setProgress((prev) => prev + 20);
-//     // if(e.target.name === "cvc" && e.target.value.length === 3)
-//     //     setProgress((prev) => prev + 20);
-//     // if(e.target.name === "name" && e.target.value.length > 0)
-//     //     setProgress((prev) => prev + 20);
-
-//   };
+  
 
 
 
@@ -103,7 +91,7 @@ function CheckoutComponent({total,setProgress}) {
                   disabled={true}
                   name="amount"
                   component="input"
-                  type="number"
+                  type="text"
                   placeholder={total}
                 />
                 <Field
@@ -122,6 +110,11 @@ function CheckoutComponent({total,setProgress}) {
                   pattern="[\d| ]{16,22}"
                   placeholder="Card Number"
                   format={formatCreditCardNumber}
+                  onBlur={(e) => {
+                        if (e.target.value.length > 15) {
+                            setProgress((prev) => prev + 12);
+                        }
+                    }}
 
                 />
               </div>
@@ -131,7 +124,11 @@ function CheckoutComponent({total,setProgress}) {
                   component="input"
                   type="text"
                   placeholder="Name"
-                //   onChange={handleChange}
+                  onBlur={(e) => {
+                    if (e.target.value.length > 5) {
+                        setProgress((prev) => prev + 12);
+                    }   
+                }}
                 />
               </div>
               <div>
@@ -142,7 +139,11 @@ function CheckoutComponent({total,setProgress}) {
                   pattern="\d\d/\d\d"
                   placeholder="Valid Thru"
                   format={formatExpirationDate}
-                //   onChange={handleChange}
+                  onBlur={(e) => {
+                    if (e.target.value.length > 2) {
+                        setProgress((prev) => prev + 12);
+                    }
+                }}
                 />
                 <Field
                   name="cvc"
@@ -151,7 +152,11 @@ function CheckoutComponent({total,setProgress}) {
                   pattern="\d{3,4}"
                   placeholder="CVC"
                   format={formatCVC}
-                //   onChange={handleChange}
+                  onBlur={(e) => {
+                    if (e.target.value.length > 2) {
+                        setProgress((prev) => prev + 12);
+                    }
+                }}
                 />
               </div>
               <div className="buttons">

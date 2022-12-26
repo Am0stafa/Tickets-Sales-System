@@ -1,7 +1,6 @@
 {
   "name": "world-cup",
   "version": "0.1.0",
-  "private": true,
   "dependencies": {
     "@emotion/react": "^11.10.5",
     "@emotion/styled": "^11.10.5",
@@ -37,6 +36,7 @@
     "react-scripts": "5.0.1",
     "react-slick": "^0.29.0",
     "react-toast-notifications": "^2.5.1",
+    "react-toastify": "^9.1.1",
     "reactstrap": "^9.1.5",
     "slick-carousel": "^1.8.1",
     "stripe": "^11.5.0",

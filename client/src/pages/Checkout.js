@@ -17,7 +17,7 @@ const Checkout = () => {
 
     const { state } = useLocation();
     const buttonRoundedCss = tw`rounded-full`;
-    const [progress, setProgress] = React.useState(60);
+    const [progress, setProgress] = React.useState(50);
     const Completionist = () => {
         //TODO: redirect 
         return <span>Session ended</span>;

@@ -2,7 +2,8 @@
 import React, { useRef } from "react";
 import tw from "twin.macro";
 import styled from "styled-components";
-import { ToastProvider, useToasts } from 'react-toast-notifications';
+import { toast,ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import { SectionHeading } from "../misc/Headings.js";
 import { useLocation } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
@@ -29,31 +30,40 @@ const Description = tw.p`text-center md:text-left text-sm md:text-base lg:text-l
 export default ({ textOnLeft = false }) => {
   // The textOnLeft boolean prop can be used to display either the text on left or right side of the image.
   //Change the statistics variable as you like, add or delete objects
+
+
   const reff = useRef();
   const navigate = useNavigate();
   const loc = useLocation();
   const match = loc.state;
   const [progress, setProgress] = React.useState(0);
   const [choices, setChoices] = React.useState({});
-  const { total } = React.useContext(AppContext);
+  const { total,totalChoices } = React.useContext(AppContext);
   const DecoratorBlob1 = styled(SvgDecoratorBlob1)`
     ${tw`pointer-events-none -z-20 absolute right-0 top-0 h-64 w-64 opacity-15 transform translate-x-2/3 -translate-y-12 text-pink-400`}
   `;
   const DecoratorBlob2 = styled(SvgDecoratorBlob2)`
     ${tw`pointer-events-none -z-20 absolute left-0 bottom-0 h-80 w-80 opacity-15 transform -translate-x-2/3 text-primary-500`}
   `;
-  const { addToast } = useToasts();
+
     const handelClick = () => {
         //TODO: api
         //TODO: check captcha and that total is not zero
         if (total === 0) {
-            addToast("Please choose at least one match.", {
-                appearance: "error",
-                autoDismiss: true,
+            toast.error('Please choose a ticket', {
+                position: "top-center",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "colored",
             });
+                
             return;
         }
-        navigate("/checkout/123", { state: {choices,total,match} });
+        navigate("/checkout/123", { state: {choices,total,match,totalChoices} });
     };
 
 
@@ -61,6 +71,7 @@ export default ({ textOnLeft = false }) => {
 
   return (
     <Container>
+        <ToastContainer />
       <div style={{ marginLeft: "4em", marginRight: "4em" }}>
         <TextContent>
           <Container>
@@ -141,7 +152,7 @@ export default ({ textOnLeft = false }) => {
                   >
                     <Key>Total </Key>
                     <Value>USD {total}</Value>
-                    <h1>3</h1>
+                    <h1>{totalChoices}</h1>
                   </div>
                   <div
                     style={{

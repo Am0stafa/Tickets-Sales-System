@@ -5,7 +5,14 @@ const AppContext = createContext();
 
 export const AppContextProvider = ({ children }) => {
   const [total, setTotal] = useState(0);
+  const [totalChoices, setTotalChoices] = useState(0);
   const [choices, setChoices] = useState({
+    1: 0,
+    2: 0,
+    3: 0,
+    4: 0,
+  });
+  const [without, setWithout] = useState({
     1: 0,
     2: 0,
     3: 0,
@@ -20,18 +27,30 @@ export const AppContextProvider = ({ children }) => {
 
   const calculateTotal = ({ amount, category }) => {
     const newChoices = { ...choices };
+    const newWithout = { ...without };
     newChoices[category] = amount * priceForCategory[category];
+    newWithout[category] = amount;
+    setWithout(newWithout);
     setChoices(newChoices);
     //! loop through the newChoices object and add up the values
     const newTotal = Object.values(newChoices).reduce(
       (acc, curr) => acc + curr,
       0
     );
+    const newTotalChoices = Object.values(newWithout).reduce(
+        (acc, curr) => acc + curr,
+        0
+        );
+    setTotalChoices(newTotalChoices);
     setTotal(newTotal);
+    
   };
 
+ 
+
+
   return (
-    <AppContext.Provider value={{ total, calculateTotal }}>
+    <AppContext.Provider value={{ total, calculateTotal,totalChoices }}>
       {children}
     </AppContext.Provider>
   );
