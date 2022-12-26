@@ -1,7 +1,7 @@
 import { PrismaClient } from '@prisma/client'
 import { v4 as uuidv4 } from 'uuid';
 const prisma = new PrismaClient()
-
+import axios from 'axios';
 
 const addTicketToCart = async (req, res, next) => {
 /*
@@ -191,5 +191,69 @@ const cancel = async (req, res, next) => {
 
 }
 
+const consumePendingTicket = async (req, res, next) => {
+    const {matchNumber,tickets} = req.body
+    // const {category,quantity} = tickets[i]
+    const allTickets = await prisma.ticket.findMany({
+        where:{
+            matchId: matchNumber,
+            isHold: false,
+            isPurchased: false
+        }
+    })
 
-export default { addTicketToCart,purchased,cancel  };
+    const all = tickets.map((ticket) => {
+        const selected = allTickets.filter((t) => parseInt(t.category.split(' ')[1]) === ticket.category).slice(0, ticket.quantity);
+        return selected;
+    })
+
+    // mark them as pending
+    const selectedTicketsIds = all.map(ticket => ticket.id);
+    
+    let currentDateObj = new Date();
+    let numberOfMlSeconds = currentDateObj.getTime();
+    let addMlSeconds = 24 * 60 * 60 * 1000;
+    let holdUntil = new Date(numberOfMlSeconds + addMlSeconds)
+
+
+    const hold = await prisma.hold.create({
+        data:{
+            "expiresIn":holdUntil
+        }
+    })
+
+
+    await prisma.ticket.updateMany({
+        where:{
+            id:{
+                in:selectedTicketsIds
+            }
+        },
+        data:{
+            isHold:true,
+            external:true,
+            holdId:hold.id
+        }
+    })
+
+    res.status(200).json({message:'success'})
+
+
+}
+
+const consumeSuccess = async (req, res, next) => {
+    const {matchNumber,tickets} = req.body
+    // get the hold table where it satisfies the {matchNumber,tickets} = req.body
+    const hold = await prisma.hold.findMany({
+        include:{
+            tickets:true
+        }
+    })
+
+    return res.status(200).json({hold})
+}
+
+
+
+
+export default { addTicketToCart,purchased,cancel,consumePendingTicket,consumeSuccess  };

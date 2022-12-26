@@ -12,8 +12,13 @@ router.route("/purchase")
 router.route("/cancel")
     .post(reservationController.cancel);
     
+router.route("/pendingMatch")
+    .patch(reservationController.consumePendingTicket);
+    
+router.route("/successMatch")
+    .patch(reservationController.consumeSuccess);
 
-   
+
 
 
 export default router;
