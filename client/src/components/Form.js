@@ -3,7 +3,6 @@ import React from "react";
 import SelectAutoWidth from "./select";
 import "./form.css";
 import tw from "twin.macro";
-import styled from "styled-components";
 
 const Form = ({ num, price, setProgress, progress }) => {
   const Value = tw.div`font-bold text-primary-500`;

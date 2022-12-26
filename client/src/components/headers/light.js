@@ -58,7 +58,7 @@ export const DesktopNavLinks = tw.nav`
 `;
 
 export default ({
-  roundedHeaderButton = true,
+  roundedHeaderButton = false,
   logoLink,
   links,
   className,
@@ -86,7 +86,7 @@ export default ({
       <NavLink href="/#" tw="lg:ml-12!">
         Login
       </NavLink>
-      <PrimaryLink css={roundedHeaderButton && tw`rounded-full`} href="/#">
+      <PrimaryLink style={{ borderRadius: "9999px" }} href="/#">
         Sign Up
       </PrimaryLink>
     </NavLinks>,

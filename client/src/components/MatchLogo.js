@@ -54,7 +54,7 @@ const MatchLogo = ({
         }}
       >
         <img
-          style={{ minWidth: "100px", width: "100px" }}
+          style={{ cursor: "pointer", minWidth: "100px", width: "100px" }}
           className="pic1"
           src={`/assets/${user.homeTeam}.png`}
           alt="avatar"
@@ -85,7 +85,7 @@ const MatchLogo = ({
         }}
       >
         <img
-          style={{ minWidth: "100px", width: "100px" }}
+          style={{ cursor: "pointer", minWidth: "100px", width: "100px" }}
           className="pic2"
           src={`/assets/${user.awayTeam}.png`}
           alt="avatar"

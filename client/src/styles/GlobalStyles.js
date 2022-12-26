@@ -144,7 +144,7 @@ const GlobalStyles = createGlobalStyle(
     margin-left:2em;
     margin-right:2em;
     border-radius: 5px;
-    cursor: pointer;
+   
     display: flex; 
     transition: all 0.25s ease;
     width: auto;

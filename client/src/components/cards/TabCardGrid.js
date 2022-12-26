@@ -804,14 +804,15 @@ export default ({ user }) => {
   const [countryCode, setCountryCode] = useState("");
 
   useEffect(() => {
-    // fetch('https://extreme-ip-lookup.com/json/')
-
+    //https://extreme-ip-lookup.com/json/?key=asZaRChNXhO3sOgN1rGE
+    // fetch('https://ipapi.co/json/')
     axios
       .get("https://ipapi.co/json/")
 
       .then((response) => {
+        // setCountryCode(response.data.countryCode);
         setCountryCode(response.data.country);
-        // console.log("Continent is : ", continent(response.data.country));
+        // console.log("Continent is : ", continent(response.data.countryCode));
       })
       .catch((error) => {
         console.log(error);
