@@ -16,7 +16,6 @@ app.options('*', cors());
 app.use('/api/reservation', reservationRouter);
 
 
-
 app.use((req, res, next) => {
   next(createError.NotFound());
 });
