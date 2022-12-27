@@ -184,12 +184,7 @@ const getAllAvailability = async (req, res) => {
 const getHold = async (req, res) => {
     try {
         const hold = await prisma.hold.findMany({
-            where: {
-                id:"5a3a3dab-eb66-4fde-8f92-c6eb906aa88a"
-            },
-            include: {
-                Ticket: true
-            }
+
         });
         res.status(200).json({
             status: "success",

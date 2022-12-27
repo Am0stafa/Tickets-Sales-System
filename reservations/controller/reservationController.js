@@ -54,7 +54,7 @@ expect to receive matchId, ticket quantity and category then:
         const selectedTicketsIds = selectedTickets.map(ticket => ticket.id);
     
         // change the isHold to true for selectedTicketsIds
-        await prisma.ticket.updateMany({
+        const c = await prisma.ticket.updateMany({
             where:{
                 id:{
                     in:selectedTicketsIds
@@ -66,6 +66,7 @@ expect to receive matchId, ticket quantity and category then:
             }
         })
         
+        console.log(c)
         
         res.status(200).send({ session: hold.id, holdUntil: holdUntil })
         
@@ -132,6 +133,7 @@ const purchased = async (req, res, next) => {
             },
             data:{
                 isPurchased:true,
+                isHold:false,
             }
         })
         // create reservation
@@ -202,13 +204,23 @@ const consumePendingTicket = async (req, res, next) => {
         }
     })
 
+    
+
     const all = tickets.map((ticket) => {
         const selected = allTickets.filter((t) => parseInt(t.category.split(' ')[1]) === ticket.category).slice(0, ticket.quantity);
         return selected;
     })
 
+    // remove the empty arrays
+    const allTicketsSelected = all.filter((ticket) => ticket.length > 0);
+
+    // if its an array inside an array then flatten it
+    const flatten = allTicketsSelected.flat();
+
     // mark them as pending
-    const selectedTicketsIds = all.map(ticket => ticket.id);
+    const selectedTicketsIds = flatten.map(ticket => ticket.id);
+
+    console.log(allTicketsSelected)
     
     let currentDateObj = new Date();
     let numberOfMlSeconds = currentDateObj.getTime();
@@ -235,7 +247,6 @@ const consumePendingTicket = async (req, res, next) => {
             holdId:hold.id
         }
     })
-
 
 
     res.status(200).json({message:'success'})
