@@ -2,7 +2,7 @@
 import React, { useRef } from "react";
 import tw from "twin.macro";
 import styled from "styled-components";
-import { toast, ToastContainer } from "react-toastify";
+// import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { SectionHeading } from "../misc/Headings.js";
 import { useLocation } from "react-router-dom";
@@ -148,10 +148,22 @@ export default ({ textOnLeft = false }) => {
                     <Key style={{ fontWeight: "bold", fontSize: "1.5rem" }}>
                       Total{" "}
                     </Key>
-                    <Value style={{ fontWeight: "bold", fontSize: "1.5rem" }}>
+                    <Value
+                      style={{
+                        fontWeight: "bold",
+                        fontSize: "1.5rem",
+                      }}
+                    >
                       USD {total}
                     </Value>
-                    <h1 style={{ fontWeight: "bold", fontSize: "1.5rem" }}>
+
+                    <h1
+                      style={{
+                        marginRight: "1em",
+                        fontWeight: "bold",
+                        fontSize: "1.5rem",
+                      }}
+                    >
                       {totalChoices}
                     </h1>
                   </div>
@@ -164,13 +176,13 @@ export default ({ textOnLeft = false }) => {
                     }}
                   >
                     <NavLinks>
-                      <NavLink href="/#" tw="lg:ml-12!">
+                      <NavLink href="/" tw="lg:ml-12!">
                         Go Back
                       </NavLink>
                       {total === 0 && (
                         <SecondaryButton
                           style={{
-                            backgroundColor: "grey",
+                            backgroundColor: "#c6c6c6",
                             //   borderRadius: "0.25rem",
                             //   paddingLeft: "2rem",
                             //   paddingRight: "2rem",

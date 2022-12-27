@@ -8,13 +8,16 @@ import {
   formatExpirationDate,
 } from "./cardUtils";
 import axios from "axios";
+import tw from "twin.macro";
+import styled from "styled-components";
+import { toast, ToastContainer } from "react-toastify";
 axios.defaults.baseURL = "/api";
 
 const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
-function CheckoutComponent({total,setProgress}) {
+function CheckoutComponent({ total, setProgress }) {
   useEffect(() => {
-    //! when ever the page load it creates a stipe script 
+    //! when ever the page load it creates a stipe script
     if (!window.document.getElementById("stripe-script")) {
       var s = window.document.createElement("script");
       s.id = "stripe-script";
@@ -60,10 +63,8 @@ function CheckoutComponent({total,setProgress}) {
     } catch (error) {}
   };
 
-
-  
-
-
+  const PrimaryButton = tw.button`font-bold px-8 lg:px-10 py-3 rounded bg-primary-500 text-gray-100 hocus:bg-primary-700 focus:shadow-outline focus:outline-none transition duration-300`;
+  const SecondaryButton = tw.button`font-bold px-8 lg:px-10 py-3 rounded bg-primary-500 text-gray-100`;
 
   return (
     <Styles>
@@ -111,11 +112,10 @@ function CheckoutComponent({total,setProgress}) {
                   placeholder="Card Number"
                   format={formatCreditCardNumber}
                   onBlur={(e) => {
-                        if (e.target.value.length > 15) {
-                            setProgress((prev) => prev + 12);
-                        }
-                    }}
-
+                    if (e.target.value.length > 15) {
+                      setProgress((prev) => prev + 12);
+                    }
+                  }}
                 />
               </div>
               <div>
@@ -126,9 +126,9 @@ function CheckoutComponent({total,setProgress}) {
                   placeholder="Name"
                   onBlur={(e) => {
                     if (e.target.value.length > 5) {
-                        setProgress((prev) => prev + 12);
-                    }   
-                }}
+                      setProgress((prev) => prev + 12);
+                    }
+                  }}
                 />
               </div>
               <div>
@@ -141,9 +141,9 @@ function CheckoutComponent({total,setProgress}) {
                   format={formatExpirationDate}
                   onBlur={(e) => {
                     if (e.target.value.length > 2) {
-                        setProgress((prev) => prev + 12);
+                      setProgress((prev) => prev + 12);
                     }
-                }}
+                  }}
                 />
                 <Field
                   name="cvc"
@@ -154,15 +154,44 @@ function CheckoutComponent({total,setProgress}) {
                   format={formatCVC}
                   onBlur={(e) => {
                     if (e.target.value.length > 2) {
-                        setProgress((prev) => prev + 12);
+                      setProgress((prev) => prev + 12);
                     }
-                }}
+                  }}
                 />
               </div>
               <div className="buttons">
-                <button type="submit" disabled={submitting}>
-                  Pay Now
-                </button>
+                {(!values.number ||
+                  !values.name ||
+                  !values.expiry ||
+                  !values.cvc) && (
+                  <SecondaryButton
+                    style={{
+                      backgroundColor: "#c6c6c6",
+                      //   borderRadius: "0.25rem",
+                      //   paddingLeft: "2rem",
+                      //   paddingRight: "2rem",
+                      //   paddingTop: "0.75rem",
+                      //   paddingBottom: "0.75rem",
+                      //   fontWeight: "bold",
+                      //   fontSize: "0.875rem",
+                    }}
+                    disabled={true}
+                    // onClick={handleClick}
+                  >
+                    Pay Now
+                  </SecondaryButton>
+                )}
+                {values.number &&
+                  values.name &&
+                  values.expiry &&
+                  values.cvc && (
+                    <PrimaryButton
+                      style={{ cursor: "pointer" }}
+                      onClick={onSubmit}
+                    >
+                      Pay Now
+                    </PrimaryButton>
+                  )}
                 <button
                   type="button"
                   onClick={form.reset}

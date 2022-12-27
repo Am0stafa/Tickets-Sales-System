@@ -1,5 +1,5 @@
 /* eslint-disable import/no-anonymous-default-export */
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { motion } from "framer-motion";
 import tw from "twin.macro";
 import styled from "styled-components";
@@ -9,7 +9,6 @@ import { SectionHeading } from "../misc/Headings.js";
 import { PrimaryButton as PrimaryButtonBase } from "../misc/Buttons.js";
 import { ReactComponent as LocationIcon } from "feather-icons/dist/icons/map-pin.svg";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
 
 const HeaderRow = tw.div`flex justify-between items-center flex-col xl:flex-row`;
 const Header = tw(SectionHeading)``;
@@ -798,27 +797,9 @@ function continent(code) {
   }
 }
 
-export default ({ user }) => {
+export default ({ user, countryCode }) => {
   const navigate = useNavigate();
-
-  const [countryCode, setCountryCode] = useState("");
-
-  useEffect(() => {
-    //https://extreme-ip-lookup.com/json/?key=asZaRChNXhO3sOgN1rGE
-    // fetch('https://ipapi.co/json/')
-    axios
-      .get("https://ipapi.co/json/")
-
-      .then((response) => {
-        // setCountryCode(response.data.countryCode);
-        setCountryCode(response.data.country);
-        // console.log("Continent is : ", continent(response.data.countryCode));
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  }, []);
-
+  console.log(countryCode);
   return (
     <Card
       style={{
@@ -977,6 +958,11 @@ export default ({ user }) => {
           <div style={{ margin: "0.2em" }}></div>
 
           {user.location}
+          <img
+            alt=""
+            src="/assets/soldout.png"
+            style={{ alignSelf: "right", height: "80px", width: "120px" }}
+          />
         </CardContent>
       </CardText>
     </Card>

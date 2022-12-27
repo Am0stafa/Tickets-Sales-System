@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import tw from "twin.macro";
 import { css } from "styled-components/macro"; //eslint-disable-line
 import { SectionHeading } from "../components/misc/Headings.js";
@@ -15,6 +15,8 @@ import styled from "styled-components";
 import { ReactComponent as SvgDecoratorBlob1 } from "../images/svg-decorator-blob-5.svg";
 import { ReactComponent as SvgDecoratorBlob2 } from "../images/svg-decorator-blob-7.svg";
 import "instantsearch.css/themes/satellite.css";
+import axios from "axios";
+
 const handshake = React.lazy(() => import("../images/handshake.jpg"));
 
 const AnimationRevealPage = React.lazy(() =>
@@ -45,13 +47,28 @@ const DecoratorBlob2 = styled(SvgDecoratorBlob2)`
   ${tw`pointer-events-none -z-20 absolute left-0 bottom-0 h-80 w-80 opacity-15 transform -translate-x-2/3 text-primary-500`}
 `;
 
-//generates cards (algolia)
-function Hit({ hit }) {
-  return <TabGrid user={hit} />;
-}
-
 const Home = () => {
   const myRef = useRef();
+  function Hit({ hit }) {
+    return <TabGrid countryCode={countryCode} user={hit} />;
+  }
+  const [countryCode, setCountryCode] = useState("");
+
+  useEffect(() => {
+    //https://extreme-ip-lookup.com/json/?key=asZaRChNXhO3sOgN1rGE
+    // fetch('https://ipapi.co/json/')
+    axios
+      .get("https://ipapi.co/json/")
+
+      .then((response) => {
+        // setCountryCode(response.data.countryCode);
+        setCountryCode(response.data.country);
+        // console.log("Continent is : ", continent(response.data.countryCode));
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, []);
 
   const searchClient = algoliasearch(
     "F1K7P1CJSO",
