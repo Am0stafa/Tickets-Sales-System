@@ -18,6 +18,8 @@ router.route("/pendingMatch")
 router.route("/successMatch")
     .patch(reservationController.consumeSuccess);
 
+router.route("/consumeCancel")
+    .patch(reservationController.consumeCancel);
 
 
 
