@@ -42,8 +42,8 @@ model Ticket {
   category     String
   external     Boolean
   matchId      Int
-  holdId       String?
   isHold       Boolean       @default(false)
+  holdId       String?
   isPurchased  Boolean       @default(false)
   reservations Reservation[]
   Hold         Hold?         @relation(fields: [holdId], references: [id])
@@ -58,8 +58,8 @@ model Order {
   status       String        @default("shipping")
   comments     String?
   price        Int?
-  customerId   String
-  customer     Customer      @relation(fields: [customerId], references: [id])
+  customerId   String?
+  customer     Customer?     @relation(fields: [customerId], references: [id])
   reservation  Reservation[]
 }
 

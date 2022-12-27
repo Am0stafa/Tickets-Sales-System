@@ -223,7 +223,7 @@ const consumePendingTicket = async (req, res, next) => {
     })
 
 
-    await prisma.ticket.updateMany({
+    const a = await prisma.ticket.updateMany({
         where:{
             id:{
                 in:selectedTicketsIds
@@ -236,6 +236,8 @@ const consumePendingTicket = async (req, res, next) => {
         }
     })
 
+
+
     res.status(200).json({message:'success'})
 
 
@@ -244,13 +246,64 @@ const consumePendingTicket = async (req, res, next) => {
 const consumeSuccess = async (req, res, next) => {
     const {matchNumber,tickets} = req.body
     // get the hold table where it satisfies the {matchNumber,tickets} = req.body
+
+    const catagories = {
+        1:"Category 1",
+        2:"Category 2",
+        3:"Category 3",
+        4:"Category 4",
+    }
+    
+    //1) i want to remove from the tickets where the quantity is 0
+    const filteredTickets = tickets.filter(ticket => ticket.quantity > 0)
+
+    //2) get the sum of the quantity of the tickets
+    const totalQuantity = filteredTickets.reduce((acc,ticket) => acc + ticket.quantity,0)
+
     const hold = await prisma.hold.findMany({
+        where:{
+            tickets:{
+                every:{
+                    matchId:matchNumber,
+                    category:{
+                        in : filteredTickets.map(ticket => catagories[ticket.category])
+                    }
+                }
+            }
+        },
         include:{
             tickets:true
         }
     })
+    if (hold.length === 0) return res.status(400).json({message:'ticket not found please try again'})
 
-    return res.status(200).json({hold})
+    //3) i want to get the tickets from the hold table where the length of the tickets is equal to the length of the totalQuantity
+    const valid = hold.filter(h => h.tickets.length === totalQuantity)
+
+    console.log(hold)
+
+    if (valid.length === 0) return res.status(400).json({message:'ticket not found 1'})
+
+    //4) i want to update the tickets to be isPurchased true
+    const ticketsIds = valid[0]?.tickets.map(ticket => ticket.id);
+
+    if (!ticketsIds) return res.status(400).json({message:'ticket not found 2'})
+
+    const updatedTickets = await prisma.ticket.updateMany({
+        where:{
+            id:{
+                in:ticketsIds
+            }
+        },
+        data:{
+            isPurchased:true,
+            isHold:false,
+            holdId:null
+        }
+    })
+
+
+    return res.status(200).json({message:'success'})
 }
 
 
