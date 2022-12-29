@@ -21,6 +21,7 @@
     "payment": "^2.4.6",
     "react": "^18.2.0",
     "react-anchor-link-smooth-scroll": "^1.0.12",
+    "react-async-hook": "^4.0.0",
     "react-countdown": "^2.3.5",
     "react-credit-cards-2": "^0.9.0",
     "react-dom": "^18.0.0",
@@ -29,6 +30,7 @@
     "react-icons": "^4.7.1",
     "react-instantsearch-dom": "^6.38.1",
     "react-instantsearch-hooks-web": "^6.38.1",
+    "react-loading": "^2.0.3",
     "react-loading-skeleton": "^3.1.0",
     "react-modal": "^3.16.1",
     "react-rnd": "^10.3.7",
@@ -49,12 +51,6 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
-  },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
   },
   "browserslist": {
     "production": [

@@ -1,8 +1,8 @@
-/* eslint-disable import/no-anonymous-default-export */
+
 import React from "react";
 import styled from "styled-components";
 import tw from "twin.macro";
-//eslint-disable-next-line
+
 import { css } from "styled-components/macro";
 import AnchorLink from "react-anchor-link-smooth-scroll";
 

@@ -1,4 +1,4 @@
-/* eslint-disable import/no-anonymous-default-export */
+
 import React from "react";
 import { motion } from "framer-motion";
 import tw from "twin.macro";
@@ -799,7 +799,7 @@ function continent(code) {
 
 export default ({ user, countryCode }) => {
   const navigate = useNavigate();
-  console.log(countryCode);
+
   return (
     <Card
       style={{

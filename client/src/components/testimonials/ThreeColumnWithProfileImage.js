@@ -1,8 +1,8 @@
-/* eslint-disable import/no-anonymous-default-export */
+
 import React from "react";
 import styled from "styled-components";
 import tw from "twin.macro";
-import { css } from "styled-components/macro"; //eslint-disable-line
+import { css } from "styled-components/macro";
 import { ContentWithPaddingXl, Container } from "../misc/Layouts.js";
 import {
   SectionHeading as Heading,

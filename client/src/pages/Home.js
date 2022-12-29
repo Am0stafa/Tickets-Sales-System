@@ -16,7 +16,9 @@ import { ReactComponent as SvgDecoratorBlob1 } from "../images/svg-decorator-blo
 import { ReactComponent as SvgDecoratorBlob2 } from "../images/svg-decorator-blob-7.svg";
 import "instantsearch.css/themes/satellite.css";
 import axios from "axios";
-
+import { useAsync } from 'react-async-hook';
+import { getAllAvailability } from "../services/shop";
+import ReactLoading from "react-loading";
 const handshake = React.lazy(() => import("../images/handshake.jpg"));
 
 const AnimationRevealPage = React.lazy(() =>
@@ -68,6 +70,8 @@ const Home = () => {
       .catch((error) => {
         console.log(error);
       });
+
+
   }, []);
 
   const searchClient = algoliasearch(
@@ -80,6 +84,13 @@ const Home = () => {
   const HighlightedText = tw.span`bg-primary-500 text-gray-100 px-4 transform -skew-x-12 inline-block`;
   const imageCss = tw`rounded-4xl`;
 
+
+  const { result, error, loading }= useAsync(getAllAvailability);
+
+  if (error) return <div>Error please refresh the page</div>;
+  if (result) console.log("result", result);
+
+  
   return (
     <AnimationRevealPage>
       <Hero
@@ -118,7 +129,7 @@ const Home = () => {
               }}
             />
 
-            <Hits hitComponent={Hit} />
+            { loading ? <ReactLoading type={"balls"} color="#FF0000" /> :  <Hits hitComponent={Hit} />}
             <div style={{ marginTop: "60px" }}></div>
 
             <Pagination />

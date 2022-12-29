@@ -1,0 +1,82 @@
+
+ .progress{
+    width:90vw;
+    height:8vw;
+    background: #abbaba;
+    filter: blur(0.4px);
+    box-shadow: -0.05rem -0.05rem 0.08rem rgba(0, 0, 51, 0.6), 0.05rem 0.05rem 0.1rem #b6fbe4, inset 0.5rem 0.5rem 2rem rgba(0, 0, 51, 0.5), inset 0.1rem 0.1rem 0.2rem rgba(0, 0, 51, 0.75), inset -0.5rem -0.5rem 4rem rgba(182, 251, 228, 0.5);
+    position:absolute;
+    top:50%;
+    left:50%;
+    transform:translate(-50%, -50%);
+    border-radius:10vw;
+ }
+ .ball{
+    width:8vw;
+    height:8vw;
+    top:1%;
+    left:0.4%;
+    background-image: url('https://static.vecteezy.com/system/resources/previews/000/104/897/large_2x/vector-football-soccer-ball-pattern.jpg');
+    background-size: 10vw 10vw;
+    position:absolute;
+    border-radius:100%;
+    box-shadow: inset 1.6vw 0 4vw 0.3vw rgba(0,0,0,0.9),
+     inset -0.3vw 0 0.5vw 0.2vw rgba(255,255,255,0.16), -1vw 0px 5vw rgba(0,0,0,0.9);
+    animation:move,rotate;
+    animation-duration:4s,4s;
+    animation-iteration-count: infinite;
+    animation-direction:alternate, alternate;
+ }
+ .ball::before, .ball::after{
+    content:'';
+    width:1.5vw;
+    height:1.5vw;
+    background-color:#2e426b;
+    position:absolute;
+    left:40%;
+    border-radius:50%;
+ }
+ .ball::before{
+    top:-50%;
+ }
+ .ball::after{
+    bottom:-50%;
+ }
+ .progress::before{
+    content:'';
+    width:100%;
+    height:100%;
+    background: #2e426b;
+    box-shadow: -0.05rem -0.05rem 0.08rem rgba(0, 0, 51, 0.6), 0.05rem 0.05rem 0.1rem #b6fbe4, inset 0.5rem 0.5rem 2rem rgba(0, 0, 51, 0.5), inset 0.1rem 0.1rem 0.2rem rgba(0, 0, 51, 0.75), inset -0.5rem -0.5rem 4rem rgba(182, 251, 228, 0.5);
+    position:absolute;
+    border-radius:inherit;
+    animation-name:leftmove;
+    animation-duration:4s;
+    animation-iteration-count: infinite;
+    animation-direction:alternate;
+ }
+ @keyframes rotate {
+   0% { 
+      background-position: 0vw; 
+    }
+   100% { 
+      background-position: 30vw; 
+    }
+ }
+ @keyframes leftmove{
+    0%{
+       width:7.5%;
+    }
+    100%{
+       
+       width:80%;
+    }
+ }
+ @keyframes move{
+    0%{
+       trasnform:translateX(0vw);
+    }
+    100%{
+       transform:translateX(65vw);
+    }
+ }
