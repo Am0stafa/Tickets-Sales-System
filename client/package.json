@@ -14,7 +14,7 @@
     "algoliasearch": "^4.14.3",
     "axios": "^0.24.0",
     "feather-icons": "^4.29.0",
-    "firebase": "^9.15.0",
+    "firebase": "^8.10.1",
     "framer-motion": "^7.3.2",
     "instantsearch.css": "^7.4.5",
     "node-sass": "^8.0.0",

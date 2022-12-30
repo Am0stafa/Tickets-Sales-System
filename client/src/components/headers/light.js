@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import tw from "twin.macro";
 import styled from "styled-components";
 import { css } from "styled-components/macro"; 
-
+import { signInWithGoogle,auth } from '../../firebase/config'
 import useAnimatedNavToggler from "../../helpers/useAnimatedNavToggler.js";
 
 import logo from "../../images/logo.svg";
@@ -77,18 +77,26 @@ export default ({
    * changing the defaultLinks variable below below.
    * If you manipulate links here, all the styling on the links is already done for you. If you pass links yourself though, you are responsible for styling the links or use the helper styled components that are defined here (NavLink)
    */
+    const [rerender, setRerender] = React.useState(false)
+
   const defaultLinks = [
     <NavLinks key={1}>
       <NavLink href="/#">About</NavLink>
       <NavLink href="/#">Blog</NavLink>
       <NavLink href="/#">Pricing</NavLink>
       <NavLink href="/#">Contact Us</NavLink>
-      <NavLink href="/#" tw="lg:ml-12!">
+      { !auth?.currentUser ? (<PrimaryLink style={{ borderRadius: "9999px" }} onClick={()=>{
+         signInWithGoogle({setRerender})
+        }}>
         Login
-      </NavLink>
-      <PrimaryLink style={{ borderRadius: "9999px" }} href="/#">
-        Sign Up
-      </PrimaryLink>
+      </PrimaryLink>)
+        :( <PrimaryLink style={{ borderRadius: "9999px" }} onClick={async ()=>{
+            await auth.signOut()
+            setRerender((prev)=> !prev)
+            }}>
+                Logout
+            </PrimaryLink> ) 
+    }
     </NavLinks>,
   ];
 
@@ -105,6 +113,7 @@ export default ({
 
   logoLink = logoLink || defaultLogoLink;
   links = links || defaultLinks;
+  console.log(auth?.currentUser?.email)
 
   return (
     <Header className={className || "header-light"}>

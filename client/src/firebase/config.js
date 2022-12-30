@@ -23,7 +23,7 @@ firebase.initializeApp(firebaseConfig)
 //! this give us user info, is authenticated 
 const auth = firebase.auth()
 
-const signInWithGoogle =  () => { 
+const signInWithGoogle =  ({setRerender}) => { 
 
     auth
         .signInWithPopup(provider)
@@ -32,8 +32,8 @@ const signInWithGoogle =  () => {
             var token = credential.accessToken;
             var user = result.user;
             const {displayName , email , photoURL} = user;
-            // console.log(displayName, email  , photoURL)
-            
+            console.log(displayName, email  , photoURL)
+            setRerender((prev)=> !prev)
             // TODO: api call to user endpoint
             
     

@@ -8,13 +8,14 @@ import { getCatagories } from "../services/shop";
 const Header = tw(HeaderBase)`max-w-none`;
 import { useParams } from "react-router-dom";
 import BallLoading from "../components/ballLoading/BallLoading.js";
+import { auth } from '../firebase/config'
 
 export const Book = () => {
     const { matchId } = useParams();
     const { result, loading, error } = useAsync(getCatagories, [matchId]);
     if (loading) return <BallLoading/>
     if (error) return <div>Error: {error.message}</div>
-    console.log(result);
+    console.log(auth?.currentUser?.email)
 
 
   const buttonRoundedCss = tw`rounded-full`;
