@@ -33,8 +33,8 @@ const signInWithGoogle =  ({setRerender}) => {
             var user = result.user;
             const {displayName , email , photoURL} = user;
             console.log(displayName, email  , photoURL)
-            setRerender((prev)=> !prev)
             // TODO: api call to user endpoint
+            setRerender((prev)=> !prev)
             
     
         }).catch((error) => {
