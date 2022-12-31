@@ -15,7 +15,7 @@ export const Book = () => {
     const { result, loading, error } = useAsync(getCatagories, [matchId]);
     if (loading) return <BallLoading/>
     if (error) return <div>Error: {error.message}</div>
-    console.log(auth?.currentUser?.email)
+    
 
 
   const buttonRoundedCss = tw`rounded-full`;

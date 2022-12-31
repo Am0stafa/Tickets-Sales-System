@@ -113,7 +113,7 @@ export default ({
 
   logoLink = logoLink || defaultLogoLink;
   links = links || defaultLinks;
-  console.log(auth?.currentUser?.email)
+
 
   return (
     <Header className={className || "header-light"}>

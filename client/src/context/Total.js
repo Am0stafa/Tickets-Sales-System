@@ -50,7 +50,7 @@ export const AppContextProvider = ({ children }) => {
 
 
   return (
-    <AppContext.Provider value={{ total, calculateTotal,totalChoices }}>
+    <AppContext.Provider value={{ total, calculateTotal,totalChoices,without }}>
       {children}
     </AppContext.Provider>
   );

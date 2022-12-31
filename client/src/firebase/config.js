@@ -32,8 +32,9 @@ const signInWithGoogle =  ({setRerender}) => {
             var token = credential.accessToken;
             var user = result.user;
             const {displayName , email , photoURL} = user;
-            console.log(displayName, email  , photoURL)
+            // console.log(displayName, email  , photoURL)
             // TODO: api call to user endpoint
+            
             setRerender((prev)=> !prev)
             
     
