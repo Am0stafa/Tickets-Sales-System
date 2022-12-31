@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { useLocation,useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import Styles from "./Styles";
 import { Form, Field } from "react-final-form";
 import Card from "./Card";
@@ -19,7 +19,7 @@ axios.defaults.baseURL = "/api";
 const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
 function CheckoutComponent({ sessionId, setProgress }) {
-    const navigate = useNavigate();
+  const navigate = useNavigate();
 
   useEffect(() => {
     //! when ever the page load it creates a stipe script
@@ -72,23 +72,25 @@ function CheckoutComponent({ sessionId, setProgress }) {
   const handelCancel = async () => {
     setLoading(true);
     const body = {
-        session: sessionId,
-    }
+      session: sessionId,
+    };
 
-    const res = await axios.post("https://reservation-two.vercel.app/api/reservation/cancel", body)
+    const res = await axios.post(
+      "https://reservation-two.vercel.app/api/reservation/cancel",
+      body
+    );
 
-    console.log(res)
+    console.log(res);
     setLoading(false);
-    navigate("/")
-  }
-
+    navigate("/");
+  };
 
   const PrimaryButton = tw.button`font-bold px-8 lg:px-10 py-3 rounded bg-primary-500 text-gray-100 hocus:bg-primary-700 focus:shadow-outline focus:outline-none transition duration-300`;
   const SecondaryButton = tw.button`font-bold px-8 lg:px-10 py-3 rounded bg-primary-500 text-gray-100`;
 
   // get the data from the location
-    const location = useLocation();
-    const { choices, total, match, totalChoices, email,time } = location.state;
+  const location = useLocation();
+  const { choices, total, match, totalChoices, email, time } = location.state;
 
   return (
     <Styles>
@@ -111,7 +113,7 @@ function CheckoutComponent({ sessionId, setProgress }) {
                 cvc={values.cvc || ""}
                 focused={active}
               />
-              <div>
+              <div style={{ flexWrap: "wrap" }}>
                 <Field
                   disabled={true}
                   name="amount"
@@ -127,7 +129,7 @@ function CheckoutComponent({ sessionId, setProgress }) {
                   placeholder={email}
                 />
               </div>
-              <div>
+              <div style={{ flexWrap: "wrap" }}>
                 <Field
                   name="number"
                   component="input"
@@ -142,7 +144,7 @@ function CheckoutComponent({ sessionId, setProgress }) {
                   }}
                 />
               </div>
-              <div>
+              <div style={{ flexWrap: "wrap" }}>
                 <Field
                   name="name"
                   component="input"
@@ -155,7 +157,7 @@ function CheckoutComponent({ sessionId, setProgress }) {
                   }}
                 />
               </div>
-              <div>
+              <div style={{ flexWrap: "wrap" }}>
                 <Field
                   name="expiry"
                   component="input"
@@ -223,16 +225,17 @@ function CheckoutComponent({ sessionId, setProgress }) {
                 >
                   Reset
                 </button>
-                {!loading?(<button
-                  type="button"
-                  onClick={handelCancel}
-                  disabled={submitting || loading}
+                {!loading ? (
+                  <button
+                    type="button"
+                    onClick={handelCancel}
+                    disabled={submitting || loading}
                   >
                     Cancel
-                  </button>)
-                    :
-                    <ReactLoading type={"balls"} color="#FF0000" />  
-                }
+                  </button>
+                ) : (
+                  <ReactLoading type={"bubbles"} color="#ff9999" />
+                )}
               </div>
             </form>
           );

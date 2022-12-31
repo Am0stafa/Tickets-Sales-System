@@ -1,4 +1,3 @@
-
 import React from "react";
 import { motion } from "framer-motion";
 import tw from "twin.macro";
@@ -958,11 +957,11 @@ export default ({ user, countryCode }) => {
           <div style={{ margin: "0.2em" }}></div>
 
           {user.location}
-          <img
+          {/* <img
             alt=""
             src="/assets/soldout.png"
             style={{ alignSelf: "right", height: "80px", width: "120px" }}
-          />
+          /> */}
         </CardContent>
       </CardText>
     </Card>

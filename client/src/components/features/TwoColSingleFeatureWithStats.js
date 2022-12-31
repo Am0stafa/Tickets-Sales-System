@@ -25,7 +25,7 @@ const Heading = tw(
 const Description = tw.p`text-center md:text-left text-sm md:text-base lg:text-lg font-medium leading-relaxed text-secondary-100 mt-4`;
 const PrimaryButton = tw.button`font-bold px-8 lg:px-10 py-3 rounded bg-primary-500 text-gray-100 hocus:bg-primary-700 focus:shadow-outline focus:outline-none transition duration-300`;
 const SecondaryButton = tw.button`font-bold px-8 lg:px-10 py-3 rounded bg-primary-500 text-gray-100`;
-import { auth } from '../../firebase/config'
+import { auth } from "../../firebase/config";
 
 export default ({ textOnLeft = false }) => {
   // The textOnLeft boolean prop can be used to display either the text on left or right side of the image.
@@ -36,7 +36,11 @@ export default ({ textOnLeft = false }) => {
   const match = loc.state;
   const [progress, setProgress] = React.useState(0);
   const [choices, setChoices] = React.useState({});
-  const { total, totalChoices,without:mapChoice } = React.useContext(AppContext);
+  const {
+    total,
+    totalChoices,
+    without: mapChoice,
+  } = React.useContext(AppContext);
   const DecoratorBlob1 = styled(SvgDecoratorBlob1)`
     ${tw`pointer-events-none -z-20 absolute right-0 top-0 h-64 w-64 opacity-15 transform translate-x-2/3 -translate-y-12 text-pink-400`}
   `;
@@ -44,56 +48,65 @@ export default ({ textOnLeft = false }) => {
     ${tw`pointer-events-none -z-20 absolute left-0 bottom-0 h-80 w-80 opacity-15 transform -translate-x-2/3 text-primary-500`}
   `;
   const [issLoading, setIssLoading] = React.useState(false);
- 
+
   const handleClick = async () => {
     //TODO: api
     //TODO: check captcha and that total is not zero
 
-    if(! auth?.currentUser?.email){
-          toast.error("Please Login to provide an email", {
-            position: "top-center",
-            autoClose: 5000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-            theme: "colored",
-        });
+    if (!auth?.currentUser?.email) {
+      toast.error("Please Login to provide an email", {
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+      });
       return;
     }
     setIssLoading(true);
 
     const names = {
-        1: "Category 1",
-        2: "Category 2",
-        3: "Category 3",
-        4: "Category 4",
-    }
+      1: "Category 1",
+      2: "Category 2",
+      3: "Category 3",
+      4: "Category 4",
+    };
 
-    const payload = {}
+    const payload = {};
 
     payload.matchId = match.id;
 
-    const tickets = Object.keys(mapChoice).map((key)=>{
-        return {
-            category: names[key],
-            quantity: mapChoice[key]
-        }
-    })
+    const tickets = Object.keys(mapChoice).map((key) => {
+      return {
+        category: names[key],
+        quantity: mapChoice[key],
+      };
+    });
 
-    payload.tickets = tickets.filter((ticket)=>ticket.quantity>0)
+    payload.tickets = tickets.filter((ticket) => ticket.quantity > 0);
 
-    console.log(payload)
+    // console.log(payload);
 
-    const response = await axios.post("https://reservation-two.vercel.app/api/reservation/pending", payload);
+    const response = await axios.post(
+      "https://reservation-two.vercel.app/api/reservation/pending",
+      payload
+    );
 
-    console.log(response.data)
-    
+    // console.log(response.data);
+
     setIssLoading(false);
 
     navigate(`/checkout/${response.data.session}`, {
-      state: { choices, total, match, totalChoices, email: auth?.currentUser?.email, time:response.data.holdUntil
+      state: {
+        choices,
+        total,
+        match,
+        totalChoices,
+        email: auth?.currentUser?.email,
+        time: response.data.holdUntil,
       },
     });
   };
@@ -209,36 +222,48 @@ export default ({ textOnLeft = false }) => {
                       marginTop: "20px",
                     }}
                   >
-                    { !issLoading? (<NavLinks>
-                      <NavLink href="/" tw="lg:ml-12!">
-                        Go Back
-                      </NavLink>
-                      {total === 0 && (
-                        <SecondaryButton
-                          style={{
-                            backgroundColor: "#c6c6c6",
-                            //   borderRadius: "0.25rem",
-                            //   paddingLeft: "2rem",
-                            //   paddingRight: "2rem",
-                            //   paddingTop: "0.75rem",
-                            //   paddingBottom: "0.75rem",
-                            //   fontWeight: "bold",
-                            //   fontSize: "0.875rem",
-                          }}
-                          disabled={true}
-                        >
-                          Proceed
-                        </SecondaryButton>
-                      )}
-                      {total > 0 && (
-                        <PrimaryButton
-                          style={{ cursor: "pointer" }}
-                          onClick={handleClick}
-                        >
-                          Proceed
-                        </PrimaryButton>
-                      )}
-                    </NavLinks>): (<ReactLoading type={"bubbles"} color="#ff9999" />)}
+                    {!issLoading ? (
+                      <NavLinks>
+                        <NavLink href="/" tw="lg:ml-12!">
+                          Go Back
+                        </NavLink>
+                        {total === 0 && (
+                          <SecondaryButton
+                            style={{
+                              backgroundColor: "#c6c6c6",
+                              //   borderRadius: "0.25rem",
+                              //   paddingLeft: "2rem",
+                              //   paddingRight: "2rem",
+                              //   paddingTop: "0.75rem",
+                              //   paddingBottom: "0.75rem",
+                              //   fontWeight: "bold",
+                              //   fontSize: "0.875rem",
+                            }}
+                            disabled={true}
+                          >
+                            Proceed
+                          </SecondaryButton>
+                        )}
+                        {total > 0 && (
+                          <PrimaryButton
+                            style={{ cursor: "pointer" }}
+                            onClick={handleClick}
+                          >
+                            Proceed
+                          </PrimaryButton>
+                        )}
+                      </NavLinks>
+                    ) : (
+                      <div
+                        style={{
+                          display: "flex",
+                          justifyContent: "center",
+                          marginLeft: "1em",
+                        }}
+                      >
+                        <ReactLoading type={"bubbles"} color="#ff9999" />
+                      </div>
+                    )}
                   </div>
                 </div>
                 <DecoratorBlob1 />
