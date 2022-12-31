@@ -95,7 +95,11 @@ export default ({
         </PrimaryLink>
       ) : (
         <PrimaryLink
-          style={{ cursor: "pointer", borderRadius: "9999px" }}
+          style={{
+            backgroundColor: "gray",
+            cursor: "pointer",
+            borderRadius: "9999px",
+          }}
           onClick={async () => {
             await auth.signOut();
             setRerender((prev) => !prev);
