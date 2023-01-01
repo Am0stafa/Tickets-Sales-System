@@ -65,7 +65,7 @@ function CheckoutComponent({ sessionId, setProgress }) {
         (status, response) => {
           if (status === 200) {
             axios
-              .post("https://payment-eosin.vercel.app/api/pay", {
+              .post("http://localhost:3001/api/pay", {
                 token: response,
                 email: email,
                 amount: total, 
