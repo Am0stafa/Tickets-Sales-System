@@ -27,7 +27,7 @@ const PrimaryButton = tw.button`font-bold px-8 lg:px-10 py-3 rounded bg-primary-
 const SecondaryButton = tw.button`font-bold px-8 lg:px-10 py-3 rounded bg-primary-500 text-gray-100`;
 import { auth } from "../../firebase/config";
 
-export default ({ textOnLeft = false }) => {
+export default ({ textOnLeft = false,catagories }) => {
   // The textOnLeft boolean prop can be used to display either the text on left or right side of the image.
   //Change the statistics variable as you like, add or delete objects
   const reff = useRef();
@@ -155,32 +155,36 @@ export default ({ textOnLeft = false }) => {
                   <div style={{ height: "10px" }}></div>
                   <ul>
                     <Form
+                      catagories={catagories}
                       num="1"
-                      price="USD 200"
+                      price="USD 75"
                       setProgress={setProgress}
                       progress={progress}
                     />
                     <div style={{ margin: "1em" }}></div>
 
                     <Form
+                        catagories={catagories}
                       num="2"
-                      price="USD 400"
+                      price="USD 125"
                       setProgress={setProgress}
                       progress={progress}
                     />
                     <div style={{ margin: "1em" }}></div>
 
                     <Form
+                        catagories={catagories}
                       num="3"
-                      price="USD 800"
+                      price="USD 195"
                       setProgress={setProgress}
                       progress={progress}
                     />
                     <div style={{ margin: "1em" }}></div>
 
                     <Form
+                        catagories={catagories}
                       num="4"
-                      price="USD 1200"
+                      price="USD 400"
                       setProgress={setProgress}
                       progress={progress}
                     />

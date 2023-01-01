@@ -82,7 +82,10 @@ function CheckoutComponent({ sessionId, setProgress }) {
 
     console.log(res);
     setLoading(false);
-    navigate("/");
+    navigate("/",{
+        state: {
+            success: "Session Cancelled"
+    }});
   };
 
   const PrimaryButton = tw.button`font-bold px-8 lg:px-10 py-3 rounded bg-primary-500 text-gray-100 hocus:bg-primary-700 focus:shadow-outline focus:outline-none transition duration-300`;

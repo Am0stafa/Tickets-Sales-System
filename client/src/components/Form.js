@@ -4,7 +4,7 @@ import SelectAutoWidth from "./select";
 import "./form.css";
 import tw from "twin.macro";
 
-const Form = ({ num, price, setProgress, progress }) => {
+const Form = ({ num, price, setProgress, progress,catagories }) => {
   const Value = tw.div`font-bold text-primary-500`;
   const Key = tw.div`font-medium text-gray-700`;
   if (parseInt(num) === 1) {
@@ -45,6 +45,7 @@ const Form = ({ num, price, setProgress, progress }) => {
               num={num}
               setProgress={setProgress}
               progress={progress}
+              remaining={catagories.category1}
             >
               {/* disabled */}
             </SelectAutoWidth>
@@ -89,6 +90,7 @@ const Form = ({ num, price, setProgress, progress }) => {
             num={num}
             setProgress={setProgress}
             progress={progress}
+            remaining={catagories.category2}
           >
             {/* disabled */}
           </SelectAutoWidth>
@@ -132,6 +134,8 @@ const Form = ({ num, price, setProgress, progress }) => {
             num={num}
             setProgress={setProgress}
             progress={progress}
+            remaining={catagories.category3}
+
           >
             {/* disabled */}
           </SelectAutoWidth>
@@ -175,6 +179,7 @@ const Form = ({ num, price, setProgress, progress }) => {
             num={num}
             setProgress={setProgress}
             progress={progress}
+            remaining={catagories.category4}
           >
             {/* disabled */}
           </SelectAutoWidth>

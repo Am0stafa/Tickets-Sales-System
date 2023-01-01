@@ -19,7 +19,7 @@ export const Book = () => {
   return (
     <AnimationRevealPage>
       <Header />
-      <MainFeature />
+      <MainFeature catagories={result} />
     </AnimationRevealPage>
   );
 };

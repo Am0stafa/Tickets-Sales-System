@@ -32,8 +32,12 @@ const Checkout = () => {
   const { result, error, loading } = useAsync(getHoldById, [id]);
 
   if (loading) return <BallLoading />;
+
   if (error || !state) {
-    navigate("/");
+    navigate("/",{
+        state: {
+            error: "Session expired"
+    }});
     //TODO: add tost
   }
 

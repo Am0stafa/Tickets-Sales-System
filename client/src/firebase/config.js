@@ -3,7 +3,7 @@ import firebase from 'firebase/app'
 import 'firebase/firestore'
 import 'firebase/auth'
 import 'firebase/storage'
-// import axios from 'axios';
+import axios from 'axios';
 
 
 const firebaseConfig = {
@@ -33,8 +33,16 @@ const signInWithGoogle =  ({setRerender}) => {
             var user = result.user;
             const {displayName , email , photoURL} = user;
             // console.log(displayName, email  , photoURL)
-            // TODO: api call to user endpoint
-            
+
+            // send an axios request to https://user-blush.vercel.app/api/users/create with body of{name, email, token}
+            const {data} = await axios.post('https://user-blush.vercel.app/api/users/create', {name: displayName, email, token})
+
+            if(!data){
+                console.log('error')
+            }
+
+
+
             setRerender((prev)=> !prev)
             
     

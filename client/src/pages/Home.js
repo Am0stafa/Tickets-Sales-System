@@ -1,4 +1,5 @@
 import React, { useRef, useState, useEffect } from "react";
+import { useLocation } from "react-router-dom";
 import tw from "twin.macro";
 import { css } from "styled-components/macro"; //eslint-disable-line
 import { SectionHeading } from "../components/misc/Headings.js";
@@ -57,6 +58,13 @@ const Home = () => {
     return <TabGrid countryCode={countryCode} user={hit} />;
   }
   const [countryCode, setCountryCode] = useState("");
+
+  const location = useLocation();
+  const {state} = location;
+  if (state) {
+    console.log("state", state);
+  }
+
 
   useEffect(() => {
     //https://extreme-ip-lookup.com/json/?key=asZaRChNXhO3sOgN1rGE
