@@ -16,6 +16,7 @@
     "feather-icons": "^4.29.0",
     "firebase": "^8.10.1",
     "framer-motion": "^7.3.2",
+    "gsap": "^3.11.4",
     "instantsearch.css": "^7.4.5",
     "node-sass": "^8.0.0",
     "payment": "^2.4.6",

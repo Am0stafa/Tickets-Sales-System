@@ -13,6 +13,7 @@ import tw from "twin.macro";
 import styled from "styled-components";
 import { toast, ToastContainer } from "react-toastify";
 import ReactLoading from "react-loading";
+import { auth } from '../../firebase/config'
 
 axios.defaults.baseURL = "/api";
 
@@ -20,7 +21,12 @@ const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
 function CheckoutComponent({ sessionId, setProgress }) {
   const navigate = useNavigate();
-
+  // get the data from the location
+  const location = useLocation();
+  const { choices, total, match, totalChoices, email, time } = location.state;
+  
+  const [purchase, setPurchase] = React.useState(false);
+  
   useEffect(() => {
     //! when ever the page load it creates a stipe script
     if (!window.document.getElementById("stripe-script")) {
@@ -38,9 +44,15 @@ function CheckoutComponent({ sessionId, setProgress }) {
   }, []);
 
   const onSubmit = async (values) => {
-    //! when we submit the form it will wait for 300ms and then it will create a token and then it will send the token to the server
+    const {data} = await axios.get(`https://user-blush.vercel.app/api/users/mail/${email}`)
+    const id = data.data
+    // if no id
+    if(!id){
+        toast.error("Please Login to continue");
+        return
+    }
 
-    await sleep(300);
+    setPurchase(true);
     try {
       window.Stripe.card.createToken(
         {
@@ -53,15 +65,23 @@ function CheckoutComponent({ sessionId, setProgress }) {
         (status, response) => {
           if (status === 200) {
             axios
-              .post("/pay", {
+              .post("https://payment-eosin.vercel.app/api/pay", {
                 token: response,
-                email: values.email,
-                amount: values.amount, //TODO: this will be changed
+                email: email,
+                amount: total, 
+                holdId: sessionId,
+                uid:id,
               })
-              .then((res) => window.alert(JSON.stringify(res.data, 0, 2))) //TODO: redirect to success page
-              .catch((err) => console.log(err));
+              .then((res) =>{
+                 navigate("/payment/success")
+              }) 
+              .catch((err) =>{
+                console.log(err)
+                navigate("/payment/fail")
+              });
           } else {
-            console.log(response.error.message); //TODO: use async hook and display error message
+            console.log(response.error.message); 
+            navigate("/payment/fail")
           }
         }
       );
@@ -91,9 +111,7 @@ function CheckoutComponent({ sessionId, setProgress }) {
   const PrimaryButton = tw.button`font-bold px-8 lg:px-10 py-3 rounded bg-primary-500 text-gray-100 hocus:bg-primary-700 focus:shadow-outline focus:outline-none transition duration-300`;
   const SecondaryButton = tw.button`font-bold px-8 lg:px-10 py-3 rounded bg-primary-500 text-gray-100`;
 
-  // get the data from the location
-  const location = useLocation();
-  const { choices, total, match, totalChoices, email, time } = location.state;
+
 
   return (
     <Styles>
@@ -210,7 +228,9 @@ function CheckoutComponent({ sessionId, setProgress }) {
                     Pay Now
                   </SecondaryButton>
                 )}
-                {values.number &&
+                {
+                !purchase ?(
+                values.number &&
                   values.name &&
                   values.expiry &&
                   values.cvc && (
@@ -220,7 +240,11 @@ function CheckoutComponent({ sessionId, setProgress }) {
                     >
                       Pay Now
                     </PrimaryButton>
-                  )}
+                  )):(
+                    <ReactLoading type={"bubbles"} color="#ff9999" />
+                    )
+                  
+                  }
                 <button
                   type="button"
                   onClick={form.reset}

@@ -7,8 +7,9 @@ import React from "react";
 import { AppContextProvider } from "./context/Total.js";
 import Checkout from "./pages/Checkout";
 import ScrollToTop from "./ScrollToTop";
-import Test from './Test';
 import BallLoading from "./components/ballLoading/BallLoading";
+import PaymentSuccess from './components/paymentSF/PaymentSuccess';
+import PaymentFail from './components/paymentSF/PaymentFail';
 
 function App() {
   return (
@@ -30,7 +31,9 @@ function App() {
 
             <Route path="/checkout/:id" element={<Checkout />} />
 
-            <Route path="/test" element={<Test/>} />
+
+            <Route path="/payment/success" element={<PaymentSuccess/>} />
+            <Route path="/payment/fail" element={<PaymentFail/>} />
 
             {/* <Route path="/my-tickets/:encryptedId" element={<Tickets />} /> */}
           </Routes>

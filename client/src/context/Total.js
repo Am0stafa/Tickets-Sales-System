@@ -19,10 +19,10 @@ export const AppContextProvider = ({ children }) => {
     4: 0,
   });
   const priceForCategory = {
-    1: 200,
-    2: 400,
-    3: 800,
-    4: 1200,
+    1: 75,
+    2: 125,
+    3: 195,
+    4: 400,
   };
 
   const calculateTotal = ({ amount, category }) => {

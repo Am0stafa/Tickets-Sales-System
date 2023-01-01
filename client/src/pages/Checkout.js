@@ -36,13 +36,16 @@ const Checkout = () => {
   if (error || !state) {
     navigate("/",{
         state: {
-            error: "Session expired"
+            error: "Please make an order first"
     }});
-    //TODO: add tost
+
   }
 
   const Completionist = () => {
-    //TODO: redirect
+    navigate("/",{
+        state: {
+            error: "Session expired"
+    }});
     return <span>Session ended</span>;
   };
 
