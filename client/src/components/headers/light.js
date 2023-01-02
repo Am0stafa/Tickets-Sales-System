@@ -5,7 +5,7 @@ import styled from "styled-components";
 import { css } from "styled-components/macro";
 import { signInWithGoogle, auth } from "../../firebase/config";
 import useAnimatedNavToggler from "../../helpers/useAnimatedNavToggler.js";
-
+import {useNavigate} from 'react-router-dom'
 import logo from "../../images/logo.svg";
 import { ReactComponent as MenuIcon } from "feather-icons/dist/icons/menu.svg";
 import { ReactComponent as CloseIcon } from "feather-icons/dist/icons/x.svg";
@@ -77,13 +77,13 @@ export default ({
    * If you manipulate links here, all the styling on the links is already done for you. If you pass links yourself though, you are responsible for styling the links or use the helper styled components that are defined here (NavLink)
    */
   const [rerender, setRerender] = React.useState(false);
-
+    const navigate = useNavigate()
   const defaultLinks = [
     <NavLinks key={1}>
       <NavLink href="/#">About</NavLink>
-      <NavLink href="/#">Blog</NavLink>
       <NavLink href="/#">Pricing</NavLink>
       <NavLink href="/#">Contact Us</NavLink>
+      {auth?.currentUser && <NavLink onClick={()=> navigate('/my-tickets')}>My Tickets</NavLink>}
       {!auth?.currentUser ? (
         <PrimaryLink
           style={{ cursor: "pointer", borderRadius: "9999px" }}

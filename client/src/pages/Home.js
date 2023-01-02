@@ -23,6 +23,7 @@ import ReactLoading from "react-loading";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 const handshake = React.lazy(() => import("../images/handshake.jpg"));
+import { toast, ToastContainer } from "react-toastify";
 
 const AnimationRevealPage = React.lazy(() =>
   import("../helpers/AnimationRevealPage.js")
@@ -62,7 +63,33 @@ const Home = () => {
   const location = useLocation();
   const {state} = location;
   if (state) {
-    console.log("state", state);
+    //TODO: toast popping up three times
+    if (state.errors) {
+        toast.error(state.errors, {
+            position: "top-center",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "colored",
+          });
+            state.errors = null;
+    }
+    else if (state.success) {
+        toast.success(state.success, {
+            position: "top-center",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "colored",
+          });
+            state.success = null;
+    }
   }
 
 
@@ -99,6 +126,7 @@ const Home = () => {
 
   return (
     <AnimationRevealPage>
+        <ToastContainer />
       <Hero
         heading={
           <>

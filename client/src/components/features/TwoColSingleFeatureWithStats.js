@@ -13,6 +13,7 @@ import AppContext from "../../context/Total";
 import { ReactComponent as SvgDecoratorBlob1 } from "../../images/svg-decorator-blob-5.svg";
 import { ReactComponent as SvgDecoratorBlob2 } from "../../images/svg-decorator-blob-7.svg";
 import { NavLinks, NavLink } from "../headers/light.js";
+import HCaptcha from '@hcaptcha/react-hcaptcha';
 import ProgressBar from "@ramonak/react-progress-bar";
 import axios from "axios";
 const Container = tw.div`relative`;
@@ -49,9 +50,72 @@ export default ({ textOnLeft = false,catagories }) => {
   `;
   const [issLoading, setIssLoading] = React.useState(false);
 
+  const [token, setToken] = React.useState("");
+  const captchaRef = React.useRef("");
+
+  const onExpire = () => {
+    toast.error("hCaptcha Expired", {
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+        });
+        setToken("");
+  };
+
+  const onError = (err) => {
+    toast.error("hCaptcha Error", {
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+        });
+
+  };
+
   const handleClick = async () => {
-    //TODO: api
-    //TODO: check captcha and that total is not zero
+
+    // if (!token) {
+    //     toast.error("Please verify hCaptcha", {
+    //         position: "top-center",
+    //         autoClose: 5000,
+    //         hideProgressBar: false,
+    //         closeOnClick: true,
+    //         pauseOnHover: true,
+    //         draggable: true,
+    //         progress: undefined,
+    //         theme: "colored",
+    //     });
+
+    //     return;
+    // }
+
+    // const captcha = await axios.post('https://security-alpha.vercel.app/signup-with-hcaptcha', {
+    //     token: token
+    // });
+
+    // if (!captcha.data.success) {
+    //     toast.error("hCaptcha Error", {
+    //         position: "top-center",
+    //         autoClose: 5000,
+    //         hideProgressBar: false,
+    //         closeOnClick: true,
+    //         pauseOnHover: true,
+    //         draggable: true,
+    //         progress: undefined,
+    //         theme: "colored",
+    //     });
+    //     return;
+    // }
+    
 
     if (!auth?.currentUser?.email) {
       toast.error("Please Login to provide an email", {
@@ -110,7 +174,9 @@ export default ({ textOnLeft = false,catagories }) => {
       },
     });
   };
-
+//   const onSubmit = () => {
+//     captchaRef.current.execute();
+//   };
   return (
     <Container>
       <ToastContainer />
@@ -226,6 +292,14 @@ export default ({ textOnLeft = false,catagories }) => {
                       marginTop: "20px",
                     }}
                   >
+      <HCaptcha
+        sitekey="12c4968d-1248-4670-93f9-d2aa4b005fda"
+        onVerify={setToken}
+        onError={onError}
+        onExpire={onExpire}
+        ref={captchaRef}
+      />
+
                     {!issLoading ? (
                       <NavLinks>
                         <NavLink href="/" tw="lg:ml-12!">

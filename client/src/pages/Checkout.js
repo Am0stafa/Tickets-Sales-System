@@ -34,17 +34,14 @@ const Checkout = () => {
   if (loading) return <BallLoading />;
 
   if (error || !state) {
-    navigate("/",{
-        state: {
-            error: "Please make an order first"
-    }});
+    navigate("/");
 
   }
 
   const Completionist = () => {
     navigate("/",{
         state: {
-            error: "Session expired"
+            errors: "Session expired"
     }});
     return <span>Session ended</span>;
   };

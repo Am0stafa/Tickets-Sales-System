@@ -10,6 +10,7 @@ import ScrollToTop from "./ScrollToTop";
 import BallLoading from "./components/ballLoading/BallLoading";
 import PaymentSuccess from './components/paymentSF/PaymentSuccess';
 import PaymentFail from './components/paymentSF/PaymentFail';
+import MyTickets from './components/myTickets/MyTickets';
 
 function App() {
   return (
@@ -34,8 +35,8 @@ function App() {
 
             <Route path="/payment/success" element={<PaymentSuccess/>} />
             <Route path="/payment/fail" element={<PaymentFail/>} />
-
-            {/* <Route path="/my-tickets/:encryptedId" element={<Tickets />} /> */}
+            
+            <Route path="/my-tickets" element={<MyTickets />} />
           </Routes>
         </ScrollToTop>
       </BrowserRouter>
