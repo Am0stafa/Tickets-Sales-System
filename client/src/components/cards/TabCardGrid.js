@@ -8,7 +8,6 @@ import { SectionHeading } from "../misc/Headings.js";
 import { PrimaryButton as PrimaryButtonBase } from "../misc/Buttons.js";
 import { ReactComponent as LocationIcon } from "feather-icons/dist/icons/map-pin.svg";
 import { useNavigate } from "react-router-dom";
-
 const HeaderRow = tw.div`flex justify-between items-center flex-col xl:flex-row`;
 const Header = tw(SectionHeading)``;
 
@@ -796,9 +795,9 @@ function continent(code) {
   }
 }
 
-export default ({ user, countryCode }) => {
+export default ({ user, countryCode, avail }) => {
   const navigate = useNavigate();
-
+  const result = avail.data[user.id - 1];
   return (
     <Card
       style={{
@@ -933,37 +932,97 @@ export default ({ user, countryCode }) => {
           </CardHoverOverlay>
         </div>
       </CardImageContainer>
-      <CardText style={{ minWidth: "350px" }}>
-        <CardTitle>
-          {user.homeTeam} vs {user.awayTeam}
-        </CardTitle>
-        <div style={{ margin: "0.8em" }}></div>
-        <CardContent style={{ display: "flex" }}>
-          <img
-            alt=""
-            src="/assets/calendar.svg"
-            style={{ height: "20px", width: "20px" }}
-          />
-          <div style={{ margin: "0.2em" }}></div>
+      <div style={{ display: "grid", gridTemplateColumns: "4fr 1fr" }}>
+        <CardText style={{ minWidth: "255px" }}>
+          <CardTitle>
+            {user.homeTeam} vs {user.awayTeam}
+          </CardTitle>
+          <div style={{ margin: "0.8em" }}></div>
+          <CardContent style={{ display: "flex" }}>
+            <img
+              alt=""
+              src="/assets/calendar.svg"
+              style={{ height: "20px", width: "20px" }}
+            />
+            <div style={{ margin: "0.2em" }}></div>
 
-          {user.Date}
-        </CardContent>
-        <CardContent style={{ display: "flex" }}>
-          <img
-            alt=""
-            src="/assets/stadium.svg"
-            style={{ height: "20px", width: "20px" }}
-          />
-          <div style={{ margin: "0.2em" }}></div>
-
-          {user.location}
-          {/* <img
+            {user.Date}
+          </CardContent>
+          <CardContent style={{ display: "flex" }}>
+            <img
+              alt=""
+              src="/assets/stadium.svg"
+              style={{ height: "20px", width: "20px" }}
+            />
+            <div style={{ margin: "0.2em" }}></div>
+            {user.location}
+            {/* <img
             alt=""
             src="/assets/soldout.png"
             style={{ alignSelf: "right", height: "80px", width: "120px" }}
           /> */}
-        </CardContent>
-      </CardText>
+            {/* <div style={{ width: "10px" }}></div> */}
+          </CardContent>
+        </CardText>
+        {result.status === "Available" && (
+          <CardText
+            style={{
+              marginLeft: "-20px",
+              minWidth: "95px",
+              alignItems: "center",
+            }}
+          >
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+                justifyContent: "center",
+                flexWrap: "wrap",
+              }}
+            >
+              <div className="dot-green"></div>
+              <div style={{ height: "5px" }}></div>
+              <CardContent>Available</CardContent>
+              {result.numOfAvailable < 800 && (
+                <h1 style={{ color: "red" }}>{result.numOfAvailable} Left!</h1>
+              )}
+            </div>
+          </CardText>
+        )}
+        {result.status === "Temporarily Unavailable" && (
+          <CardText style={{ minWidth: "80px", alignItems: "center" }}>
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+                justifyContent: "center",
+              }}
+            >
+              <div className="dot-yellow"></div>
+              <div style={{ height: "5px" }}></div>
+              <CardContent>Temporarily Unavailable</CardContent>
+            </div>
+          </CardText>
+        )}
+        {result.status === "Sold Out" && (
+          <CardText style={{ minWidth: "80px", alignItems: "center" }}>
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+                justifyContent: "center",
+              }}
+            >
+              <div className="dot-red"></div>
+              <div style={{ height: "5px" }}></div>
+              <CardContent>Sold Out</CardContent>
+            </div>
+          </CardText>
+        )}
+      </div>
     </Card>
   );
 };

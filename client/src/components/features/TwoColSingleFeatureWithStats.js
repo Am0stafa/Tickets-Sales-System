@@ -13,7 +13,7 @@ import AppContext from "../../context/Total";
 import { ReactComponent as SvgDecoratorBlob1 } from "../../images/svg-decorator-blob-5.svg";
 import { ReactComponent as SvgDecoratorBlob2 } from "../../images/svg-decorator-blob-7.svg";
 import { NavLinks, NavLink } from "../headers/light.js";
-import HCaptcha from '@hcaptcha/react-hcaptcha';
+import HCaptcha from "@hcaptcha/react-hcaptcha";
 import ProgressBar from "@ramonak/react-progress-bar";
 import axios from "axios";
 const Container = tw.div`relative`;
@@ -28,7 +28,7 @@ const PrimaryButton = tw.button`font-bold px-8 lg:px-10 py-3 rounded bg-primary-
 const SecondaryButton = tw.button`font-bold px-8 lg:px-10 py-3 rounded bg-primary-500 text-gray-100`;
 import { auth } from "../../firebase/config";
 
-export default ({ textOnLeft = false,catagories }) => {
+export default ({ textOnLeft = false, catagories }) => {
   // The textOnLeft boolean prop can be used to display either the text on left or right side of the image.
   //Change the statistics variable as you like, add or delete objects
   const reff = useRef();
@@ -55,34 +55,32 @@ export default ({ textOnLeft = false,catagories }) => {
 
   const onExpire = () => {
     toast.error("hCaptcha Expired", {
-        position: "top-center",
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "colored",
-        });
-        setToken("");
+      position: "top-center",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "colored",
+    });
+    setToken("");
   };
 
   const onError = (err) => {
     toast.error("hCaptcha Error", {
-        position: "top-center",
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "colored",
-        });
-
+      position: "top-center",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "colored",
+    });
   };
 
   const handleClick = async () => {
-
     // if (!token) {
     //     toast.error("Please verify hCaptcha", {
     //         position: "top-center",
@@ -115,7 +113,6 @@ export default ({ textOnLeft = false,catagories }) => {
     //     });
     //     return;
     // }
-    
 
     if (!auth?.currentUser?.email) {
       toast.error("Please Login to provide an email", {
@@ -174,9 +171,9 @@ export default ({ textOnLeft = false,catagories }) => {
       },
     });
   };
-//   const onSubmit = () => {
-//     captchaRef.current.execute();
-//   };
+  //   const onSubmit = () => {
+  //     captchaRef.current.execute();
+  //   };
   return (
     <Container>
       <ToastContainer />
@@ -208,8 +205,8 @@ export default ({ textOnLeft = false,catagories }) => {
             <section ref={reff}>
               <div className="type1" style={{ display: "none" }}>
                 <Description>
-                  2. Specify the number of tickets You can choose up to 4
-                  tickets
+                  2. Specify the number of tickets. You can choose up to 4
+                  tickets per Category
                 </Description>
                 <div style={{ marginBottom: "1em" }}></div>
 
@@ -230,7 +227,7 @@ export default ({ textOnLeft = false,catagories }) => {
                     <div style={{ margin: "1em" }}></div>
 
                     <Form
-                        catagories={catagories}
+                      catagories={catagories}
                       num="2"
                       price="USD 125"
                       setProgress={setProgress}
@@ -239,7 +236,7 @@ export default ({ textOnLeft = false,catagories }) => {
                     <div style={{ margin: "1em" }}></div>
 
                     <Form
-                        catagories={catagories}
+                      catagories={catagories}
                       num="3"
                       price="USD 195"
                       setProgress={setProgress}
@@ -248,7 +245,7 @@ export default ({ textOnLeft = false,catagories }) => {
                     <div style={{ margin: "1em" }}></div>
 
                     <Form
-                        catagories={catagories}
+                      catagories={catagories}
                       num="4"
                       price="USD 400"
                       setProgress={setProgress}
@@ -292,13 +289,13 @@ export default ({ textOnLeft = false,catagories }) => {
                       marginTop: "20px",
                     }}
                   >
-      <HCaptcha
-        sitekey="12c4968d-1248-4670-93f9-d2aa4b005fda"
-        onVerify={setToken}
-        onError={onError}
-        onExpire={onExpire}
-        ref={captchaRef}
-      />
+                    <HCaptcha
+                      sitekey="12c4968d-1248-4670-93f9-d2aa4b005fda"
+                      onVerify={setToken}
+                      onError={onError}
+                      onExpire={onExpire}
+                      ref={captchaRef}
+                    />
 
                     {!issLoading ? (
                       <NavLinks>

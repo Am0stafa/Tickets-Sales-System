@@ -59,7 +59,15 @@ const GlobalStyles = createGlobalStyle(
   .ais-Pagination-list{
     justify-content: center;
   }
-
+  .dot-green {
+  
+    display: inline-block;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    background: green;
+    cursor: pointer;
+  }
   .dot-yellow {
   
     display: inline-block;
@@ -134,6 +142,7 @@ const GlobalStyles = createGlobalStyle(
         box-shadow: 0 0 0 0 rgba(204,169,44, 0);
     }
   }
+
   .user-card {
     background-color:#edf2f7;
     padding: 1rem;

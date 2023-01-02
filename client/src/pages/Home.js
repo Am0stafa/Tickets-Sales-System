@@ -19,7 +19,6 @@ import "instantsearch.css/themes/satellite.css";
 import axios from "axios";
 import { useAsync } from "react-async-hook";
 import { getAllAvailability } from "../services/shop";
-import ReactLoading from "react-loading";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 const handshake = React.lazy(() => import("../images/handshake.jpg"));
@@ -55,43 +54,39 @@ const DecoratorBlob2 = styled(SvgDecoratorBlob2)`
 
 const Home = () => {
   const myRef = useRef();
-  function Hit({ hit }) {
-    return <TabGrid countryCode={countryCode} user={hit} />;
-  }
+
   const [countryCode, setCountryCode] = useState("");
 
   const location = useLocation();
-  const {state} = location;
+  const { state } = location;
   if (state) {
     //TODO: toast popping up three times
     if (state.errors) {
-        toast.error(state.errors, {
-            position: "top-center",
-            autoClose: 5000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-            theme: "colored",
-          });
-            state.errors = null;
-    }
-    else if (state.success) {
-        toast.success(state.success, {
-            position: "top-center",
-            autoClose: 5000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-            theme: "colored",
-          });
-            state.success = null;
+      toast.error(state.errors, {
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+      });
+      state.errors = null;
+    } else if (state.success) {
+      toast.success(state.success, {
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+      });
+      state.success = null;
     }
   }
-
 
   useEffect(() => {
     //https://extreme-ip-lookup.com/json/?key=asZaRChNXhO3sOgN1rGE
@@ -124,9 +119,13 @@ const Home = () => {
   if (error) return <div>Error please refresh the page</div>;
   // if (result) console.log("result", result);
 
+  function Hit({ hit }) {
+    return <TabGrid countryCode={countryCode} avail={result} user={hit} />;
+  }
+
   return (
     <AnimationRevealPage>
-        <ToastContainer />
+      <ToastContainer />
       <Hero
         heading={
           <>
@@ -138,7 +137,6 @@ const Home = () => {
         imageCss={imageCss}
         imageDecoratorBlob={true}
         primaryButtonText="Order Now"
-        watchVideoButtonText="Meet The Chefs"
       />
 
       <Container>
@@ -167,36 +165,58 @@ const Home = () => {
               <div
                 style={{
                   display: "flex",
-                  justifyContent: "space-between",
+                  justifyContent: "space-around",
                   flexWrap: "wrap",
                   marginTop: "50px",
-                  marginRight: "2em",
-                  marginLeft: "2em",
                 }}
               >
-                <div style={{ marginBottom: "30px", marginRight: "55px" }}>
-                  <Skeleton height={50} width={325} />
-                  <Skeleton height={200} width={325} />
+                <div style={{ marginBottom: "30px" }}>
+                  <Skeleton
+                    height={200}
+                    width={340}
+                    style={{ marginBottom: "5px" }}
+                  />
+                  <Skeleton height={60} width={340} />
                 </div>
-                <div style={{ marginBottom: "30px", marginRight: "55px" }}>
-                  <Skeleton height={50} width={325} />
-                  <Skeleton height={200} width={325} />
+                <div style={{ marginBottom: "30px" }}>
+                  <Skeleton
+                    height={200}
+                    width={340}
+                    style={{ marginBottom: "5px" }}
+                  />
+                  <Skeleton height={60} width={340} />
                 </div>
-                <div>
-                  <Skeleton height={50} width={325} />
-                  <Skeleton height={200} width={325} />
+                <div style={{ marginBottom: "30px" }}>
+                  <Skeleton
+                    height={200}
+                    width={340}
+                    style={{ marginBottom: "5px" }}
+                  />
+                  <Skeleton height={60} width={340} />
                 </div>
-                <div style={{ marginBottom: "30px", marginRight: "55px" }}>
-                  <Skeleton height={50} width={325} />
-                  <Skeleton height={200} width={325} />
+                <div style={{ marginBottom: "30px" }}>
+                  <Skeleton
+                    height={200}
+                    width={340}
+                    style={{ marginBottom: "5px" }}
+                  />
+                  <Skeleton height={60} width={340} />
                 </div>
-                <div style={{ marginBottom: "30px", marginRight: "55px" }}>
-                  <Skeleton height={50} width={325} />
-                  <Skeleton height={200} width={325} />
+                <div style={{ marginBottom: "30px" }}>
+                  <Skeleton
+                    height={200}
+                    width={340}
+                    style={{ marginBottom: "5px" }}
+                  />
+                  <Skeleton height={60} width={340} />
                 </div>
-                <div>
-                  <Skeleton height={50} width={325} />
-                  <Skeleton height={200} width={325} />
+                <div style={{ marginBottom: "30px" }}>
+                  <Skeleton
+                    height={200}
+                    width={340}
+                    style={{ marginBottom: "5px" }}
+                  />
+                  <Skeleton height={60} width={340} />
                 </div>
               </div>
             ) : (
