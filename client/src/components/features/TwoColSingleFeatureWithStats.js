@@ -285,6 +285,7 @@ export default ({ textOnLeft = false, catagories }) => {
                     style={{
                       display: "flex",
                       justifyContent: "space-around",
+                      alignItems: "center",
                       width: "auto",
                       marginTop: "20px",
                     }}

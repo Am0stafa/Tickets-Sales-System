@@ -1,4 +1,5 @@
 import React from "react";
+import { SectionHeading } from "../components/misc/Headings.js";
 import { useLocation, useParams, useNavigate } from "react-router-dom";
 import tw from "twin.macro";
 import styled from "styled-components";
@@ -35,14 +36,14 @@ const Checkout = () => {
 
   if (error || !state) {
     navigate("/");
-
   }
 
   const Completionist = () => {
-    navigate("/",{
-        state: {
-            errors: "Session expired"
-    }});
+    navigate("/", {
+      state: {
+        errors: "Session expired",
+      },
+    });
     return <span>Session ended</span>;
   };
 
@@ -52,9 +53,20 @@ const Checkout = () => {
       <div style={{ margin: "3em" }} />
       <Container>
         <ProgressBar completed={progress} />
-        <Countdown date={state.time}>
-          <Completionist />
-        </Countdown>
+        <div
+          style={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            margin: "2em",
+          }}
+        >
+          <SectionHeading>
+            <Countdown date={state.time}>
+              <Completionist />
+            </Countdown>
+          </SectionHeading>
+        </div>
         <CheckoutComponent sessionId={id} setProgress={setProgress} />
         <DecoratorBlob1 />
         <DecoratorBlob2 />

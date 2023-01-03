@@ -32,6 +32,8 @@ export const PrimaryLink = tw(NavLink)`
   hocus:bg-primary-700 hocus:text-gray-200 focus:shadow-outline
   border-b-0
 `;
+const SecondaryAction = tw(NavLink)`lg:mx-0
+  px-8 py-3 text-center rounded bg-gray-300 text-gray-700 hover:bg-gray-400 hover:border-gray-400 hover:text-gray-800`;
 
 export const LogoLink = styled(NavLink)`
   ${tw`flex items-center font-black border-b-0 text-2xl! ml-0!`};
@@ -76,6 +78,7 @@ export default ({
    * changing the defaultLinks variable below below.
    * If you manipulate links here, all the styling on the links is already done for you. If you pass links yourself though, you are responsible for styling the links or use the helper styled components that are defined here (NavLink)
    */
+
   const [rerender, setRerender] = React.useState(false);
   const navigate = useNavigate();
   const defaultLinks = [
@@ -96,20 +99,19 @@ export default ({
           Login
         </PrimaryLink>
       ) : (
-        <PrimaryLink
+        <SecondaryAction
           style={{
-            backgroundColor: "rgb(198, 198, 198)",
             cursor: "pointer",
-            hover: { color: "grey" },
             borderRadius: "9999px",
           }}
           onClick={async () => {
             await auth.signOut();
             setRerender((prev) => !prev);
           }}
+          className="action secondaryAction"
         >
           Logout
-        </PrimaryLink>
+        </SecondaryAction>
       )}
     </NavLinks>,
   ];

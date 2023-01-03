@@ -13,7 +13,7 @@ import tw from "twin.macro";
 import styled from "styled-components";
 import { toast, ToastContainer } from "react-toastify";
 import ReactLoading from "react-loading";
-import { auth } from '../../firebase/config'
+import { auth } from "../../firebase/config";
 
 axios.defaults.baseURL = "/api";
 
@@ -24,9 +24,9 @@ function CheckoutComponent({ sessionId, setProgress }) {
   // get the data from the location
   const location = useLocation();
   const { choices, total, match, totalChoices, email, time } = location.state;
-  
+
   const [purchase, setPurchase] = React.useState(false);
-  
+
   useEffect(() => {
     //! when ever the page load it creates a stipe script
     if (!window.document.getElementById("stripe-script")) {
@@ -44,12 +44,14 @@ function CheckoutComponent({ sessionId, setProgress }) {
   }, []);
 
   const onSubmit = async (values) => {
-    const {data} = await axios.get(`https://user-blush.vercel.app/api/users/mail/${email}`)
-    const id = data.data
+    const { data } = await axios.get(
+      `https://user-blush.vercel.app/api/users/mail/${email}`
+    );
+    const id = data.data;
     // if no id
-    if(!id){
-        toast.error("Please Login to continue");
-        return
+    if (!id) {
+      toast.error("Please Login to continue");
+      return;
     }
 
     setPurchase(true);
@@ -68,20 +70,20 @@ function CheckoutComponent({ sessionId, setProgress }) {
               .post("https://payment-eosin.vercel.app/api/pay", {
                 token: response,
                 email: email,
-                amount: total, 
+                amount: total,
                 holdId: sessionId,
-                uid:id,
+                uid: id,
               })
-              .then((res) =>{
-                 navigate("/payment/success")
-              }) 
-              .catch((err) =>{
-                console.log(err)
-                navigate("/payment/fail")
+              .then((res) => {
+                navigate("/payment/success");
+              })
+              .catch((err) => {
+                console.log(err);
+                navigate("/payment/fail");
               });
           } else {
-            console.log(response.error.message); 
-            navigate("/payment/fail")
+            console.log(response.error.message);
+            navigate("/payment/fail");
           }
         }
       );
@@ -102,16 +104,15 @@ function CheckoutComponent({ sessionId, setProgress }) {
 
     console.log(res);
     setLoading(false);
-    navigate("/",{
-        state: {
-            success: "Session Cancelled"
-    }});
+    navigate("/", {
+      state: {
+        success: "Session Cancelled",
+      },
+    });
   };
 
   const PrimaryButton = tw.button`font-bold px-8 lg:px-10 py-3 rounded bg-primary-500 text-gray-100 hocus:bg-primary-700 focus:shadow-outline focus:outline-none transition duration-300`;
   const SecondaryButton = tw.button`font-bold px-8 lg:px-10 py-3 rounded bg-primary-500 text-gray-100`;
-
-
 
   return (
     <Styles>
@@ -228,9 +229,8 @@ function CheckoutComponent({ sessionId, setProgress }) {
                     Pay Now
                   </SecondaryButton>
                 )}
-                {
-                !purchase ?(
-                values.number &&
+                {!purchase ? (
+                  values.number &&
                   values.name &&
                   values.expiry &&
                   values.cvc && (
@@ -240,11 +240,10 @@ function CheckoutComponent({ sessionId, setProgress }) {
                     >
                       Pay Now
                     </PrimaryButton>
-                  )):(
-                    <ReactLoading type={"bubbles"} color="#ff9999" />
-                    )
-                  
-                  }
+                  )
+                ) : (
+                  <ReactLoading type={"bubbles"} color="#ff9999" />
+                )}
                 <button
                   type="button"
                   onClick={form.reset}

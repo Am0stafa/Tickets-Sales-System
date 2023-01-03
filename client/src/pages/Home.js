@@ -9,6 +9,7 @@ import {
   SearchBox,
   Hits,
   Menu,
+  SortBy,
   Pagination,
 } from "react-instantsearch-hooks-web";
 import algoliasearch from "algoliasearch/lite";
@@ -123,6 +124,14 @@ const Home = () => {
     return <TabGrid countryCode={countryCode} avail={result} user={hit} />;
   }
 
+  // const indexName = "fifa-wc-tickets";
+  const sorts = [
+    { value: `fifa-wc-tickets`, label: "Most popular" },
+    { value: `date`, label: "Date" },
+    { value: `asc_group`, label: "Group" },
+  ];
+  const defaultRefinement = sorts[0].value;
+
   return (
     <AnimationRevealPage>
       <ToastContainer />
@@ -153,13 +162,32 @@ const Home = () => {
               </HeaderRow>
             </section>
             <div style={{ marginTop: "30px" }}></div>
-            <SearchBox
-              style={{ margin: "30px" }}
-              placeholder="Start searching..."
-              onClick={() => {
-                myRef.current.scrollIntoView({ behavior: "smooth" });
+            <div
+              style={{
+                display: "flex",
+                flexWrap: "wrap",
+                marginLeft: "30px",
+                marginRight: "30px",
+                justifyContent: "center",
               }}
-            />
+            >
+              <SearchBox
+                style={{
+                  width: "950px",
+                }}
+                // style={{ margin: "30px" }}
+                placeholder="Start searching..."
+                onClick={() => {
+                  myRef.current.scrollIntoView({ behavior: "smooth" });
+                }}
+              />
+              <SortBy
+                style={{ width: "200px" }}
+                items={sorts}
+                defaultRefinement={defaultRefinement}
+                view="select"
+              />
+            </div>
 
             {loading ? (
               <div
@@ -167,7 +195,7 @@ const Home = () => {
                   display: "flex",
                   justifyContent: "space-around",
                   flexWrap: "wrap",
-                  marginTop: "50px",
+                  marginTop: "30px",
                 }}
               >
                 <div style={{ marginBottom: "30px" }}>
@@ -220,7 +248,7 @@ const Home = () => {
                 </div>
               </div>
             ) : (
-              <Hits hitComponent={Hit} />
+              <Hits style={{ marginTop: "10px" }} hitComponent={Hit} />
             )}
             <div style={{ marginTop: "35px" }}></div>
 

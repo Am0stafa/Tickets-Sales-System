@@ -1,4 +1,3 @@
-
 import React from "react";
 import tw from "twin.macro";
 import styled from "styled-components";
@@ -111,9 +110,9 @@ export default ({
                 </Statistic>
               ))}
             </Statistics>
-            <PrimaryButton>
-              <AnchorLink href="#things">Order Now</AnchorLink>
-            </PrimaryButton>
+            <AnchorLink href="#things">
+              <PrimaryButton>Order Now</PrimaryButton>
+            </AnchorLink>
           </TextContent>
         </TextColumn>
       </TwoColumn>

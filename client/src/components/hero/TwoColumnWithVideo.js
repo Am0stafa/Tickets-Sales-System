@@ -1,4 +1,3 @@
-
 import React from "react";
 import styled from "styled-components";
 import tw from "twin.macro";
@@ -47,9 +46,9 @@ export default ({
             <Heading>{heading}</Heading>
             <Paragraph>{description}</Paragraph>
             <Actions style={{ display: "flex", justifyContent: "center" }}>
-              <PrimaryButton>
-                <AnchorLink href="#things">Order Now</AnchorLink>
-              </PrimaryButton>
+              <AnchorLink href="#things">
+                <PrimaryButton>Order Now</PrimaryButton>
+              </AnchorLink>
             </Actions>
           </LeftColumn>
           <RightColumn>
