@@ -142,7 +142,29 @@ const GlobalStyles = createGlobalStyle(
         box-shadow: 0 0 0 0 rgba(204,169,44, 0);
     }
   }
-
+  .popup {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin-left: 0;
+    background-color: rgba(0,0,0, 0.5);
+  }
+  .popup_inner {
+    position: absolute;
+    left: 25%;
+    right: 25%;
+    top: 25%;
+    bottom: 25%;
+    border-radius: 5px; 
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    background: white;
+  }
   .user-card {
     background-color:#edf2f7;
     padding: 1rem;

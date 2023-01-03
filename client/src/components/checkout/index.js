@@ -14,6 +14,8 @@ import styled from "styled-components";
 import { toast, ToastContainer } from "react-toastify";
 import ReactLoading from "react-loading";
 import { auth } from "../../firebase/config";
+import { SectionHeading } from "../misc/Headings";
+import { NavLink, PrimaryLink } from "../headers/light";
 
 axios.defaults.baseURL = "/api";
 
@@ -26,7 +28,8 @@ function CheckoutComponent({ sessionId, setProgress }) {
   const { choices, total, match, totalChoices, email, time } = location.state;
 
   const [purchase, setPurchase] = React.useState(false);
-
+  const [pop, setPop] = React.useState(true);
+  const [error, setError] = React.useState("");
   useEffect(() => {
     //! when ever the page load it creates a stipe script
     if (!window.document.getElementById("stripe-script")) {
@@ -78,12 +81,14 @@ function CheckoutComponent({ sessionId, setProgress }) {
                 navigate("/payment/success");
               })
               .catch((err) => {
-                console.log(err);
-                navigate("/payment/fail");
+                setPop(false);
+                setError(response.error.message);
               });
           } else {
             console.log(response.error.message);
-            navigate("/payment/fail");
+            // navigate("/payment/fail");
+            setPop(false);
+            setError(response.error.message);
           }
         }
       );
@@ -244,6 +249,7 @@ function CheckoutComponent({ sessionId, setProgress }) {
                 ) : (
                   <ReactLoading type={"bubbles"} color="#ff9999" />
                 )}
+
                 <button
                   type="button"
                   onClick={form.reset}
@@ -267,6 +273,33 @@ function CheckoutComponent({ sessionId, setProgress }) {
           );
         }}
       />
+      {pop === false && (
+        <div className="popup">
+          <div className="popup_inner">
+            <SectionHeading>{error}</SectionHeading>
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+              }}
+            >
+              <NavLink
+                style={{ cursor: "pointer", marginRight: "1rem" }}
+                onClick={() => navigate("/")}
+              >
+                Go Back
+              </NavLink>
+              <PrimaryButton
+                style={{ marginBottom: "1rem" }}
+                onClick={() => window.location.reload()}
+              >
+                Try Again
+              </PrimaryButton>
+            </div>
+          </div>
+        </div>
+      )}
     </Styles>
   );
 }

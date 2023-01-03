@@ -13,11 +13,9 @@ $font: 'Lato', sans-serif;
 
 
 #container {
-  position: relative;
-  margin: auto;
-  overflow: hidden;
-  width: 700px;
-  height: 250px;
+ 
+  background: linear-gradient(to bottom left, $error 40%, $orange 100%);
+
 }
 
 .h1 {
