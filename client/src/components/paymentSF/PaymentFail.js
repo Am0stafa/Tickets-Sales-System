@@ -1,30 +1,65 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import "./payment.scss";
 import { useNavigate } from "react-router-dom";
+import { Helmet } from "react-helmet";
 
 const PaymentFail = () => {
-  let navigate = useNavigate();
+  const navigate = useNavigate();
+  const [timeLeft, setTimeLeft] = useState(5);
 
+  useEffect(() => {
+    if (timeLeft === 0) {
+      navigate("/");
+    }
+
+    // exit early when we reach 0
+    if (!timeLeft) return;
+
+    // save intervalId to clear the interval when the
+    // component re-renders
+    const intervalId = setInterval(() => {
+      setTimeLeft(timeLeft - 1);
+    }, 1000);
+
+    // clear interval on re-render to avoid memory leaks
+    return () => clearInterval(intervalId);
+    // add timeLeft as a dependency to re-rerun the effect
+    // when we update it
+  }, [timeLeft]);
   return (
-    <div id="container">
-      <div id="error-box">
-        <div className="dot" />
-        <div className="dot two" />
-        <div className="face2">
-          <div className="eye" />
-          <div className="eye right" />
-          <div className="mouth sad" />
+    <>
+      <Helmet>
+        <style>{"body { background-color: #EBF0F5; }"}</style>
+      </Helmet>
+      <div
+        style={{
+          textAlign: "center",
+          padding: " 40px 0",
+          background: "#EBF0F5",
+          height: "100%",
+          position: "relative",
+        }}
+      >
+        <div className="cardddd">
+          <div
+            style={{
+              borderRadius: "200px",
+              height: "200px",
+              width: "200px",
+              background: "#F8FAF5",
+              margin: "0 auto",
+            }}
+          >
+            <div className="jiii">X</div>
+          </div>
+          <div className="hk1">Payment Failed</div>
+          <div className="ppp">
+            Please try again later...
+            <br /> You'll be redirected in: {timeLeft} seconds
+          </div>
         </div>
-        <div className="shadow move" />
-        <div className="message">
-          <h1 className="alert h1">Error!</h1>
-          <p className="p">oh no, something went wrong.</p>
-        </div>
-        <button onClick={() => navigate(-1)} className="button-box">
-          <h1 className="red h1">try again</h1>
-        </button>
       </div>
-    </div>
+    </>
   );
 };
 

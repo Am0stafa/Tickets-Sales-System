@@ -22,7 +22,7 @@ import { useAsync } from "react-async-hook";
 import { getAllAvailability } from "../services/shop";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
-const handshake = React.lazy(() => import("../images/handshake.jpg"));
+import handshake from "../images/handshake.jpg";
 import { toast, ToastContainer } from "react-toastify";
 
 const AnimationRevealPage = React.lazy(() =>

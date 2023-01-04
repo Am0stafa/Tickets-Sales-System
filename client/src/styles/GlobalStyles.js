@@ -165,6 +165,26 @@ const GlobalStyles = createGlobalStyle(
     flex-direction: column;
     background: white;
   }
+  .overview{
+ 
+    height: "585px",  padding: 0 30px;
+  float: left;
+  background-color: #f4f5f9;
+  
+  -webkit-box-shadow: 0 15px 24px rgba(37,44,65,0.16);
+     -moz-box-shadow: 0 15px 24px rgba(37,44,65,0.16);
+          box-shadow: 0 15px 24px rgba(37,44,65,0.16);
+}
+  }
+  overview-item{
+    border-bottom: 1px solid #dfdfe0;
+    padding-left: 9px !important;
+    padding-right: 9px !important;
+    font-family: nunito,foundry,'Helvetica Neue',Calibri,Segoe,'Segoe UI',Optima,Arial,sans-serif;
+    padding-top: 18px !important;
+  
+  }
+
   .user-card {
     background-color:#edf2f7;
     padding: 1rem;

@@ -21,9 +21,10 @@ const DecoratorBlob1 = styled(SvgDecoratorBlob1)`
 const DecoratorBlob2 = styled(SvgDecoratorBlob2)`
   ${tw`pointer-events-none -z-20 absolute left-0 bottom-0 h-80 w-80 opacity-15 transform -translate-x-2/3 text-primary-500`}
 `;
+const Value = tw.div`font-bold text-lg sm:text-xl lg:text-2xl text-secondary-500 tracking-wide`;
 
 const Header = tw(HeaderBase)`max-w-none`;
-
+const Key = tw.div`font-medium text-primary-700`;
 const Checkout = () => {
   const { state } = useLocation();
   const navigate = useNavigate();
@@ -61,11 +62,20 @@ const Checkout = () => {
             margin: "2em",
           }}
         >
-          <SectionHeading>
-            <Countdown date={state.time}>
-              <Completionist />
-            </Countdown>
-          </SectionHeading>
+          <div
+            style={{
+              alignItems: "center",
+              justifyContent: "center",
+              textAlign: "center",
+            }}
+          >
+            <Value>
+              <Countdown date={state.time}>
+                <Completionist />
+              </Countdown>
+              <Key>Remaining</Key>
+            </Value>
+          </div>
         </div>
         <CheckoutComponent sessionId={id} setProgress={setProgress} />
         <DecoratorBlob1 />

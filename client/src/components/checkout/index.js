@@ -16,17 +16,20 @@ import ReactLoading from "react-loading";
 import { auth } from "../../firebase/config";
 import { SectionHeading } from "../misc/Headings";
 import { NavLink, PrimaryLink } from "../headers/light";
+import AppContext, { AppContextProvider } from "../../context/Total";
+import without from "../../context/Total";
 
 axios.defaults.baseURL = "/api";
 
 const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
-
 function CheckoutComponent({ sessionId, setProgress }) {
   const navigate = useNavigate();
   // get the data from the location
   const location = useLocation();
-  const { choices, total, match, totalChoices, email, time } = location.state;
-
+  const { choices, total, calculateTotal, match, totalChoices, email, time } =
+    location.state;
+  // console.log(choices, total, match, totalChoices, email, time);
+  console.log(without);
   const [purchase, setPurchase] = React.useState(false);
   const [pop, setPop] = React.useState(true);
   const [error, setError] = React.useState("");
@@ -47,6 +50,7 @@ function CheckoutComponent({ sessionId, setProgress }) {
   }, []);
 
   const onSubmit = async (values) => {
+    setProgress(95);
     const { data } = await axios.get(
       `https://user-blush.vercel.app/api/users/mail/${email}`
     );
@@ -120,159 +124,191 @@ function CheckoutComponent({ sessionId, setProgress }) {
   const SecondaryButton = tw.button`font-bold px-8 lg:px-10 py-3 rounded bg-primary-500 text-gray-100`;
 
   return (
-    <Styles>
-      <Form
-        onSubmit={onSubmit}
-        render={({
-          handleSubmit,
-          form,
-          submitting,
-          pristine,
-          values,
-          active,
-        }) => {
-          return (
-            <form onSubmit={handleSubmit}>
-              <Card
-                number={values.number || ""}
-                name={values.name || ""}
-                expiry={values.expiry || ""}
-                cvc={values.cvc || ""}
-                focused={active}
-              />
-              <div style={{ flexWrap: "wrap" }}>
-                <Field
-                  disabled={true}
-                  name="amount"
-                  component="input"
-                  type="text"
-                  placeholder={total}
+    <div style={{ display: "flex", justifyContent: "center" }}>
+      <div style={{ width: "300px" }} className="overview">
+        <div style={{ backgroundColor: "#6415ff" }}>
+          <SecondaryButton
+            style={{ hover: "none", padding: "20px" }}
+            className="overview-item"
+          >
+            Your Order Details
+          </SecondaryButton>
+        </div>
+        <div style={{ padding: "20px" }} className="overview-item">
+          Team: {choices.team}
+        </div>
+        <div style={{ borderBottom: "1px solid #dfdfe0" }}></div>
+        <div style={{ padding: "20px" }} className="overview-item">
+          Quantity: {totalChoices}
+        </div>
+      </div>
+      <Styles>
+        <Form
+          onSubmit={onSubmit}
+          render={({
+            handleSubmit,
+            form,
+            submitting,
+            pristine,
+            values,
+            active,
+          }) => {
+            return (
+              <form
+                onSubmit={handleSubmit}
+                style={{
+                  height: "585px",
+                  padding: "0 30px",
+                  float: "left",
+                  backgroundColor: "#f4f5f9",
+                  marginTop: "0px",
+                  marginBottom: "0px",
+                  border: "0px",
+                  boxShadow: "0 15px 24px rgba(37,44,65,0.16)",
+                }}
+              >
+                <Card
+                  number={values.number || ""}
+                  name={values.name || ""}
+                  expiry={values.expiry || ""}
+                  cvc={values.cvc || ""}
+                  focused={active}
                 />
-                <Field
-                  disabled={true}
-                  name="email"
-                  component="input"
-                  type="text"
-                  placeholder={email}
-                />
-              </div>
-              <div style={{ flexWrap: "wrap" }}>
-                <Field
-                  name="number"
-                  component="input"
-                  type="text"
-                  pattern="[\d| ]{16,22}"
-                  placeholder="Card Number"
-                  format={formatCreditCardNumber}
-                  onBlur={(e) => {
-                    if (e.target.value.length > 15) {
-                      setProgress((prev) => prev + 12);
-                    }
-                  }}
-                />
-              </div>
-              <div style={{ flexWrap: "wrap" }}>
-                <Field
-                  name="name"
-                  component="input"
-                  type="text"
-                  placeholder="Name"
-                  onBlur={(e) => {
-                    if (e.target.value.length > 5) {
-                      setProgress((prev) => prev + 12);
-                    }
-                  }}
-                />
-              </div>
-              <div style={{ flexWrap: "wrap" }}>
-                <Field
-                  name="expiry"
-                  component="input"
-                  type="text"
-                  pattern="\d\d/\d\d"
-                  placeholder="Valid Thru"
-                  format={formatExpirationDate}
-                  onBlur={(e) => {
-                    if (e.target.value.length > 2) {
-                      setProgress((prev) => prev + 12);
-                    }
-                  }}
-                />
-                <Field
-                  name="cvc"
-                  component="input"
-                  type="text"
-                  pattern="\d{3,4}"
-                  placeholder="CVC"
-                  format={formatCVC}
-                  onBlur={(e) => {
-                    if (e.target.value.length > 2) {
-                      setProgress((prev) => prev + 12);
-                    }
-                  }}
-                />
-              </div>
-              <div className="buttons">
-                {(!values.number ||
-                  !values.name ||
-                  !values.expiry ||
-                  !values.cvc) && (
-                  <SecondaryButton
-                    style={{
-                      backgroundColor: "#c6c6c6",
-                      //   borderRadius: "0.25rem",
-                      //   paddingLeft: "2rem",
-                      //   paddingRight: "2rem",
-                      //   paddingTop: "0.75rem",
-                      //   paddingBottom: "0.75rem",
-                      //   fontWeight: "bold",
-                      //   fontSize: "0.875rem",
-                    }}
+                <div style={{ flexWrap: "wrap" }}>
+                  <Field
                     disabled={true}
-                    // onClick={handleClick}
-                  >
-                    Pay Now
-                  </SecondaryButton>
-                )}
-                {!purchase ? (
-                  values.number &&
-                  values.name &&
-                  values.expiry &&
-                  values.cvc && (
-                    <PrimaryButton
-                      style={{ cursor: "pointer" }}
-                      onClick={onSubmit}
+                    name="amount"
+                    component="input"
+                    type="text"
+                    placeholder={total}
+                  />
+                  <Field
+                    disabled={true}
+                    name="email"
+                    component="input"
+                    type="text"
+                    placeholder={email}
+                  />
+                </div>
+                <div style={{ flexWrap: "wrap" }}>
+                  <Field
+                    name="number"
+                    component="input"
+                    type="text"
+                    pattern="[\d| ]{16,22}"
+                    placeholder="Card Number"
+                    format={formatCreditCardNumber}
+                    // onBlur={(e) => {
+                    //   if (e.target.value.length > 15) {
+                    //     setProgress((prev) => prev + 12);
+                    //   }
+                    // }}
+                  />
+                </div>
+                <div style={{ flexWrap: "wrap" }}>
+                  <Field
+                    name="name"
+                    component="input"
+                    type="text"
+                    placeholder="Name"
+                    // onBlur={(e) => {
+                    //   if (e.target.value.length > 5) {
+                    //     setProgress((prev) => prev + 12);
+                    //   }
+                    // }}
+                  />
+                </div>
+                <div style={{ flexWrap: "wrap" }}>
+                  <Field
+                    name="expiry"
+                    component="input"
+                    type="text"
+                    pattern="\d\d/\d\d"
+                    placeholder="Valid Thru"
+                    format={formatExpirationDate}
+                    // onBlur={(e) => {
+                    //   if (e.target.value.length > 2) {
+                    //     setProgress((prev) => prev + 12);
+                    //   }
+                    // }}
+                  />
+                  <Field
+                    name="cvc"
+                    component="input"
+                    type="text"
+                    pattern="\d{3,4}"
+                    placeholder="CVC"
+                    format={formatCVC}
+                    // onBlur={(e) => {
+                    //   if (e.target.value.length > 2) {
+                    //     setProgress((prev) => prev + 12);
+                    //   }
+                    // }}
+                  />
+                </div>
+
+                <div className="buttons">
+                  {(!values.number ||
+                    !values.name ||
+                    !values.expiry ||
+                    !values.cvc) && (
+                    <SecondaryButton
+                      style={{
+                        backgroundColor: "#c6c6c6",
+                        //   borderRadius: "0.25rem",
+                        //   paddingLeft: "2rem",
+                        //   paddingRight: "2rem",
+                        //   paddingTop: "0.75rem",
+                        //   paddingBottom: "0.75rem",
+                        //   fontWeight: "bold",
+                        //   fontSize: "0.875rem",
+                      }}
+                      disabled={true}
+                      // onClick={handleClick}
                     >
                       Pay Now
-                    </PrimaryButton>
-                  )
-                ) : (
-                  <ReactLoading type={"bubbles"} color="#ff9999" />
-                )}
+                    </SecondaryButton>
+                  )}
 
-                <button
-                  type="button"
-                  onClick={form.reset}
-                  disabled={submitting || pristine}
-                >
-                  Reset
-                </button>
-                {!loading ? (
+                  {!purchase ? (
+                    values.number &&
+                    values.name &&
+                    values.expiry &&
+                    values.cvc && (
+                      <PrimaryButton
+                        style={{ cursor: "pointer" }}
+                        onClick={onSubmit}
+                      >
+                        Pay Now
+                      </PrimaryButton>
+                    )
+                  ) : (
+                    <ReactLoading type={"bubbles"} color="#ff9999" />
+                  )}
                   <button
                     type="button"
-                    onClick={handelCancel}
-                    disabled={submitting || loading}
+                    onClick={form.reset}
+                    disabled={submitting || pristine}
                   >
-                    Cancel
+                    Reset
                   </button>
-                ) : (
-                  <ReactLoading type={"bubbles"} color="#ff9999" />
-                )}
-              </div>
-            </form>
-          );
-        }}
-      />
+                  {!loading ? (
+                    <button
+                      type="button"
+                      onClick={handelCancel}
+                      disabled={submitting || loading}
+                    >
+                      Cancel
+                    </button>
+                  ) : (
+                    <ReactLoading type={"bubbles"} color="#ff9999" />
+                  )}
+                </div>
+              </form>
+            );
+          }}
+        />
+      </Styles>
       {pop === false && (
         <div className="popup">
           <div className="popup_inner">
@@ -300,7 +336,7 @@ function CheckoutComponent({ sessionId, setProgress }) {
           </div>
         </div>
       )}
-    </Styles>
+    </div>
   );
 }
 

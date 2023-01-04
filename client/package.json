@@ -33,6 +33,7 @@
     "react-dom": "^18.0.0",
     "react-final-form": "^6.5.9",
     "react-github-btn": "^1.4.0",
+    "react-helmet": "^6.1.0",
     "react-icons": "^4.7.1",
     "react-instantsearch-dom": "^6.38.1",
     "react-instantsearch-hooks-web": "^6.38.1",
