@@ -13,13 +13,8 @@ import tw from "twin.macro";
 import styled from "styled-components";
 import { toast, ToastContainer } from "react-toastify";
 import ReactLoading from "react-loading";
-import { auth } from "../../firebase/config";
 import { SectionHeading } from "../misc/Headings";
 import { NavLink, PrimaryLink } from "../headers/light";
-import AppContext, { AppContextProvider } from "../../context/Total";
-import without from "../../context/Total";
-
-axios.defaults.baseURL = "/api";
 
 const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 function CheckoutComponent({ sessionId, setProgress }) {
@@ -52,7 +47,6 @@ function CheckoutComponent({ sessionId, setProgress }) {
 
   const onSubmit = async (values) => {
     // setProgress(95);
-    console.log("after")
     const { data } = await axios.get(
       `https://user-blush.vercel.app/api/users/mail/${email}`
     );
@@ -61,7 +55,6 @@ function CheckoutComponent({ sessionId, setProgress }) {
       toast.error("Please Login to continue");
       return;
     }
-    console.log(values)
 
     setPurchase(true);
     try {
