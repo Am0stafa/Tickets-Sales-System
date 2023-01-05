@@ -118,7 +118,7 @@ const Home = () => {
   const { result, error, loading } = useAsync(getAllAvailability);
 
   if (error) return <div>Error please refresh the page</div>;
-  // if (result) console.log("result", result);
+
 
   function Hit({ hit }) {
     return <TabGrid countryCode={countryCode} avail={result} user={hit} />;
