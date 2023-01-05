@@ -26,13 +26,14 @@ function CheckoutComponent({ sessionId, setProgress }) {
   const navigate = useNavigate();
   // get the data from the location
   const location = useLocation();
-  const { choices, total, calculateTotal, match, totalChoices, email, time } =
+  const { choices, total, calculateTotal, match, totalChoices, email, time,tickets } =
     location.state;
-  // console.log(choices, total, match, totalChoices, email, time);
-  console.log(without);
+
   const [purchase, setPurchase] = React.useState(false);
   const [pop, setPop] = React.useState(true);
   const [error, setError] = React.useState("");
+  const [mapOfInputs, setMapOfInputs] = React.useState({});
+
   useEffect(() => {
     //! when ever the page load it creates a stipe script
     if (!window.document.getElementById("stripe-script")) {
@@ -50,16 +51,17 @@ function CheckoutComponent({ sessionId, setProgress }) {
   }, []);
 
   const onSubmit = async (values) => {
-    setProgress(95);
+    // setProgress(95);
+    console.log("after")
     const { data } = await axios.get(
       `https://user-blush.vercel.app/api/users/mail/${email}`
     );
     const id = data.data;
-    // if no id
     if (!id) {
       toast.error("Please Login to continue");
       return;
     }
+    console.log(values)
 
     setPurchase(true);
     try {
@@ -72,6 +74,7 @@ function CheckoutComponent({ sessionId, setProgress }) {
           name: values.name,
         },
         (status, response) => {
+            console.log("sending")
           if (status === 200) {
             axios
               .post("https://payment-eosin.vercel.app/api/pay", {
@@ -91,13 +94,20 @@ function CheckoutComponent({ sessionId, setProgress }) {
           } else {
             console.log(response.error.message);
             // navigate("/payment/fail");
+            setPurchase(false);
             setPop(false);
             setError(response.error.message);
           }
         }
       );
-    } catch (error) {}
+    } catch (error) {
+        setPurchase(false);
+        setPop(false);
+        setError(response.error.message);
+        console.log(error)
+    }
   };
+
   const [loading, setLoading] = React.useState(false);
 
   const handelCancel = async () => {
@@ -111,7 +121,6 @@ function CheckoutComponent({ sessionId, setProgress }) {
       body
     );
 
-    console.log(res);
     setLoading(false);
     navigate("/", {
       state: {
@@ -138,8 +147,22 @@ function CheckoutComponent({ sessionId, setProgress }) {
           Team: {choices.team}
         </div>
         <div style={{ borderBottom: "1px solid #dfdfe0" }}></div>
+
         <div style={{ padding: "20px" }} className="overview-item">
-          Quantity: {totalChoices}
+          Tickets: {
+            tickets.tickets.map((ticket) => {
+                return (
+                    <div>
+                        {ticket.category} - {ticket.quantity}
+                    </div>
+                );
+                })
+          }
+        </div>
+
+        <div style={{ borderBottom: "1px solid #dfdfe0" }}></div>
+        <div style={{ padding: "20px" }} className="overview-item">
+          Total number of tickets: {totalChoices}
         </div>
       </div>
       <Styles>
@@ -155,7 +178,7 @@ function CheckoutComponent({ sessionId, setProgress }) {
           }) => {
             return (
               <form
-                onSubmit={handleSubmit}
+                
                 style={{
                   height: "585px",
                   padding: "0 30px",
@@ -198,11 +221,15 @@ function CheckoutComponent({ sessionId, setProgress }) {
                     pattern="[\d| ]{16,22}"
                     placeholder="Card Number"
                     format={formatCreditCardNumber}
-                    // onBlur={(e) => {
-                    //   if (e.target.value.length > 15) {
-                    //     setProgress((prev) => prev + 12);
-                    //   }
-                    // }}
+                    onBlur={(e) => {
+                        console.log(e)
+                      if (e.target.value.length > 15 && !mapOfInputs.number) {
+                        const prev = {...mapOfInputs}
+                        prev.number = true
+                        setMapOfInputs(prev)
+                        setProgress((prev) => prev + 12);
+                      }
+                    }}
                   />
                 </div>
                 <div style={{ flexWrap: "wrap" }}>
@@ -211,11 +238,14 @@ function CheckoutComponent({ sessionId, setProgress }) {
                     component="input"
                     type="text"
                     placeholder="Name"
-                    // onBlur={(e) => {
-                    //   if (e.target.value.length > 5) {
-                    //     setProgress((prev) => prev + 12);
-                    //   }
-                    // }}
+                    onBlur={(e) => {
+                        if (e.target.value.length > 0 && !mapOfInputs.name) {
+                            const prev = {...mapOfInputs}
+                            prev.name = true
+                            setMapOfInputs(prev)
+                            setProgress((prev) => prev + 12);
+                            }
+                    }}
                   />
                 </div>
                 <div style={{ flexWrap: "wrap" }}>
@@ -226,11 +256,14 @@ function CheckoutComponent({ sessionId, setProgress }) {
                     pattern="\d\d/\d\d"
                     placeholder="Valid Thru"
                     format={formatExpirationDate}
-                    // onBlur={(e) => {
-                    //   if (e.target.value.length > 2) {
-                    //     setProgress((prev) => prev + 12);
-                    //   }
-                    // }}
+                    onBlur={(e) => {
+                        if (e.target.value.length > 2 && !mapOfInputs.expiry) {
+                            const prev = {...mapOfInputs}
+                            prev.expiry = true
+                            setMapOfInputs(prev)
+                            setProgress((prev) => prev + 12);
+                            }
+                    }}
                   />
                   <Field
                     name="cvc"
@@ -239,11 +272,14 @@ function CheckoutComponent({ sessionId, setProgress }) {
                     pattern="\d{3,4}"
                     placeholder="CVC"
                     format={formatCVC}
-                    // onBlur={(e) => {
-                    //   if (e.target.value.length > 2) {
-                    //     setProgress((prev) => prev + 12);
-                    //   }
-                    // }}
+                    onBlur={(e) => {
+                        if (e.target.value.length > 2 && !mapOfInputs.cvc) {
+                            const prev = {...mapOfInputs}
+                            prev.cvc = true
+                            setMapOfInputs(prev)
+                            setProgress((prev) => prev + 12);
+                            }
+                    }}
                   />
                 </div>
 
@@ -270,20 +306,20 @@ function CheckoutComponent({ sessionId, setProgress }) {
                     </SecondaryButton>
                   )}
 
-                  {!purchase ? (
+                  {! purchase ? (
                     values.number &&
                     values.name &&
                     values.expiry &&
                     values.cvc && (
                       <PrimaryButton
                         style={{ cursor: "pointer" }}
-                        onClick={onSubmit}
+                        onClick={handleSubmit}
                       >
                         Pay Now
                       </PrimaryButton>
                     )
                   ) : (
-                    <ReactLoading type={"bubbles"} color="#ff9999" />
+                    <ReactLoading type={"bubbles"} color="#6415ff" />
                   )}
                   <button
                     type="button"
@@ -292,7 +328,7 @@ function CheckoutComponent({ sessionId, setProgress }) {
                   >
                     Reset
                   </button>
-                  {!loading ? (
+                  {!loading || !purchase ? (
                     <button
                       type="button"
                       onClick={handelCancel}

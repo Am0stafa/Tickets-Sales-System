@@ -14,6 +14,7 @@ import { Container, ContentWithPaddingXl } from "../components/misc/Layouts.js";
 import { getHoldById } from "../services/shop";
 import { useAsync } from "react-async-hook";
 import BallLoading from "../components/ballLoading/BallLoading.js";
+import axios from "axios";
 
 const DecoratorBlob1 = styled(SvgDecoratorBlob1)`
   ${tw`pointer-events-none -z-20 absolute right-0 top-0 h-64 w-64 opacity-15 transform translate-x-2/3 -translate-y-12 text-pink-400`}
@@ -39,14 +40,32 @@ const Checkout = () => {
     navigate("/");
   }
 
-  const Completionist = () => {
+  const Completionist = async () => {
+
+    const body = {
+        session: id,
+    };
     navigate("/", {
-      state: {
-        errors: "Session expired",
-      },
+        state: {
+          errors: "Session expired",
+        },
     });
+    await axios.post(
+        "https://reservation-two.vercel.app/api/reservation/cancel",
+        body
+    );
+
     return <span>Session ended</span>;
   };
+
+  const renderer = ({  minutes, seconds, completed }) => {
+    if (completed) {
+      return <Completionist />;
+    } else {
+      return <span>{minutes}:{seconds}</span>;
+    }
+  }
+
 
   return (
     <AnimationRevealPage>
@@ -70,10 +89,8 @@ const Checkout = () => {
             }}
           >
             <Value>
-              <Countdown date={state.time}>
-                <Completionist />
-              </Countdown>
-              <Key>Remaining</Key>
+              <Countdown date={state.time} renderer={renderer}/>
+              <Key>Session ends in</Key>
             </Value>
           </div>
         </div>

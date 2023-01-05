@@ -53,6 +53,7 @@ export default ({ textOnLeft = false, catagories }) => {
   const [token, setToken] = React.useState("");
   const captchaRef = React.useRef("");
 
+  // tostify if expired
   const onExpire = () => {
     toast.error("hCaptcha Expired", {
       position: "top-center",
@@ -67,6 +68,7 @@ export default ({ textOnLeft = false, catagories }) => {
     setToken("");
   };
 
+  // tostify if error
   const onError = (err) => {
     toast.error("hCaptcha Error", {
       position: "top-center",
@@ -166,6 +168,7 @@ export default ({ textOnLeft = false, catagories }) => {
         total,
         match,
         totalChoices,
+        tickets:payload,
         email: auth?.currentUser?.email,
         time: response.data.holdUntil,
       },
