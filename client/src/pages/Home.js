@@ -126,7 +126,7 @@ const Home = () => {
   // const indexName = "fifa-wc-tickets";
   const sorts = [
     { value: `fifa-wc-tickets`, label: "Most popular" },
-    { value: `date`, label: "Date" },
+    { value: `fifa-wc-tickets_date_asc`, label: "Date" },
     // { value: `asc_group`, label: "Group" },
   ];
   const defaultRefinement = sorts[0].value;
