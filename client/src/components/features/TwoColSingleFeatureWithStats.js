@@ -168,7 +168,7 @@ export default ({ textOnLeft = false, catagories }) => {
         total,
         match,
         totalChoices,
-        tickets:payload,
+        tickets: payload,
         email: auth?.currentUser?.email,
         time: response.data.holdUntil,
       },
@@ -287,8 +287,9 @@ export default ({ textOnLeft = false, catagories }) => {
                   <div
                     style={{
                       display: "flex",
-                      justifyContent: "space-around",
+                      justifyContent: "center",
                       alignItems: "center",
+                      flexDirection: "column",
                       width: "auto",
                       marginTop: "20px",
                     }}
@@ -302,21 +303,12 @@ export default ({ textOnLeft = false, catagories }) => {
                     />
 
                     {!issLoading ? (
-                      <NavLinks>
-                        <NavLink href="/" tw="lg:ml-12!">
-                          Go Back
-                        </NavLink>
+                      <NavLinks style={{ marginTop: "20px" }}>
+                        <NavLink href="/">Go Back</NavLink>
                         {total === 0 && (
                           <SecondaryButton
                             style={{
                               backgroundColor: "#c6c6c6",
-                              //   borderRadius: "0.25rem",
-                              //   paddingLeft: "2rem",
-                              //   paddingRight: "2rem",
-                              //   paddingTop: "0.75rem",
-                              //   paddingBottom: "0.75rem",
-                              //   fontWeight: "bold",
-                              //   fontSize: "0.875rem",
                             }}
                             disabled={true}
                           >
@@ -337,7 +329,6 @@ export default ({ textOnLeft = false, catagories }) => {
                         style={{
                           display: "flex",
                           justifyContent: "center",
-                          marginLeft: "1em",
                         }}
                       >
                         <ReactLoading type={"bubbles"} color="#ff9999" />

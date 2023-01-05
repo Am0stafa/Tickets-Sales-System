@@ -41,31 +41,33 @@ const Checkout = () => {
   }
 
   const Completionist = async () => {
-
     const body = {
-        session: id,
+      session: id,
     };
     navigate("/", {
-        state: {
-          errors: "Session expired",
-        },
+      state: {
+        errors: "Session expired",
+      },
     });
     await axios.post(
-        "https://reservation-two.vercel.app/api/reservation/cancel",
-        body
+      "https://reservation-two.vercel.app/api/reservation/cancel",
+      body
     );
 
     return <span>Session ended</span>;
   };
 
-  const renderer = ({  minutes, seconds, completed }) => {
+  const renderer = ({ minutes, seconds, completed }) => {
     if (completed) {
       return <Completionist />;
     } else {
-      return <span>{minutes}:{seconds}</span>;
+      return (
+        <span>
+          {minutes}:{seconds}
+        </span>
+      );
     }
-  }
-
+  };
 
   return (
     <AnimationRevealPage>
@@ -89,8 +91,8 @@ const Checkout = () => {
             }}
           >
             <Value>
-              <Countdown date={state.time} renderer={renderer}/>
               <Key>Session ends in</Key>
+              <Countdown date={state.time} renderer={renderer} />
             </Value>
           </div>
         </div>

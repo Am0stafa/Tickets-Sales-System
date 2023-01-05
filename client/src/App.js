@@ -8,9 +8,11 @@ import { AppContextProvider } from "./context/Total.js";
 import Checkout from "./pages/Checkout";
 import ScrollToTop from "./ScrollToTop";
 import BallLoading from "./components/ballLoading/BallLoading";
-import PaymentSuccess from './components/paymentSF/PaymentSuccess';
-import PaymentFail from './components/paymentSF/PaymentFail';
-import MyTickets from './components/myTickets/MyTickets';
+import PaymentSuccess from "./components/paymentSF/PaymentSuccess";
+import PaymentFail from "./components/paymentSF/PaymentFail";
+import MyTickets from "./components/myTickets/MyTickets";
+import About from "./pages/About";
+import Contact from "./pages/Contact";
 
 function App() {
   return (
@@ -32,10 +34,11 @@ function App() {
 
             <Route path="/checkout/:id" element={<Checkout />} />
 
+            <Route path="/payment/success" element={<PaymentSuccess />} />
+            <Route path="/payment/fail" element={<PaymentFail />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/contact" element={<Contact />} />
 
-            <Route path="/payment/success" element={<PaymentSuccess/>} />
-            <Route path="/payment/fail" element={<PaymentFail/>} />
-            
             <Route path="/my-tickets" element={<MyTickets />} />
           </Routes>
         </ScrollToTop>

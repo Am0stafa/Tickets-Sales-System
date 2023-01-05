@@ -83,11 +83,15 @@ export default ({
   const navigate = useNavigate();
   const defaultLinks = [
     <NavLinks key={1}>
-      <NavLink href="/#">About</NavLink>
-      <NavLink href="/#">Pricing</NavLink>
-      <NavLink href="/#">Contact Us</NavLink>
+      <NavLink href="/about">About</NavLink>
+      <NavLink href="/contact">Contact Us</NavLink>
       {auth?.currentUser && (
-        <NavLink onClick={() => navigate("/my-tickets")}>My Tickets</NavLink>
+        <NavLink
+          style={{ cursor: "pointer" }}
+          onClick={() => navigate("/my-tickets")}
+        >
+          My Tickets
+        </NavLink>
       )}
       {!auth?.currentUser ? (
         <PrimaryLink

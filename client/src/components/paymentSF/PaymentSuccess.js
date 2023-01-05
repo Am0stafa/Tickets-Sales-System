@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "./payment.scss";
 import { useNavigate } from "react-router-dom";
-import {Helmet} from 'react-helmet';
+import { Helmet } from "react-helmet";
 
 const PaymentSuccess = () => {
   const navigate = useNavigate();
@@ -28,37 +28,63 @@ const PaymentSuccess = () => {
   }, [timeLeft]);
   return (
     <>
-    <Helmet>
-                <style>{'body { background-color: #EBF0F5; }'}</style>
-            </Helmet>
-    <div
-      style={{
-        textAlign: "center",
-        padding: " 40px 0",
-        background: "#EBF0F5",
-        height: "100%",
-        position: "relative",
-      }}
-    >
-      <div className="cardddd">
-        <div
-          style={{
-            borderRadius: "200px",
-            height: "200px",
-            width: "200px",
-            background: "#F8FAF5",
-            margin: "0 auto",
-          }}
-        >
-          <div className="iiii">✓</div>
-        </div>
-        <div className="hh1">Success</div>
-        <div className="ppp">
-          We received your purchase request!
-          <br /> You'll be redirected in: {timeLeft} seconds
+      <Helmet>
+        <style>{"body { background-color: #EBF0F5; }"}</style>
+      </Helmet>
+      <div
+        style={{
+          textAlign: "center",
+          padding: " 40px 0",
+          background: "#EBF0F5",
+          height: "100%",
+          position: "relative",
+        }}
+      >
+        <div className="cardddd">
+          <div
+            style={{
+              margin: "0 auto",
+            }}
+          >
+            <svg
+              style={{
+                width: "200px",
+                display: "block",
+                margin: "40px auto 0",
+                marginTop: "0px",
+              }}
+              version="1.1"
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 130.2 130.2"
+            >
+              <circle
+                class="path circle"
+                fill="none"
+                stroke="#73AF55"
+                stroke-width="6"
+                stroke-miterlimit="10"
+                cx="65.1"
+                cy="65.1"
+                r="62.1"
+              />
+              <polyline
+                class="path check"
+                fill="none"
+                stroke="#73AF55"
+                stroke-width="6"
+                stroke-linecap="round"
+                stroke-miterlimit="10"
+                points="100.2,40.2 51.5,88.8 29.8,67.5 "
+              />
+            </svg>
+          </div>
+          <div className="hh1">Success</div>
+          <div className="ppp">
+            We received your purchase request!
+            <br /> You'll be redirected in: {timeLeft} seconds
+          </div>
         </div>
       </div>
-    </div>
     </>
   );
 };

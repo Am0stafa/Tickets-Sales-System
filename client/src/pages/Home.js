@@ -119,7 +119,6 @@ const Home = () => {
 
   if (error) return <div>Error please refresh the page</div>;
 
-
   function Hit({ hit }) {
     return <TabGrid countryCode={countryCode} avail={result} user={hit} />;
   }
@@ -128,7 +127,7 @@ const Home = () => {
   const sorts = [
     { value: `fifa-wc-tickets`, label: "Most popular" },
     { value: `date`, label: "Date" },
-    { value: `asc_group`, label: "Group" },
+    // { value: `asc_group`, label: "Group" },
   ];
   const defaultRefinement = sorts[0].value;
 

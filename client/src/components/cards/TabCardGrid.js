@@ -36,6 +36,7 @@ const CardHoverOverlay = styled(motion.div)`
   ${tw`absolute inset-0 flex justify-center items-center`}
 `;
 const CardButton = tw(PrimaryButtonBase)`text-sm`;
+const SecondaryButton = tw.button`font-bold px-8 lg:px-10 py-3 rounded bg-primary-500 text-gray-100`;
 
 const CardText = tw.div`p-4 text-gray-900`;
 const CardTitle = tw.h5`text-lg font-semibold group-hover:text-primary-500`;
@@ -798,6 +799,10 @@ function continent(code) {
 export default ({ user, countryCode, avail }) => {
   const navigate = useNavigate();
   const result = avail.data[user.id - 1];
+  // if (user.homeTeam === "Brazil") result.status = "Temporarily Unavailable";
+  // if (user.homeTeam === "Brazil") result.status = "Sold Out";
+  if (user.location === "TBA") result.status = "Temporarily Unavailable";
+
   return (
     <Card
       style={{
@@ -940,11 +945,27 @@ export default ({ user, countryCode, avail }) => {
           }}
           transition={{ duration: 0.3 }}
         >
-          <CardButton
-            onClick={() => navigate(`/book/${user.id}`, { state: { ...user } })}
-          >
-            Buy Now
-          </CardButton>
+          {(user.location === "TBA" ||
+            result.status === "Sold Out" ||
+            result.status === "Temporarily Unavailable") && (
+            <SecondaryButton
+              style={{
+                backgroundColor: "#c6c6c6",
+              }}
+              disabled={true}
+            >
+              Buy Now
+            </SecondaryButton>
+          )}
+          {user.location !== "TBA" && result.status === "Available" && (
+            <CardButton
+              onClick={() =>
+                navigate(`/book/${user.id}`, { state: { ...user } })
+              }
+            >
+              Buy Now
+            </CardButton>
+          )}
         </CardHoverOverlay>
       </CardImageContainer>
       <div style={{ display: "grid", gridTemplateColumns: "4fr 1fr" }}>
@@ -1006,7 +1027,13 @@ export default ({ user, countryCode, avail }) => {
           </CardText>
         )}
         {result.status === "Temporarily Unavailable" && (
-          <CardText style={{ minWidth: "80px", alignItems: "center" }}>
+          <CardText
+            style={{
+              marginLeft: "-25px",
+              minWidth: "95px",
+              alignItems: "center",
+            }}
+          >
             <div
               style={{
                 display: "flex",
@@ -1022,7 +1049,13 @@ export default ({ user, countryCode, avail }) => {
           </CardText>
         )}
         {result.status === "Sold Out" && (
-          <CardText style={{ minWidth: "80px", alignItems: "center" }}>
+          <CardText
+            style={{
+              marginLeft: "-20px",
+              minWidth: "95px",
+              alignItems: "center",
+            }}
+          >
             <div
               style={{
                 display: "flex",
