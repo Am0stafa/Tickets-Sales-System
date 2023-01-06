@@ -9,6 +9,7 @@ import { useNavigate } from "react-router-dom";
 import logo from "../../images/logo.svg";
 import { ReactComponent as MenuIcon } from "feather-icons/dist/icons/menu.svg";
 import { ReactComponent as CloseIcon } from "feather-icons/dist/icons/x.svg";
+import { Avatar } from "@mui/material";
 
 const Header = tw.header`
   flex justify-between items-center
@@ -81,6 +82,9 @@ export default ({
 
   const [rerender, setRerender] = React.useState(false);
   const navigate = useNavigate();
+  const name = `${auth.currentUser?.displayName.split(" ")[0][0]} ${
+    auth.currentUser?.displayName.split(" ")[1][0]
+  }`;
   const defaultLinks = [
     <NavLinks key={1}>
       <NavLink href="/about">About</NavLink>
@@ -88,7 +92,9 @@ export default ({
       {auth?.currentUser && (
         <NavLink
           style={{ cursor: "pointer" }}
-          onClick={() => navigate("/my-tickets")}
+          onClick={() =>
+            navigate("/my-tickets", { email: auth.currentUser?.email })
+          }
         >
           My Tickets
         </NavLink>
@@ -103,19 +109,20 @@ export default ({
           Login
         </PrimaryLink>
       ) : (
-        <SecondaryAction
-          style={{
-            cursor: "pointer",
-            borderRadius: "9999px",
-          }}
-          onClick={async () => {
-            await auth.signOut();
-            setRerender((prev) => !prev);
-          }}
-          className="action secondaryAction"
-        >
-          Logout
-        </SecondaryAction>
+        <div class="dropdown">
+          <button class="dropbtn">{name}</button>
+          <div class="dropdown-content">
+            <a
+              style={{ cursor: "pointer" }}
+              onClick={async () => {
+                await auth.signOut();
+                setRerender((prev) => !prev);
+              }}
+            >
+              Logout
+            </a>
+          </div>
+        </div>
       )}
     </NavLinks>,
   ];

@@ -1,29 +1,4 @@
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    perspective: 700px;
-  }
-  .whole {
-    
-    text-align: center;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    background: #fff;
-    box-shadow: 0px 0px 41px -7px rgba(0, 0, 0, 0.15);
-    width: 100%;
-    height: auto;
-      background: #f3f3f3;
-  
-    display: flex;
-    align-items: center;
-    justify-content: center;
-      background: #ededed;
-  }
-  
-  #back {
+ #back {
     width: 26px;
     height: 26px;
     position: absolute;
@@ -41,13 +16,13 @@
     right: 0px;
   }
   
-  
+ 
   
   #headerText {
     color: rgb(34, 34, 34);
     font-weight: bold;
     font-size: 20px;
-    width: 340px;
+    width:420px;
     height: 46px;
     text-align: center;
     margin-top: 30px;
@@ -89,7 +64,7 @@
   }
   
   #headerInput {
-    width: 340px;
+    width:420px;
     height: 40px;
     border: none;
     background: #262626;
@@ -103,17 +78,19 @@
   
   #cardContainer {
     position: relative;
-    width: 340px;
+    width:420px;
     height: 100px;
     /* background: rgb(194, 194, 194); */
     border-radius: 5px;
     transform-origin: bottom;
     margin: 20px;
       cursor: pointer;
+      flex-wrap: wrap;
+
   }
-  
+
   #first {
-    width: 340px;
+    min-width:420px;
     height: 100px;
     position: absolute;
     border-radius: 5px;
@@ -123,6 +100,7 @@
     transition: 0.5s;
     border-radius: 8px;
     display: flex;
+    flex-wrap: wrap;
     /* backface-visibility: hidden; */
   }
   
@@ -146,6 +124,8 @@
     background: #0a0a0a;
   }
   #firstDisplay {
+    justify-content: center;
+
     width: 100%;
     height: 100px;
     position: absolute;
@@ -212,7 +192,7 @@
     margin-right: 13px;
   }
   #firstTop {
-    width: 340px;
+    width:420px;
     height: 100px;
     position: absolute;
     background: #ffffff;
@@ -221,17 +201,23 @@
     border-radius: 8px;
     box-shadow: 0px 0px 3px 0px rgba(132, 132, 132, 0.15);
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
+    align-items: center;
+    
+  }
+  #firstTop:hover {
+    background-color: #f2f2f2;
   }
   
   #timecontainer {
     display: flex;
+    
     padding-right: 10px;
     padding-top: 14px;
   }
   
   #firstBehind {
-    width: 340px;
+    width:420px;
     height: 100px;
     position: absolute;
     background: #fff;
@@ -278,7 +264,7 @@
   }
   
   #second {
-    width: 340px;
+    width:420px;
     height: 50px;
     position: absolute;
     bottom: -2px;
@@ -289,7 +275,7 @@
   }
   
   #secondTop {
-    width: 340px;
+    width:420px;
     height: 50px;
     position: absolute;
     background: rgb(231, 231, 231);
@@ -298,7 +284,7 @@
   }
   
   #thirdTop {
-    width: 340px;
+    width:420px;
     height: 50px;
     position: absolute;
     background: rgb(190, 190, 190);
@@ -307,7 +293,7 @@
   }
   
   #secondBehind {
-    width: 340px;
+    width:420px;
     height: 50px;
     position: absolute;
     background: #fff;
@@ -334,7 +320,7 @@
   }
   
   #secondBehindBottom {
-    width: 340px;
+    width:420px;
     height: 50px;
     position: absolute;
     background: #fff;
@@ -347,7 +333,7 @@
   }
   
   #third {
-    width: 340px;
+    width:420px;
     height: 50px;
     position: absolute;
     transform-origin: bottom;

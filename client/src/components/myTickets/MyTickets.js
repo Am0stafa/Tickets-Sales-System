@@ -1,260 +1,18 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import { auth } from "../../firebase/config";
-import "./MyTickets.css";
-import { SectionHeading } from "../misc/Headings.js";
+import "./Ticket.css";
 import tw from "twin.macro";
 import styled from "styled-components";
+import Cell from "./Ticket.js";
+import axios from "axios";
+import Head from "../headers/light.js";
 import { Container, ContentWithPaddingXl } from "../misc/Layouts.js";
+import AnimationRevealPage from "../../helpers/AnimationRevealPage.js";
 
-const { useState } = React;
+const { useState, useEffect } = React;
 const rootElement = document.getElementById("root");
-
-const Flight = [
-  {
-    src: "/assets/brazil.png",
-    src1: "/assets/usa.png",
-    style: {
-      height: "51px",
-      margin: "22px 12px",
-    },
-    label: "rgb(13, 28, 83)",
-  },
-  {
-    src: "/assets/brazil.png",
-    src1: "/assets/usa.png",
-    style: {
-      height: "51px",
-      margin: "22px 12px",
-    },
-    label: "rgb(90, 5, 49)",
-  },
-  {
-    src: "/assets/brazil.png",
-    src1: "/assets/usa.png",
-    style: {
-      height: "51px",
-      margin: "22px 12px",
-    },
-    label: "rgb(230, 26, 56)",
-  },
-  {
-    src: "/assets/brazil.png",
-    src1: "/assets/usa.png",
-    style: {
-      height: "51px",
-      margin: "22px 12px",
-    },
-    label: "rgb(252, 178, 50)",
-  },
-  {
-    src: "/assets/brazil.png",
-    src1: "/assets/usa.png",
-    style: {
-      height: "51px",
-      margin: "22px 12px",
-    },
-    label: "rgb(13, 28, 83)",
-  },
-  {
-    src: "/assets/brazil.png",
-    src1: "/assets/usa.png",
-    style: {
-      height: "51px",
-      margin: "22px 12px",
-    },
-    label: "rgb(90, 5, 49)",
-  },
-  {
-    src: "/assets/brazil.png",
-    src1: "/assets/usa.png",
-    style: {
-      height: "51px",
-      margin: "22px 12px",
-    },
-    label: "rgb(230, 26, 56)",
-  },
-  {
-    src: "/assets/brazil.png",
-    src1: "/assets/usa.png",
-    style: {
-      height: "51px",
-      margin: "22px 12px",
-    },
-    label: "rgb(252, 178, 50)",
-  },
-];
-
-const Cell = (props) => {
-  const { index } = props;
-  const [active, handleActive] = useState(false);
-  let iii = 4;
-  return (
-    <div
-      id="cardContainer"
-      style={{
-        height: active ? `300px` : `100px`,
-        transition: "0.9s",
-      }}
-      onClick={() => {
-        handleActive(!active);
-      }}
-    >
-      <div id="firstDisplay">
-        <div id="flightDetail">
-          <div
-            id="detailLabel"
-            style={{ fontWeight: "bold", color: Flight[index].label }}
-          >
-            From
-          </div>
-          BLR
-          <div id="detailLabel">Kempegowda International</div>
-        </div>
-        <div
-          id="flightDetail"
-          style={{
-            marginTop: "15px",
-          }}
-        >
-          <div id="animContainer">
-            <div id="anim">
-              <div id="circle" />
-              <div id="circle" />
-              <div id="circle" />
-            </div>
-          </div>
-          <div id="animContainer" style={{ left: "62px" }}>
-            <div id="anim">
-              <div id="circle" />
-              <div id="circle" />
-              <div id="circle" />
-            </div>
-          </div>
-          <img
-            style={{ width: "30px" }}
-            src="https://github.com/pizza3/asset/blob/master/airplane2.png?raw=true"
-          />
-        </div>
-        <div id="flightDetail">
-          <div
-            id="detailLabel"
-            style={{ fontWeight: "bold", color: Flight[index].label }}
-          >
-            To
-          </div>
-          DEL
-          <div id="detailLabel">Indira Gandhi International</div>
-        </div>
-      </div>
-      <div
-        id="first"
-        style={{
-          transform: active
-            ? `rotate3d(1, 0, 0, -180deg)`
-            : `rotate3d(1, 0, 0, 0deg)`,
-          transitionDelay: active ? "0s" : "0.3s",
-        }}
-      >
-        <div id="firstTop">
-          <img style={Flight[index].style} src={Flight[index].src} />
-          <img style={Flight[index].style} src={Flight[index].src1} />
-
-          <div id="timecontainer">
-            <div id="detailTime">Brazil</div>
-
-            <div id="detailDate">vs</div>
-
-            <div id="detailTime">USA</div>
-          </div>
-        </div>
-        <div id="firstBehind">
-          <div id="firstBehindDisplay">
-            <div id="firstBehindRow">
-              <div id="detail">
-                6:20 - 8:45
-                <div id="detailLabel">Flight Time</div>
-              </div>
-              <div id="detail">
-                No
-                <div id="detailLabel">Transfer</div>
-              </div>
-            </div>
-            <div id="firstBehindRow">
-              <div id="detail">
-                2h 25 min
-                <div id="detailLabel">Duration</div>
-              </div>
-              <div id="detail">
-                8<div id="detailLabel">Gate</div>
-              </div>
-            </div>
-            <div id="firstBehindRow">
-              <div id="detail">
-                5:35
-                <div id="detailLabel">Boarding</div>
-              </div>
-              <div id="detail">
-                20A
-                <div id="detailLabel">Seat</div>
-              </div>
-            </div>
-          </div>
-          <div
-            id="second"
-            style={{
-              transform: active
-                ? `rotate3d(1, 0, 0, -180deg)`
-                : `rotate3d(1, 0, 0, 0deg)`,
-              transitionDelay: active ? "0.2s" : "0.2s",
-            }}
-          >
-            <div id="secondTop" />
-            <div id="secondBehind">
-              <div id="secondBehindDisplay">
-                <div id="price">
-                  $100
-                  <div id="priceLabel">Price</div>
-                </div>
-                <div id="price">
-                  Economy
-                  <div id="priceLabel">Class</div>
-                </div>
-                <img
-                  id="barCode"
-                  src="https://github.com/pizza3/asset/blob/master/barcode.png?raw=true"
-                />
-              </div>
-              <div
-                id="third"
-                style={{
-                  transform: active
-                    ? `rotate3d(1, 0, 0, -180deg)`
-                    : `rotate3d(1, 0, 0, 0deg)`,
-                  transitionDelay: active ? "0.4s" : "0s",
-                }}
-              >
-                <div id="thirdTop" />
-                <div id="secondBehindBottom">
-                  <button
-                    id="button"
-                    style={{
-                      color: Flight[index].label,
-                      border: `1px solid ${Flight[index].label}`,
-                    }}
-                    onClick={() => alert(1)}
-                  >
-                    Pay
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-};
+const SectionHeading = tw.h2`text-4xl sm:text-5xl font-black tracking-wide text-center`;
 const HeaderRow = tw.div``;
 const Headr = tw(SectionHeading)``;
 const HighlightedText = tw.span`bg-primary-500 text-gray-100 px-4 transform -skew-x-12 inline-block`;
@@ -267,21 +25,139 @@ const Header = (
   </HeaderRow>
 );
 
-const DataArr = Array(8).fill(0).map(Number.call, Number);
 const MyTickets = () => {
+  const location = useLocation();
+  const [results, setResults] = useState([]);
+  const email = location.email;
+  console.log(email);
+  useEffect(() => {
+    async function fetchData() {
+      try {
+        if (email) {
+          const { response } = await axios.get(
+            `https://user-blush.vercel.app/api/users/mail/${email}`
+          );
+          const id = response.data;
+          const url = `https://user-blush.vercel.app/api/users/ticket/${id}`;
+          const data = await axios.get(url);
+          setResults(data.data.data);
+          console.log(data.data.data);
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    }
+    fetchData();
+  }, []);
+
+  const PrimaryButton = tw.button`font-bold px-8 lg:px-10 py-3 rounded bg-primary-500 text-gray-100 hocus:bg-primary-700 focus:shadow-outline focus:outline-none transition duration-300`;
+  const SecondaryButton = tw.button`font-bold px-8 lg:px-10 py-3 rounded bg-primary-500 text-gray-100`;
+  const Value = tw.span`font-bold text-primary-500`;
+  const Key = tw.div`font-medium text-gray-700`;
+  const Plan = styled.div`
+    ${tw`border-2 border-gray-200 shadow-none`}
+  `;
   const navigate = useNavigate();
   if (!auth.currentUser) {
     navigate("/");
   }
   return (
-    <Container>
-      <div className="whole">
-        {Header}
-        {DataArr.map((val, i) => (
-          <Cell key={i} index={i} />
-        ))}
-      </div>
-    </Container>
+    <AnimationRevealPage>
+      <Head />
+      <div style={{ height: "70px" }} />
+      <Container
+        style={{
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+        }}
+      >
+        <div className="whole">
+          {Header}
+          <div style={{ height: "30px" }} />
+
+          {results.map((res) => (
+            <Plan
+              style={{
+                padding: "20px",
+                backgroundColor: "#edf2f7",
+                marginBottom: "30px",
+              }}
+            >
+              <Key style={{ fontSize: "20px" }}>
+                Order <Value style={{ fontSize: "20px" }}> {res.id}</Value>
+              </Key>
+              <div style={{ display: "flex", padding: "14px" }}>
+                <img
+                  style={{ height: "60px", width: "60px" }}
+                  src={`/assets/${res.Reservation[0].Ticket.Match.homeTeam}.png`}
+                  alt="home"
+                />
+
+                <div
+                  style={{
+                    display: "flex",
+                    width: "40px",
+                    justifyContent: "center",
+                    alignItems: "center",
+                    textAlign: "center center",
+                  }}
+                >
+                  <Value>vs</Value>
+                </div>
+                <img
+                  style={{ height: "60px", width: "60px" }}
+                  src={`/assets/${res.Reservation[0].Ticket.Match.awayTeam}.png`}
+                  alt="home"
+                />
+                <div style={{ width: "70px" }}></div>
+                <div
+                  style={{
+                    display: "flex",
+                    width: "40px",
+                    justifyContent: "center",
+                    alignItems: "center",
+                    textAlign: "center center",
+                  }}
+                >
+                  {" "}
+                  <Key>
+                    Status:<Value>{res.status}</Value>
+                  </Key>
+                </div>
+                <div style={{ width: "70px" }}></div>
+                <div
+                  style={{
+                    display: "flex",
+                    width: "100px",
+                    justifyContent: "center",
+                    alignItems: "center",
+                    textAlign: "center center",
+                  }}
+                >
+                  <Key>
+                    <Value>Total Price: {res.price}</Value>
+                  </Key>
+                </div>
+              </div>
+              <div
+                style={{
+                  display: "flex",
+                  // gridTemplateColumns: "2fr 2fr",
+                  flexWrap: "wrap",
+                }}
+              >
+                <div>
+                  {res.Reservation.map((val) => (
+                    <Cell value={val} />
+                  ))}
+                </div>
+              </div>
+            </Plan>
+          ))}
+        </div>
+      </Container>
+    </AnimationRevealPage>
   );
 };
 
