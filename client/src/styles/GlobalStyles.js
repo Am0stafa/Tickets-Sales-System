@@ -34,6 +34,7 @@ const GlobalStyles = createGlobalStyle(
     color: white;
     padding: 16px;
     font-size: 16px;
+    width: 55px;
     border-radius: 9999px;
     border: none;
     cursor: pointer;
@@ -43,12 +44,15 @@ const GlobalStyles = createGlobalStyle(
   .dropdown {
     position: relative;
     display: inline-block;
+    justify-content: center;
+
   }
   
   /* Dropdown Content (Hidden by Default) */
   .dropdown-content {
     display: none;
     position: absolute;
+    justify-content: center;
     background-color: #f9f9f9;
     min-width: 160px;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);

@@ -970,9 +970,24 @@ export default ({ user, countryCode, avail }) => {
       </CardImageContainer>
       <div style={{ display: "grid", gridTemplateColumns: "4fr 1fr" }}>
         <CardText style={{ minWidth: "255px" }}>
-          <CardTitle>
-            {user.homeTeam} vs {user.awayTeam}
-          </CardTitle>
+          {(user.location === "TBA" ||
+            result.status === "Sold Out" ||
+            result.status === "Temporarily Unavailable") && (
+            <CardTitle style={{ cursor: "pointer" }}>
+              {user.homeTeam} vs {user.awayTeam}
+            </CardTitle>
+          )}
+          {user.location !== "TBA" && result.status === "Available" && (
+            <CardTitle
+              style={{ cursor: "pointer" }}
+              onClick={() =>
+                navigate(`/book/${user.id}`, { state: { ...user } })
+              }
+            >
+              {" "}
+              {user.homeTeam} vs {user.awayTeam}
+            </CardTitle>
+          )}
           <div style={{ margin: "0.8em" }}></div>
           <CardContent style={{ display: "flex" }}>
             <img
