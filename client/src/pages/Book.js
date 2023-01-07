@@ -25,4 +25,4 @@ export const Book = () => {
       <MainFeature catagories={result} />
     </AnimationRevealPage>
   );
-};
+}; 

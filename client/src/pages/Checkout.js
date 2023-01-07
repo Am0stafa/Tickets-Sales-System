@@ -42,8 +42,9 @@ const Checkout = () => {
 
   const Completionist = async () => {
     const body = {
-      session: id,
-    };
+        session: sessionId,
+        kafka: state.kafka,
+      };
     navigate("/", {
       state: {
         errors: "Session expired",

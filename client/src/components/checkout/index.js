@@ -55,14 +55,14 @@ function CheckoutComponent({ sessionId, setProgress }) {
   const {
     choices,
     total,
-    calculateTotal,
     match,
     totalChoices,
     email,
-    time,
     tickets,
+    kafka
   } = location.state;
-  console.log(match);
+
+
   const [purchase, setPurchase] = React.useState(false);
   const [pop, setPop] = React.useState(true);
   const [error, setError] = React.useState("");
@@ -115,6 +115,7 @@ function CheckoutComponent({ sessionId, setProgress }) {
                 amount: total,
                 holdId: sessionId,
                 uid: id,
+                kafka: kafka,
               })
               .then((res) => {
                 navigate("/payment/success");
@@ -146,6 +147,7 @@ function CheckoutComponent({ sessionId, setProgress }) {
     setLoading(true);
     const body = {
       session: sessionId,
+      kafka: kafka,
     };
 
     const res = await axios.post(
@@ -414,7 +416,18 @@ function CheckoutComponent({ sessionId, setProgress }) {
             >
               <NavLink
                 style={{ cursor: "pointer", marginRight: "1rem" }}
-                onClick={() => navigate("/")}
+                onClick={async () => {
+                    const body = {
+                        session: sessionId,
+                        kafka: kafka,
+                      };
+                  
+                      const res = await axios.post(
+                        "https://reservation-two.vercel.app/api/reservation/cancel",
+                        body
+                      );
+                    navigate("/")
+                }}
               >
                 Go Back
               </NavLink>

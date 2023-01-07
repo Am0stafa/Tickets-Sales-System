@@ -151,14 +151,13 @@ export default ({ textOnLeft = false, catagories }) => {
 
     payload.tickets = tickets.filter((ticket) => ticket.quantity > 0);
 
-    // console.log(payload);
+    console.log(payload);
 
-    const response = await axios.post(
-      "https://reservation-two.vercel.app/api/reservation/pending",
-      payload
-    );
-
-    // console.log(response.data);
+    try {
+        const response = await axios.post(
+            "https://reservation-two.vercel.app/api/reservation/pending",
+            payload
+          );
 
     setIssLoading(false);
 
@@ -171,8 +170,16 @@ export default ({ textOnLeft = false, catagories }) => {
         tickets: payload,
         email: auth?.currentUser?.email,
         time: response.data.holdUntil,
+        kafka: response.data.kafka,
       },
     });
+
+    } catch (error) {
+        console.log(error);
+    }
+
+
+
   };
   //   const onSubmit = () => {
   //     captchaRef.current.execute();

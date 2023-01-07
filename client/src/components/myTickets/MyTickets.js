@@ -28,20 +28,21 @@ const Header = (
 const MyTickets = () => {
   const location = useLocation();
   const [results, setResults] = useState([]);
-  const email = location.email;
+  const email = location.state.email;
   console.log(email);
   useEffect(() => {
     async function fetchData() {
       try {
         if (email) {
-          const { response } = await axios.get(
+          const  {data}  = await axios.get(
             `https://user-blush.vercel.app/api/users/mail/${email}`
           );
-          const id = response.data;
+          const id = data.data;
           const url = `https://user-blush.vercel.app/api/users/ticket/${id}`;
-          const data = await axios.get(url);
-          setResults(data.data.data);
-          console.log(data.data.data);
+          console.log(url);
+          const res = await axios.get(url);
+          setResults(res.data.data);
+          console.log(res.data.data);
         }
       } catch (error) {
         console.log(error);

@@ -82,9 +82,7 @@ export default ({
 
   const [rerender, setRerender] = React.useState(false);
   const navigate = useNavigate();
-  const name = `${auth.currentUser?.displayName.split(" ")[0][0]} ${
-    auth.currentUser?.displayName.split(" ")[1][0]
-  }`;
+  const name = `${auth.currentUser?.displayName.split(" ")[0][0]}`;
   const defaultLinks = [
     <NavLinks key={1}>
       <NavLink href="/about">About</NavLink>
@@ -93,7 +91,12 @@ export default ({
         <NavLink
           style={{ cursor: "pointer" }}
           onClick={() =>
-            navigate("/my-tickets", { email: auth.currentUser?.email })
+            navigate("/my-tickets", { 
+                state: {
+                    email: auth.currentUser.email,
+                    name: auth.currentUser.displayName,
+                }
+             })
           }
         >
           My Tickets
