@@ -1,0 +1,51 @@
+
+@import url("https://fonts.googleapis.com/css?family=Nunito+Sans:400,400i,700,900&display=swap");
+
+$font: "Nunito Sans", "Helvetica Neue", sans-serif;
+
+
+  .hh1 {
+    color: #73AF55;
+    font-family: $font;
+    font-weight: 900;
+    font-size: 40px;
+    margin-top: 20px;
+    margin-bottom: 10px;
+  }
+  .hk1 {
+    color: #D06079;
+    font-family: $font;
+    font-weight: 900;
+    font-size: 40px;
+    margin-top: 20px;
+    margin-bottom: 10px;
+  }
+  .ppp {
+    color: #404F5E;
+    font-family: $font;
+    font-size:20px;
+    margin: 0;
+  }
+.iiii {
+  color: #9ABC66;
+  font-size: 100px;
+  line-height: 200px;
+  margin-left:-15px;
+}
+.cardddd {
+  background: white;
+  padding: 60px;
+  border-radius: 4px;
+  box-shadow: 0 2px 3px #C8D0D8;
+  display: inline-block;
+  margin: 0 auto;
+  margin-top: 10px;
+}
+.jiii {
+  color: #c64747;
+  font-size: 100px;
+  line-height: 200px;
+ 
+}
+
+
