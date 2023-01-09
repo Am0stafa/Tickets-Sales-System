@@ -1,4 +1,15 @@
 
+Looking for a hassle-free way to get tickets to your favorite events? Look no further! Our state-of-the-art ticket sales application is here to make your life easier. Built using event-driven architecture and the latest security best practices, our app is fast, secure, and reliable. Plus, with our commitment to test-driven development, you can trust that every feature has been rigorously tested to ensure a seamless experience. Don't miss out on the fun – get your tickets today with our cutting-edge application!
+
+<br>
+<br>
+<br>
+
+
+
+
+
+
 1. ***Introduction***
 
 Your team is tasked with building backend services to handle ticket sales for the Fifa 2022 World Cup in Qatar. Given the huge demand on tickets, it has been decided by the Fifa governance committee that ticket sales can be purchased through several approved websites instead of having one single website to handle all the sales. As such, each team will serve as a separate website that provides a platform for buying official tickets. Each team will start with a master list of games which consists of all the games and total occupancy allowed, amongst other useful information. It is expected that each team will maintain their own copy of the master list and keep it updated. For example, if team/website #1 makes a reservation, that change should be reflected in teams 2..N. Each team can have up to 5 individuals.
