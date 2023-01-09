@@ -1,0 +1,82 @@
+{
+  "name": "world-cup",
+  "version": "0.1.0",
+  "dependencies": {
+    "@algolia/autocomplete-js": "^1.7.4",
+    "@emotion/react": "^11.10.5",
+    "@emotion/styled": "^11.10.5",
+    "@hcaptcha/react-hcaptcha": "^1.4.4",
+    "@material-tailwind/react": "^1.2.4",
+    "@mui/material": "^5.11.0",
+    "@ramonak/react-progress-bar": "^5.0.3",
+    "@testing-library/jest-dom": "^5.11.4",
+    "@testing-library/react": "^11.1.0",
+    "@testing-library/user-event": "^12.1.10",
+    "algoliasearch": "^4.14.3",
+    "axios": "^0.24.0",
+    "bootstrap": "^3.4.1",
+    "bootstrap-css": "^4.0.0-alpha.5",
+    "feather-icons": "^4.29.0",
+    "firebase": "^8.10.1",
+    "framer-motion": "^7.3.2",
+    "gsap": "^3.11.4",
+    "instantsearch.css": "^7.4.5",
+    "node-sass": "^8.0.0",
+    "payment": "^2.4.6",
+    "qs": "^6.11.0",
+    "react": "^18.2.0",
+    "react-anchor-link-smooth-scroll": "^1.0.12",
+    "react-async-hook": "^4.0.0",
+    "react-avatar": "^5.0.3",
+    "react-bootstrap": "^2.7.0",
+    "react-countdown": "^2.3.5",
+    "react-countdown-circle-timer": "^3.1.0",
+    "react-credit-cards-2": "^0.9.0",
+    "react-dom": "^18.0.0",
+    "react-final-form": "^6.5.9",
+    "react-github-btn": "^1.4.0",
+    "react-helmet": "^6.1.0",
+    "react-icons": "^4.7.1",
+    "react-instantsearch-dom": "^6.38.1",
+    "react-instantsearch-hooks-web": "^6.38.1",
+    "react-loading": "^2.0.3",
+    "react-loading-skeleton": "^3.1.0",
+    "react-modal": "^3.16.1",
+    "react-responsive": "^9.0.2",
+    "react-rnd": "^10.3.7",
+    "react-router-dom": "^6.4.5",
+    "react-scripts": "5.0.1",
+    "react-slick": "^0.29.0",
+    "react-toastify": "^9.1.1",
+    "reactstrap": "^9.1.5",
+    "slick-carousel": "^1.8.1",
+    "stripe": "^11.5.0",
+    "styled-components": "^5.3.6",
+    "tailwindcss": "^3.0.0",
+    "twin.macro": "^3.1.0",
+    "web-vitals": "^2.1.4"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "autoprefixer": "^10.4.13",
+    "postcss": "^8.4.20",
+    "tailwindcss": "^3.2.4"
+  }
+}
