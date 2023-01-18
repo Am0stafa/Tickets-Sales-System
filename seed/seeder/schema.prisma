@@ -1,0 +1,79 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Match {
+  id                 Int       @id @default(autoincrement())
+  roundNumber        Int?
+  Date               DateTime?
+  location           String?
+  homeTeam           String?   @default("TBD")
+  homeTeamContinents String?
+  awayTeam           String?   @default("TBD")
+  awayTeamContinents String?
+  group              String?
+  homeTeamScore      Int?
+  awayTeamScore      Int?
+  rank               Int?
+  tickets            Ticket[]
+}
+
+model Customer {
+  id        String  @id @default(uuid())
+  firstName String
+  lastName  String?
+  phone     String?
+  country   String?
+  email     String
+  password  String?
+  orders    Order[]
+}
+
+model Ticket {
+  id           String        @id @default(uuid())
+  price        Int
+  barcode      String?
+  gateOpens    String
+  category     String
+  external     Boolean
+  matchId      Int
+  isHold       Boolean       @default(false)
+  holdId       String?
+  isPurchased  Boolean       @default(false)
+  reservations Reservation[]
+  Hold         Hold?         @relation(fields: [holdId], references: [id])
+  match        Match         @relation(fields: [matchId], references: [id])
+}
+
+model Order {
+  id           String        @id @default(uuid())
+  orderDate    DateTime      @default(now())
+  requiredDate DateTime?
+  shipedDate   DateTime?
+  status       String        @default("shipping")
+  comments     String?
+  price        Int?
+  customerId   String?
+  customer     Customer?     @relation(fields: [customerId], references: [id])
+  reservation  Reservation[]
+}
+
+model Reservation {
+  id        String @id @default(uuid())
+  orderId   String
+  ticketsId String
+  order     Order  @relation(fields: [orderId], references: [id])
+  tickets   Ticket @relation(fields: [ticketsId], references: [id])
+}
+
+model Hold {
+  id           String    @id @unique
+  expiresIn    DateTime?
+  kafkaMessage String?   @default("")
+  Ticket       Ticket[]
+}
