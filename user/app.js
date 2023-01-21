@@ -30,3 +30,5 @@ app.use((err, req, res, next) => {
 
 const PORT = 3009;
 app.listen(PORT, () => console.log(`Server running on http://localhost:${PORT}`));
+
+export default app;

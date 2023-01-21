@@ -25,18 +25,12 @@ const createPaymentIntent = async (req, res, next) => {
           });
         })
         .then(async (charge) => {
-            try {
-                await axios.post('https://reservation-two.vercel.app/reservation/purchase', {holdId: holdId, user: uid, kafka: kafka})
-                return res.status(200).json(charge)    
-            } catch (error) {
-                console.log(error)
-                return res.status(400).json(error)
-            }
-
-
-
+            await axios.post('https://reservation-two.vercel.app/api/reservation/purchase', {holdId: holdId, user: uid, kafka: kafka})
+            return res.status(200).json(charge)
         })
         .catch(async(err) =>{
+            await axios.post('https://reservation-two.vercel.app/api/reservation/cancel', {session: holdId})
+            console.log(err)
             return res.status(400).json(err)
         });
 };

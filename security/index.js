@@ -1,13 +1,15 @@
 const express = require('express');
 const rateLimit = require('express-rate-limit');
 const { isIPBlocked } = require('./middlewares/IPBlocking');
-const {corsHeaders} = require('./middlewares/cors');
+const { corsHeaders } = require('./middlewares/cors');
 const axios = require('axios');
 const asyncHandler = require('express-async-handler')
-
+const Waf = require('mini-waf/wafbase');
+const wafrules = require('mini-waf/wafrules');
 
 const app = express();
 app.use(express.json());
+app.use(Waf.WafMiddleware(wafrules.DefaultSettings));
 
 const limiter = rateLimit({
     windowMs: 1000 * 60 * 15,
