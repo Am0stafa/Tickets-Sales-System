@@ -1,4 +1,24 @@
-![Logo](https://i.ibb.co/k4DJxwM/Screen-Shot-2023-01-27-at-5-56-54-PM.png)
+
+<h1 align="center">
+  <br>
+  <a href="https://ticktaka-client.vercel.app/"><img src="https://i.ibb.co/k4DJxwM/Screen-Shot-2023-01-27-at-5-56-54-PM.png" alt="ticktak" width="200"></a>
+  <br>
+  tiktaka
+  <br>
+</h1>
+
+
+ <p align="center">
+ <a href="#Appendix">Appendix</a> •
+  <a href="#Links">Links</a> •
+  <a href="#MicroServies Repos">MicroServies Repos</a> •
+  <a href="#Demo">Demo</a> •
+  <a href="#Badges">Badges</a> •
+  <a href="#Project-requriments">Project requriments</a> •
+</p>
+
+
+
 
 ## Appendix
 Looking for a hassle-free way to get tickets to your favorite events? Look no further! Our state-of-the-art ticket sales application is here to make your life easier. Built using event-driven architecture and the latest security best practices, our app is fast, secure, and reliable. Plus, with our commitment to test-driven development, you can trust that every feature has been rigorously tested to ensure a seamless experience. Don't miss out on the fun – get your tickets today with our cutting-edge application!
@@ -16,6 +36,7 @@ In each repo there is the documentation for each api
 
 
 ## 🚀 Demo
+videos to be here
 
 
 ## Badges
