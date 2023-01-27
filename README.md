@@ -13,7 +13,7 @@
   <a href="#Demo">Demo</a> •
   <a href="#Badges">Badges</a> •
   <a href="#Project-requriments">Project requriments</a> •
-  <a href="#Build-With">Technologies</a> •
+  <a href="#Build-With">Technologies</a>
   
 </p>
 
