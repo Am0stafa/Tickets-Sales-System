@@ -11,7 +11,7 @@ link https://ticketaka-admin-dashboard.vercel.app/#/admin/default
 
 
 
-## project requrimentsˇ
+## Project requriments
 
 1. ***Introduction***
 
@@ -62,9 +62,65 @@ The analytics microservice is responsible for aggregating all bookings and stori
 
 The security microservice is responsible for protecting against fraud and/or malicious attacks. It will be up to the team to figure out how to protect their services accordingly. Although, more detail will be provided in upcoming milestones. When evaluating your system, we will try to exploit it for gain or attempt to bring the service down.
 
-3. ***Database***
+** milestone 2 info
 
-You are expected to use a single database across all your services with different tables/collections.
+1. Introduction
+A portion of your flow requires an asynchronous implementation to facilitate the sale of tickets across
+other similar marketplace platforms.
+2. Masterlist
+The masterlist contains all details related to the games, availability, and pricing. This list will be published
+once over a specific kafka topic once the services have been deployed. The message will be published to
+the following topics:
+
+- fifa-world-cup-2022-masterlist-dev
+- fifa-world-cup-2022-masterlist-prod
+2. Shop Consumer
+The shop consumer is responsible for listening to messages that are sent over a kafka broker and
+processing them accordingly. There will be two topics created. The first topic will be used once for
+sending the initial master list. The second topic will be used by all shop consumers across all teams to
+share ticket sales. The second topic will handle at least three types of messages:
+- TICKET_PENDING
+- TICKET_RESERVED
+- TICKET_CANCELLED
+When a ticket has been submitted for purchase, the /reservation endpoint should publish a message
+indicating the ticket is pending. This message will be received by all (ticket platform) consumers at which
+point a synchronous call will be made to sp-shop-api to update the masterlist indicating the ticket is
+pending. Each ticket is uniquely identified by the matchNumber and category. As taught in your OS
+course, we will treat each ticket sale as a “shared resource” and as such follow a semaphore/mutex
+approach. Thus, when a ticket is pending, we should have a field/column which maintains PENDING
+available count. Initially the reserved & pending count should be the same. If we receive 5 messages for
+pending ticket sales on other platforms, we should decrement our pending field/column by 5. Assuming
+the initial reserved count was 10, it means we can safely sell 5 tickets on our platform. However, if the
+pending count reaches 0, we should indicate “ticket is temporarily unavailable” in the UI. Once the served
+count is 0, we should indicate “ticket is sold out” on the UI.
+I have created a sample project for your consumer, which can be found here:
+https://github.com/desoukya/sp-shop-consumer
+One important feature needed in your consumer is to add code to not process messages that have been
+published by your producer. This can be accomplished by adding the clientId to the message.
+
+
+3. Shop API & Producer
+The shop service will expose the endpoints needed to allow a user to see available tickets, but also the
+necessary endpoints to handle incoming messages from kafka when a message is:
+
+- Pending
+- Cancelled
+- Reserved (can be same endpoint used by UI)
+I have created a sample project for your api & producer, which can be found here:
+https://github.com/desoukya/sp-shop-api
+4. Security Service
+The security service should protect against malicious or suspect activity. As such, each incoming request
+into the system should check with the security service if the request is suspect or Ok to process. I will not
+provide specific requirements on what the security service should do; however, some sanity checks could
+include checking if:
+- Request is from bot or belongs to a botnet
+- Request is from to a blacklisted ip address
+- Request exceeds API rate limit
+- Request is suspect so require UI to perform captcha
+5. Topics
+All the topics in the system are:
+- fifa-world-cup-2022-masterlist-dev | fifa-world-cup-2022-masterlist-prod
+- fifa-world-cup-2022-ticket-sales-dev | fifa-world-cup-2022-ticket-sales-prod
 
 ***3. Project Schedule & Deliverables***
 
