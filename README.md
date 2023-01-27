@@ -3,8 +3,6 @@
   <br>
   <a href="https://ticktaka-client.vercel.app/"><img src="https://i.ibb.co/k4DJxwM/Screen-Shot-2023-01-27-at-5-56-54-PM.png" alt="ticktak" width="200"></a>
   <br>
-  tiktaka
-  <br>
 </h1>
 
 
