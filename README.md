@@ -137,3 +137,11 @@ Milestone #3 (Due 12/23): Create Backend Payments, Security, and Analytics Servi
 Milestone #4 (Due 01/03): Create Frontend Shop and Reservation Screens. \
 
 Project Evaluations 01/04 - 01/05.
+
+## Contributing
+
+Contributions are always welcome!
+
+See `contributing.md` for ways to get started.
+
+Please adhere to this project's `code of conduct`.
