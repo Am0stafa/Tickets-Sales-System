@@ -43,18 +43,33 @@ videos to be here
 
 * [NodeJS](https://nodejs.org/en/) - JS runtime environment
 * [Express](http://expressjs.com/) - The web framework used
-* [Mongoose](https://mongoosejs.com/) - Object Data Modelling (ODM) library
-* [MongoDB Atlas](https://www.mongodb.com/cloud/atlas) - Cloud database service
-* [Pug](https://pugjs.org/api/getting-started.html) - High performance template engine
+* [PostgreSQL](https://www.postgresql.org/) - Relational database management system
+* [Prisma](https://www.prisma.io/) - Node.js and TypeScript ORM
+* [SupaBase](https://supabase.com/) - Cloud database service
+* [ReactJs](https://reactjs.org/) - Front-end JavaScript library
 * [JSON Web Token](https://jwt.io/) - Security token
-* [ParcelJS](https://parceljs.org/) - Blazing fast, zero configuration web application bundler
 * [Stripe](https://stripe.com/) - Online payment API
 * [Postman](https://www.getpostman.com/) - API testing
+* [Jest](https://jestjs.io/) - Unit testing JavaScript Framework
 * [Mailtrap](https://mailtrap.io/) & [Sendgrid](https://sendgrid.com/) - Email delivery platform
-* [Heroku](https://www.heroku.com/) - Cloud platform
+* [Vercel](https://vercel.com/) - Cloud platform
 
 
-
+* Developed a Ticket Sales application using Node.js, Express.js, Kafka, PostgreSQL, and React.
+* Implemented a full-stack web application with a scalable architecture to manage ticket sales.
+* Utilized Node.js to build the backend REST APIs, Express.js as the web framework, and PostgreSQL for data storage.
+* Designed and implemented efficient database schema to store customer and ticket information.
+* Incorporated Apache Kafka for real-time data streaming and integrated it with the Node.js backend.
+* Implemented secure payment processing using Stripe API.
+* Built a responsive user interface using React, allowing users to efficiently purchase tickets.
+* Employed JWT for user authentication and authorization.
+* Implemented server-side rendering for improved performance and SEO optimization.
+* Conducted testing and debugging to ensure high-quality delivery of the application.
+* Deployed the application on a cloud-based platform for easy scalability and maintenance.
+* Utilized agile methodologies to manage project development and ensure timely delivery.
+* Followed best practices for code organization and documentation to maintain a high level of code quality.
+* Stayed current with emerging technologies and industry trends to continuously improve the application.
+* Participated in code reviews to ensure adherence to coding standards and best practices.
 
 ## Badges
 
