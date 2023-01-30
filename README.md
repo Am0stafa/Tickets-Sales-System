@@ -46,6 +46,7 @@ videos to be here
 * [PostgreSQL](https://www.postgresql.org/) - Relational database management system
 * [Prisma](https://www.prisma.io/) - Node.js and TypeScript ORM
 * [SupaBase](https://supabase.com/) - Cloud database service
+* [KafkaJs](https://supabase.com/) - For pub/sub comunnication
 * [ReactJs](https://reactjs.org/) - Front-end JavaScript library
 * [JSON Web Token](https://jwt.io/) - Security token
 * [Stripe](https://stripe.com/) - Online payment API
