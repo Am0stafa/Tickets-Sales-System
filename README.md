@@ -48,6 +48,7 @@ videos to be here
 * [SupaBase](https://supabase.com/) - Cloud database service
 * [KafkaJs](https://supabase.com/) - For pub/sub comunnication
 * [ReactJs](https://reactjs.org/) - Front-end JavaScript library
+* [Algolia](https://www.algolia.com/) - Globally scalable, secure, digital search and discovery experiences that are ultrafast and reliable powered by AI
 * [JSON Web Token](https://jwt.io/) - Security token
 * [Stripe](https://stripe.com/) - Online payment API
 * [Postman](https://www.getpostman.com/) - API testing
