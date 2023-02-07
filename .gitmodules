@@ -1,6 +1,11 @@
-[submodule "producer"]
-	path = producer
-	url = https://github.com/AlHassanHK/producer.git
+
 [submodule "consumer"]
 	path = consumer
 	url = https://github.com/AlHassanHK/consumer
+[submodule "producer"]
+	path = producer
+	url = https://github.com/AlHassanHK/producer.git
+[submodule "reservation"]
+	path = reservation
+	url = https://github.com/AlHassanHK/reservation.git
+
