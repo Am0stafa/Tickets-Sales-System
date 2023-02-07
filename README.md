@@ -9,12 +9,12 @@
  <p align="center">
  <a href="#Appendix">Appendix</a> •
   <a href="#Links">Links</a> •
-  <a href="#MicroServies Repos">MicroServies Repos</a> •
+  <a href="#MicroServices Repos">MicroServices Repos</a> •
   <a href="#Demo">Demo</a> •
   <a href="#Badges">Badges</a> •
-  <a href="#Project-requriments">Project requriments</a> •
+  <a href="#Project-requriments">Project requirements</a> •
+  <a href="#Ports">Ports</a> •
   <a href="#Build-With">Technologies</a>
-  
 </p>
 
 
@@ -28,15 +28,30 @@ Looking for a hassle-free way to get tickets to your favorite events? Look no fu
  - [Admin page with statistics](https://ticketaka-admin-dashboard.vercel.app/#/admin/default)
 
 
-## MicroServies Repos
+## MicroServices Repos
 In each repo there is the documentation for each api
- - [Awesome Readme Templates](https://awesomeopensource.com/project/elangosundar/awesome-README-templates)
- - [Awesome README](https://github.com/matiassingers/awesome-readme)
- - [How to write a Good readme](https://bulldogjob.com/news/449-how-to-write-a-good-readme-for-your-github-project)
+ - [Reservation](https://github.com/AlHassanHK/reservation)
+ - [Users](https://github.com/AlHassanHK/user)
+ - [Shop](https://github.com/AlHassanHK/shop)
+ - [Payment](https://github.com/AlHassanHK/payment)
+ - [Consumer](https://github.com/AlHassanHK/consumer)
+ - [Producer](https://github.com/AlHassanHK/producer)
 
 
 ## 🚀 Demo
-videos to be here
+
+Here are some videos from our project!
+
+    https://clipchamp.com/watch/mXSMDgGbrKl
+
+    https://clipchamp.com/watch/ePBlfkjQvca  (cancelled session)
+
+    https://clipchamp.com/watch/ZfPvE4DzOS1  (responsive design)
+
+    https://clipchamp.com/watch/u7idqobhqmv  (admin dashboard)
+
+
+
 
 
 ## Build With
@@ -201,6 +216,24 @@ Milestone #3 (Due 12/23): Create Backend Payments, Security, and Analytics Servi
 Milestone #4 (Due 01/03): Create Frontend Shop and Reservation Screens. \
 
 Project Evaluations 01/04 - 01/05.
+
+## Ports
+
+The monorepo uses the following ports:
+
+**Frontend**
+
+- Client: 9000
+
+**Backend**
+
+- Shop: 3000
+- Consumer: 3010
+- Reservations: 3020
+- User: 3030
+- Payments: 3040
+- Security: 3050
+
 
 ## Contributing
 
