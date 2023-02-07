@@ -2,13 +2,18 @@ const express = require('express');
 const createError = require('http-errors');
 const morgan = require('morgan');
 require('dotenv').config();
+const cors = require('cors');
 
 const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(morgan('dev'));
+app.use(cors());
 
 
+app.get('/', (req, res) => {
+    res.send('beeb-beeb-boob');
+});
 
 app.use('/api', require('./routes/api.route'));
 

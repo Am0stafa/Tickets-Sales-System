@@ -1,5 +1,5 @@
 import express from "express";
-import httpErrors from "http-errors";
+import createError from "http-errors";
 import morgan from "morgan";
 import cors from "cors";
 import cookieParser from "cookie-parser";

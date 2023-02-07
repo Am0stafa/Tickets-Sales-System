@@ -1,2 +1,0 @@
--- AlterTable
-ALTER TABLE "Hold" ALTER COLUMN "expiresIn" SET DATA TYPE BIGINT;

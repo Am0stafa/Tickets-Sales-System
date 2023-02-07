@@ -1,0 +1,18 @@
+{
+    "version": 2,
+    "builds": [
+      {
+        "src": "app.js",
+        "use": "@vercel/node"
+      }
+    ],  
+    "env": {
+      "DATABASE_URL":"postgresql://postgres:XNlwLXurO2L5aTTJ@db.ckicjzurvlqafceovnen.supabase.co:5432/postgres"
+    },
+    "routes": [{"handle": "filesystem"},
+      {
+        "src": "/.*",
+        "dest": "app.js"
+      }
+    ]
+  }

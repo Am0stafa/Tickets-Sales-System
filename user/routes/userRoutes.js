@@ -9,3 +9,4 @@ router.route("/create").post(userController.createUser);
 router.route("/ticket/:id").get(userController.getTicketById);
 
 export default router;
+
